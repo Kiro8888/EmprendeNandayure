@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class entrepreneur extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_etp';
 
-
+    protected $fillable = ['etp_name', 'etp_last_name','etp_latitude','etp_longitude', 'etp_status', 'etp_num', 'etp_email', 'etp_id_rol'];
 
 
     public function rol(): BelongsTo {
