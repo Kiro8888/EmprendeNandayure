@@ -338,6 +338,12 @@ return [
             'active' => ['admin/entrepreneurs*']
         ],
         [
+            'text' => 'Productos',
+            'route' => 'admin.products.index',
+            'icon' => 'fas fa-folder-open fa-fw',
+            'active' => ['admin/products*']
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
