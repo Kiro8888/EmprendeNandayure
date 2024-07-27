@@ -8,7 +8,7 @@
 
 @section('content')
 
-            <form action="{{route('admin.services.store')}}" method="POST">
+            <form action="{{route('admin.services.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Primer campo --}}
                 <div class="form-group">
@@ -33,6 +33,15 @@
                     @error('srv_price')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
+                </div>
+
+                 {{-- Campo para imagen --}}
+                 <div class="form-group">
+                    <label for="srv_img" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="srv_img" id="srv_img">
+                    @error('srv_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 {{-- Quinto campo --}}
                 <div class="form-group">

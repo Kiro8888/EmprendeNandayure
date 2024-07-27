@@ -11,7 +11,7 @@ class service extends Model
     use HasFactory;
 
     protected $primaryKey = 'id_srv';
-    protected $fillable = ['srv_name', 'srv_description','srv_status','srv_price', 'srv_id_ctg', 'srv_id_etp'];
+    protected $fillable = ['srv_name', 'srv_description','srv_status','srv_img','srv_price', 'srv_id_ctg', 'srv_id_etp'];
 
     public function entrepreneur(): BelongsTo {
         return $this->belongsTo(Entrepreneur::class, 'srv_id_etp');

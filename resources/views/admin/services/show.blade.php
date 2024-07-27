@@ -40,6 +40,17 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+                    {{-- Mostrar imagen actual --}}
+                <div class="form-group">
+                    <label for="srv_img" class="form-label">Imagen Actual</label>
+                    @if ($service->srv_img)
+                        <div>
+                            <img src="{{ asset($service->srv_img) }}" alt="Imagen del Servicio" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
                 {{-- Quinto campo --}}
                 <div class="form-group">
                     <label for="srv_id_ctg" class="form-label">Categoría</label>
