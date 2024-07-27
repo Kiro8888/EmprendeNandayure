@@ -34,21 +34,6 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      */
 
-
-    //  Schema::create('products', function (Blueprint $table) {
-    //     $table->id('id_pdt'); // Clave primaria
-    //     $table->string('pdt_name'); // Nombre del producto
-    //     $table->text('pdt_description')->nullable(); // Descripción del producto (opcional)
-    //     $table->enum('pdt_status', [1, 2])->default(1); 
-    //     $table->string('pdt_img')->nullable(); // Imagen del producto (ruta de la imagen, opcional)
-    //     $table->decimal('pdt_price', 8, 2); // Precio del producto
-    //     $table->unsignedBigInteger('pdt_id_ctg'); // Clave foránea de la categoría
-    //     $table->unsignedBigInteger('pdt_id_etp'); // Clave foránea del emprendedor
-    //     $table->timestamps();
-
-
-
-
     public function store(Request $request)
     {
         $request->validate([
@@ -56,13 +41,35 @@ class ProductController extends Controller
             'pdt_description' => 'required',
             'pdt_price' => 'required',
         ]);
+
+        $productData = $request->all();
+
+        if ($request->hasFile('pdt_img')) {
+            $imageName = time().'.'.$request->pdt_img->extension();  
+            $request->pdt_img->move(public_path('images/products'), $imageName);
+            $productData['pdt_img'] = 'images/products/' . $imageName;
+        }
     
-        $product = product::create($request->all());
+        $product = product::create($productData);
     
     
-            return redirect()->route('admin.products.index', $product)
+            return redirect()->route('admin.products.index')
             ->with('info', 'el producto se creo correctamente');
     }
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'pdt_name'        => 'required',
+    //         'pdt_description' => 'required',
+    //         'pdt_price' => 'required',
+    //     ]);
+    
+    //     $product = product::create($request->all());
+    
+    
+    //         return redirect()->route('admin.products.index', $product)
+    //         ->with('info', 'el producto se creo correctamente');
+    // }
 
     /**
      * Display the specified resource.

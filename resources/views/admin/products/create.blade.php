@@ -8,7 +8,7 @@
 
 @section('content')
 
-            <form action="{{route('admin.products.store')}}" method="POST">
+            <form action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Primer campo --}}
                 <div class="form-group">
@@ -33,6 +33,14 @@
                     @error('pdt_price')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
+                </div>
+                 {{-- Campo para imagen --}}
+                 <div class="form-group">
+                    <label for="pdt_img" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="pdt_img" id="pdt_img">
+                    @error('pdt_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 {{-- Quinto campo --}}
                 <div class="form-group">
