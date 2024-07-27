@@ -27,20 +27,37 @@
                 @enderror
                 </div>
                  {{-- Tercer campo --}}
-                 <div class="form-group">
+                 {{-- <div class="form-group">
                     <label for="etp_latitude" class="form-label">Latitud</label>
                     <input type="number" class="form-control" name="etp_latitude" id="etp_latitude">
                     @error('etp_latitude')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
-                </div>
-                {{-- Cuarto campo --}}
+                </div> --}}
+
                 <div class="form-group">
+                    <label for="etp_latitude" class="form-label">Latitud</label>
+                    <input type="text" class="form-control" name="etp_latitude" id="etp_latitude" readonly>
+                    @error('etp_latitude')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+                
+                {{-- Cuarto campo --}}
+                {{-- <div class="form-group">
                     <label for="etp_longitude" class="form-label">Longitud</label>
                     <input type="number" class="form-control" name="etp_longitude" id="etp_longitude">
                     @error('etp_longitude')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
+                </div> --}}
+
+                <div class="form-group">
+                    <label for="etp_longitude" class="form-label">Longitud</label>
+                    <input type="text" class="form-control" name="etp_longitude" id="etp_longitude" readonly>
+                    @error('etp_longitude')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
                 {{-- Quinto campo --}}
                 {{-- <div class="form-group">
@@ -66,15 +83,87 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+
+                {{-- MAP --}}
+                <div id="map" style="height: 400px; width: 100%;"></div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="/css/admin_custom.css">
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Crear el mapa centrado en coordenadas por defecto
+        var map = L.map('map').setView([9.7489, -83.7534], 8); // Coordenadas por defecto (Costa Rica)
+
+        // Añadir el tile layer de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Crear un marcador inicial en el centro por defecto
+        var marker = L.marker([9.7489, -83.7534], { draggable: true }).addTo(map);
+
+        // Añadir un botón para centrar en la ubicación actual
+        var locateButton = L.control({position: 'topright'});
+        locateButton.onAdd = function(map) {
+            var div = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+            div.innerHTML = '<button style="background-color: white; padding: 8px; border: none; cursor: pointer;">Ubicación actual</button>';
+            div.style.backgroundColor = 'white'; 
+            div.style.width = 'auto';
+            div.style.height = 'auto';
+            div.style.cursor = 'pointer';
+            div.onclick = function(){
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lng = position.coords.longitude;
+
+                        // Centrar el mapa en la ubicación del usuario
+                        map.setView([lat, lng], 15);
+
+                        // Mover el marcador a la ubicación del usuario
+                        marker.setLatLng([lat, lng]);
+
+                        // Actualizar los campos de latitud y longitud
+                        document.getElementById('etp_latitude').value = lat;
+                        document.getElementById('etp_longitude').value = lng;
+                    }, function(error) {
+                        console.error('Error al obtener la ubicación: ' + error.message);
+                        alert('No se pudo obtener la ubicación actual.');
+                    });
+                } else {
+                    console.error('Geolocation no está soportado por este navegador.');
+                    alert('Geolocation no está soportado por este navegador.');
+                }
+            }
+            return div;
+        };
+        locateButton.addTo(map);
+
+        // Actualizar latitud y longitud al mover el marcador
+        marker.on('dragend', function(event) {
+            var position = marker.getLatLng();
+            document.getElementById('etp_latitude').value = position.lat;
+            document.getElementById('etp_longitude').value = position.lng;
+        });
+
+        // Actualizar la posición del marcador al hacer clic en el mapa
+        map.on('click', function(event) {
+            var position = event.latlng;
+            marker.setLatLng(position);
+            document.getElementById('etp_latitude').value = position.lat;
+            document.getElementById('etp_longitude').value = position.lng;
+        });
+    });
+</script>
+<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
 @stop

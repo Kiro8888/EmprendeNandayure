@@ -33,21 +33,38 @@
                 @enderror
                 </div>
                  {{-- Tercer campo --}}
-                 <div class="form-group">
+                 {{-- <div class="form-group">
                     <label for="etp_latitude" class="form-label">Latitud</label>
                     <input type="number" class="form-control" name="etp_latitude" id="etp_latitude" value="{{$entrepreneur->etp_latitude}}">
                     @error('etp_latitude')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
-                </div>
-                {{-- Cuarto campo --}}
+                </div> --}}
                 <div class="form-group">
+                    <label for="etp_latitude" class="form-label">Latitud</label>
+                    <input type="text" class="form-control" name="etp_latitude" id="etp_latitude" readonly value="{{$entrepreneur->etp_latitude}}">
+                    @error('etp_latitude')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+
+
+                {{-- Cuarto campo --}}
+                {{-- <div class="form-group">
                     <label for="etp_longitude" class="form-label">Longitud</label>
                     <input type="number" class="form-control" name="etp_longitude" id="etp_longitude" value="{{$entrepreneur->etp_longitude}}">
                     @error('etp_longitude')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
+                </div> --}}
+                <div class="form-group">
+                    <label for="etp_longitude" class="form-label">Longitud</label>
+                    <input type="text" class="form-control" name="etp_longitude" id="etp_longitude" readonly value="{{$entrepreneur->etp_longitude}}">
+                    @error('etp_longitude')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
                 </div>
+
                 {{-- Quinto campo --}}
                 {{-- <div class="form-group">
                     <label for="etp_status" class="form-label">Estatus</label>
@@ -82,15 +99,53 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+                
+                {{-- MAP --}}
+                <div id="map" style="height: 400px; width: 100%;"></div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 @stop
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="/css/admin_custom.css">
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
-
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener las coordenadas iniciales del emprendedor desde el objeto $entrepreneur
+        var initialLat = {{ $entrepreneur->etp_latitude ?? 9.7489 }}; // Usa 9.7489 como valor por defecto si no hay latitud
+        var initialLng = {{ $entrepreneur->etp_longitude ?? -83.7534 }}; // Usa -83.7534 como valor por defecto si no hay longitud
+
+        // Crear el mapa centrado en las coordenadas iniciales
+        var map = L.map('map').setView([initialLat, initialLng], 15); // Ajusta el zoom según sea necesario
+
+        // Añadir el tile layer de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Crear un marcador inicial en las coordenadas del emprendedor
+        var marker = L.marker([initialLat, initialLng], { draggable: true }).addTo(map);
+
+        // Actualizar latitud y longitud al mover el marcador
+        marker.on('dragend', function(event) {
+            var position = marker.getLatLng();
+            document.getElementById('etp_latitude').value = position.lat;
+            document.getElementById('etp_longitude').value = position.lng;
+        });
+
+        // Actualizar la posición del marcador al hacer clic en el mapa
+        map.on('click', function(event) {
+            var position = event.latlng;
+            marker.setLatLng(position);
+            document.getElementById('etp_latitude').value = position.lat;
+            document.getElementById('etp_longitude').value = position.lng;
+        });
+    });
+</script>
+<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
 @stop
