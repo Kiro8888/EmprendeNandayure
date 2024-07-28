@@ -58,6 +58,15 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+                {{-- Campo para imagen --}}
+                <div class="form-group">
+                    <label for="evt_img" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="evt_img" id="evt_img">
+                    @error('evt_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
                
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

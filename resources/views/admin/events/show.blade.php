@@ -58,6 +58,18 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+
+                  {{-- Mostrar imagen actual --}}
+                  <div class="form-group">
+                    <label for="evt_img" class="form-label">Imagen Actual</label>
+                    @if ($event->evt_img)
+                        <div>
+                            <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
             </form>
 @stop
 
