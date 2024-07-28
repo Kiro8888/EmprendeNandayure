@@ -41,6 +41,25 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
+                {{-- Mostrar imagen actual --}}
+                <div class="form-group">
+                    <label for="pdt_img" class="form-label">Imagen Actual</label>
+                    @if ($product->pdt_img)
+                        <div>
+                            <img src="{{ asset($product->pdt_img) }}" alt="Imagen del Servicio" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
+                {{-- Campo para subir nueva imagen --}}
+                <div class="form-group">
+                    <label for="pdt_img" class="form-label">Nueva Imagen</label>
+                    <input type="file" class="form-control" name="pdt_img" id="pdt_img">
+                    @error('pdt_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
                 {{-- Quinto campo --}}
                 <div class="form-group">
                     <label for="pdt_id_ctg" class="form-label">Categoría</label>

@@ -13,7 +13,7 @@ class product extends Model
 
     protected $primaryKey = 'id_pdt';
 
-    protected $fillable = ['pdt_name', 'pdt_description','pdt_status','pdt_price', 'pdt_id_ctg', 'pdt_id_etp', 'etp_email', 'etp_id_rol'];
+    protected $fillable = ['pdt_name', 'pdt_description','pdt_status', 'pdt_img' ,'pdt_price', 'pdt_id_ctg', 'pdt_id_etp', 'etp_email', 'etp_id_rol'];
 
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class, 'pdt_id_ctg');
