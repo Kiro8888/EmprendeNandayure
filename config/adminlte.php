@@ -344,6 +344,12 @@ return [
             'active' => ['admin/products*']
         ],
         [
+            'text' => 'Servicios',
+            'route' => 'admin.services.index',
+            'icon' => 'fas fa-folder-open fa-fw',
+            'active' => ['admin/services*']
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
