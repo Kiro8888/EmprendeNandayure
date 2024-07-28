@@ -332,6 +332,12 @@ return [
             'active' => ['admin/categories*']
         ],
         [
+            'text' => 'Emprendedores',
+            'route' => 'admin.entrepreneurs.index',
+            'icon' => 'fas fa-folder-open fa-fw',
+            'active' => ['admin/entrepreneurs*']
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
