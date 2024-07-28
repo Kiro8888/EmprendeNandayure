@@ -44,13 +44,20 @@
                         <tr>
                             <th scope="row">{{$product->id_pdt}}</th>
                             <td>{{$product->pdt_name}}</td>
-                            <td>{{$product->pdt_status}}</td>
+                            <td>
+                                @if ($product->pdt_status == 1)
+                                    Activo
+                                @elseif ($product->pdt_status == 2)
+                                    Inactivo
+                                @else
+                                    Desconocido
+                                @endif
+                            </td>
                             <td>{{$product->pdt_price}}</td>
-                            <td>{{$product->pdt_id_etp}}</td>
-                            <td>{{$product->pdt_id_ctg}}</td>
+                            <td>{{$product->entrepreneur->etp_name ?? 'Desconocido' }}</td>
+                            <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
                             <td><a class="btn btn-warning" href="{{route('admin.products.edit', $product)}}">Editar</a></td>
                             <td>
-
                                 <form action="{{route('admin.products.destroy', $product)}}" method="POST">
 
                                     @csrf

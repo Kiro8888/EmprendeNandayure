@@ -16,4 +16,9 @@ class service extends Model
     public function entrepreneur(): BelongsTo {
         return $this->belongsTo(Entrepreneur::class, 'srv_id_etp');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'srv_id_ctg');
+    }
 }
