@@ -33,13 +33,6 @@
                 @enderror
                 </div>
                  {{-- Tercer campo --}}
-                 {{-- <div class="form-group">
-                    <label for="etp_latitude" class="form-label">Latitud</label>
-                    <input type="number" class="form-control" name="etp_latitude" id="etp_latitude" value="{{$entrepreneur->etp_latitude}}">
-                    @error('etp_latitude')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
                 <div class="form-group">
                     <label for="etp_latitude" class="form-label">Latitud</label>
                     <input type="text" class="form-control" name="etp_latitude" id="etp_latitude" readonly value="{{$entrepreneur->etp_latitude}}">
@@ -48,15 +41,7 @@
                     @enderror
                 </div>
 
-
                 {{-- Cuarto campo --}}
-                {{-- <div class="form-group">
-                    <label for="etp_longitude" class="form-label">Longitud</label>
-                    <input type="number" class="form-control" name="etp_longitude" id="etp_longitude" value="{{$entrepreneur->etp_longitude}}">
-                    @error('etp_longitude')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
                 <div class="form-group">
                     <label for="etp_longitude" class="form-label">Longitud</label>
                     <input type="text" class="form-control" name="etp_longitude" id="etp_longitude" readonly value="{{$entrepreneur->etp_longitude}}">
@@ -66,13 +51,6 @@
                 </div>
 
                 {{-- Quinto campo --}}
-                {{-- <div class="form-group">
-                    <label for="etp_status" class="form-label">Estatus</label>
-                    <input type="text" class="form-control" name="etp_status" id="etp_status"  value="{{$entrepreneur->etp_status}}">
-                    @error('etp_status')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
                 <div class="form-group">
                     <label for="etp_status" class="form-label">Estatus</label>
                     <select class="form-control" name="etp_status" id="etp_status">
@@ -109,43 +87,49 @@
 @section('css')
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <link rel="stylesheet" href="/css/admin_custom.css">
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
+
 @section('js')
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq4odCELAfcbtP63DImOG50Vczdt-P97c&callback=initMap" async defer></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Obtener las coordenadas iniciales del emprendedor desde el objeto $entrepreneur
-        var initialLat = {{ $entrepreneur->etp_latitude ?? 9.7489 }}; // Usa 9.7489 como valor por defecto si no hay latitud
-        var initialLng = {{ $entrepreneur->etp_longitude ?? -83.7534 }}; // Usa -83.7534 como valor por defecto si no hay longitud
+    function initMap() {
+        var initialLat = {{ $entrepreneur->etp_latitude ?? 9.7489 }};
+        var initialLng = {{ $entrepreneur->etp_longitude ?? -83.7534 }};
+        
+        // Crear el mapa de Google
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: initialLat, lng: initialLng},
+            zoom: 15
+        });
 
-        // Crear el mapa centrado en las coordenadas iniciales
-        var map = L.map('map').setView([initialLat, initialLng], 15); // Ajusta el zoom según sea necesario
+        // Añadir el marcador inicial
+        var marker = new google.maps.Marker({
+            position: {lat: initialLat, lng: initialLng},
+            map: map,
+            draggable: true
+        });
 
-        // Añadir el tile layer de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Crear un marcador inicial en las coordenadas del emprendedor
-        var marker = L.marker([initialLat, initialLng], { draggable: true }).addTo(map);
+        // Cargar la capa KML
+        var kmlLayer = new google.maps.KmlLayer({
+            url: 'EmprendeNandayure/public/test.kml',
+            map: map
+        });
 
         // Actualizar latitud y longitud al mover el marcador
-        marker.on('dragend', function(event) {
-            var position = marker.getLatLng();
-            document.getElementById('etp_latitude').value = position.lat;
-            document.getElementById('etp_longitude').value = position.lng;
+        marker.addListener('dragend', function() {
+            var position = marker.getPosition();
+            document.getElementById('etp_latitude').value = position.lat();
+            document.getElementById('etp_longitude').value = position.lng();
         });
 
         // Actualizar la posición del marcador al hacer clic en el mapa
-        map.on('click', function(event) {
-            var position = event.latlng;
-            marker.setLatLng(position);
-            document.getElementById('etp_latitude').value = position.lat;
-            document.getElementById('etp_longitude').value = position.lng;
+        map.addListener('click', function(event) {
+            var position = event.latLng;
+            marker.setPosition(position);
+            document.getElementById('etp_latitude').value = position.lat();
+            document.getElementById('etp_longitude').value = position.lng();
         });
-    });
+    }
 </script>
 <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
 @stop
