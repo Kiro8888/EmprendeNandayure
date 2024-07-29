@@ -350,6 +350,12 @@ return [
             'active' => ['admin/services*']
         ],
         [
+            'text' => 'Eventos',
+            'route' => 'admin.events.index',
+            'icon' => 'fas fa-folder-open fa-fw',
+            'active' => ['admin/events*']
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
