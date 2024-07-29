@@ -95,17 +95,47 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, product $product)
-    {
+
+
+     public function update(Request $request, product $product)
+     {
         $request->validate([
             'pdt_name'        => 'required',
             'pdt_description' => 'required',
             'pdt_price' => 'required',
         ]);
-        $product->update($request->all());
-        return redirect()->route('admin.products.index',$product)
-        ->with('info', 'el producto se actualizo correctamente');
-    }
+         $productData = $request->all();
+     
+         // Si se sube una nueva imagen, guárdala y actualiza la ruta
+         if ($request->hasFile('pdt_img')) {
+             // Eliminar la imagen anterior si existe
+             if ($product->pdt_img && file_exists(public_path($product->pdt_img))) {
+                 unlink(public_path($product->pdt_img));
+             }
+     
+             $imageName = time().'.'.$request->pdt_img->extension();  
+             $request->pdt_img->move(public_path('images/products'), $imageName);
+             $productData['pdt_img'] = 'images/products/' . $imageName;
+         }
+     
+         $product->update($productData);
+     
+         return redirect()->route('admin.products.index', $product)
+             ->with('info', 'El servicio se actualizó correctamente');
+     }
+    // public function update(Request $request, product $product)
+    // {
+    //     $request->validate([
+    //         'pdt_name'        => 'required',
+    //         'pdt_description' => 'required',
+    //         'pdt_price' => 'required',
+    //     ]);
+    //     $product->update($request->all());
+    //     return redirect()->route('admin.products.index',$product)
+    //     ->with('info', 'el producto se actualizo correctamente');
+    // }
+
+
 
     /**
      * Remove the specified resource from storage.
