@@ -45,7 +45,15 @@
                             <th scope="row">{{$entrepreneur->id_etp}}</th>
                             <td>{{$entrepreneur->etp_name}}</td>
                             <td>{{$entrepreneur->etp_last_name}}</td>
-                            <td>{{$entrepreneur->etp_status}}</td>
+                            <td>
+                                @if ($entrepreneur->etp_status == 1)
+                                    Activo
+                                @elseif ($entrepreneur->etp_status == 2)
+                                    Inactivo
+                                @else
+                                    Desconocido
+                                @endif
+                            </td>
                             <td>{{$entrepreneur->etp_num}}</td>
                             <td>{{$entrepreneur->etp_email}}</td>
                             <td><a class="btn btn-warning" href="{{route('admin.entrepreneurs.edit', $entrepreneur)}}">Editar</a></td>

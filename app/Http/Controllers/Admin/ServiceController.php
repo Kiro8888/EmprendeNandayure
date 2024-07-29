@@ -15,8 +15,10 @@ class ServiceController extends Controller
      */
     public function index()
     {
+        $entrepreneurs = entrepreneur::all();
+        $categories = category::all();
         $services = service::all();
-        return view('admin.services.index', compact('services'));
+        return view('admin.services.index', compact('services', 'categories', 'entrepreneurs'));
     }
 
     /**
