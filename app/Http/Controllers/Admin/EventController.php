@@ -25,7 +25,6 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
     public function store(Request $request)
     {
         //hay que agregar la validacion unica
@@ -42,6 +41,12 @@ class EventController extends Controller
 
         $eventData = $request->all();
         $eventData['evt_id_rol'] = 1; 
+
+        if ($request->hasFile('evt_img')) {
+            $imageName = time().'.'.$request->evt_img->extension();  
+            $request->evt_img->move(public_path('images/events'), $imageName);
+            $eventData['evt_img'] = 'images/events/' . $imageName;
+        }
     
         $events = event::create($eventData);
     
@@ -50,6 +55,30 @@ class EventController extends Controller
         return redirect()->route('admin.events.index', $events)
         ->with('info', 'el evento se guardo correctamente');
     }
+    // public function store(Request $request)
+    // {
+    //     //hay que agregar la validacion unica
+    //     $request->validate([
+    //         'evt_name'  =>'required',
+    //         'evt_description'  =>'required',
+    //         'evt_date'  =>'required',
+    //         'evt_hour'  =>'required',
+    //         'evt_location'  =>'required',
+          
+    //     ]);
+
+        
+
+    //     $eventData = $request->all();
+    //     $eventData['evt_id_rol'] = 1; 
+    
+    //     $events = event::create($eventData);
+    
+
+
+    //     return redirect()->route('admin.events.index', $events)
+    //     ->with('info', 'el evento se guardo correctamente');
+    // }
 
     /**
      * Display the specified resource.
@@ -70,8 +99,9 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, event $event)
-    {
+
+     public function update(Request $request, event $event)
+     {
         $request->validate([
             'evt_name'  =>'required',
             'evt_description'  =>'required',
@@ -79,10 +109,41 @@ class EventController extends Controller
             'evt_hour'  =>'required',
             'evt_location'  =>'required',
         ]);
-        $event->update($request->all());
-        return redirect()->route('admin.events.index', $event)
-        ->with('info', 'El emprendedor se actualizo correctamente');
-    }
+     
+         $eventData = $request->all();
+     
+         // Si se sube una nueva imagen, guárdala y actualiza la ruta
+         if ($request->hasFile('evt_img')) {
+             // Eliminar la imagen anterior si existe
+             if ($event->evt_img && file_exists(public_path($event->evt_img))) {
+                 unlink(public_path($event->evt_img));
+             }
+     
+             $imageName = time().'.'.$request->evt_img->extension();  
+             $request->evt_img->move(public_path('images/events'), $imageName);
+             $eventData['evt_img'] = 'images/events/' . $imageName;
+         }
+     
+         $event->update($eventData);
+     
+         return redirect()->route('admin.events.index', $event)
+             ->with('info', 'El servicio se actualizó correctamente');
+     }
+
+
+    // public function update(Request $request, event $event)
+    // {
+    //     $request->validate([
+    //         'evt_name'  =>'required',
+    //         'evt_description'  =>'required',
+    //         'evt_date'  =>'required',
+    //         'evt_hour'  =>'required',
+    //         'evt_location'  =>'required',
+    //     ]);
+    //     $event->update($request->all());
+    //     return redirect()->route('admin.events.index', $event)
+    //     ->with('info', 'El emprendedor se actualizo correctamente');
+    // }
 
     /**
      * Remove the specified resource from storage.

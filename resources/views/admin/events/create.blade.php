@@ -8,7 +8,7 @@
 
 @section('content')
 
-            <form action="{{route('admin.events.store')}}" method="POST">
+            <form action="{{route('admin.events.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Primer campo --}}
                 <div class="form-group">

@@ -13,7 +13,8 @@
     {{session('info')}}
 </div>
 @endif
-            <form action="{{route('admin.events.update', $event)}}" method="POST">
+            <form action="{{route('admin.events.update', $event)}}" method="POST" enctype="multipart/form-data">
+
                 @csrf
                 @method('PUT')
                 {{-- Primer campo --}}
@@ -57,7 +58,26 @@
                     <p class="text-danger">{{$message}}</p>
                 @enderror
                 </div>
-                
+
+                  {{-- Mostrar imagen actual --}}
+                  <div class="form-group">
+                    <label for="evt_img" class="form-label">Imagen Actual</label>
+                    @if ($event->evt_img)
+                        <div>
+                            <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
+                {{-- Campo para subir nueva imagen --}}
+                <div class="form-group">
+                    <label for="evt_img" class="form-label">Nueva Imagen</label>
+                    <input type="file" class="form-control" name="evt_img" id="evt_img">
+                    @error('evt_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 @stop
