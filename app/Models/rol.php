@@ -6,19 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class rol extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    public function users(): HasMany {
-        return $this->hasMany(User::class, 'usr_id_rol');
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class, 'role_id');
     }
 
-    public function entrepreneurs(): HasMany {
+    public function entrepreneurs(): HasMany
+    {
         return $this->hasMany(Entrepreneur::class, 'etp_id_rol');
     }
 
-    public function events(): HasMany {
+    public function events(): HasMany
+    {
         return $this->hasMany(Event::class, 'evt_id_rol');
     }
 }
