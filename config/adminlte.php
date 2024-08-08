@@ -331,6 +331,11 @@ return [
             'icon' => 'fas fa-users fa-fw ',
             'can'         => 'admin.users.index',
         ],
+        [
+            'text' => 'Roles',
+            'route' => 'admin.roles.index',
+            'icon' => 'fas fa-id-card fa-fw ',
+        ],
         ['header' => 'Menu Administrador'],
         [
             'text' => 'Categorias',

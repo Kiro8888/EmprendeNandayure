@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+//use spatie
+use Spatie\Permission\Traits\HasRoles;
 
 class entrepreneur extends Model
 {
+       //use spatie
+       use HasRoles;
+       
     use HasFactory;
     protected $primaryKey = 'id_etp';
 
