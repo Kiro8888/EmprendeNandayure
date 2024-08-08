@@ -9,6 +9,11 @@ use App\Models\category;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:admin.categories.index');
+    }
+
     /**
      * Display a listing of the resource.
      */
