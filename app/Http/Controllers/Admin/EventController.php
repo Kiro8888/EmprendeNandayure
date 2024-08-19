@@ -45,7 +45,6 @@ class EventController extends Controller
         
 
         $eventData = $request->all();
-        $eventData['evt_id_rol'] = 1; 
 
         if ($request->hasFile('evt_img')) {
             $imageName = time().'.'.$request->evt_img->extension();  

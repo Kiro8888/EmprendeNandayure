@@ -335,6 +335,7 @@ return [
             'text' => 'Roles',
             'route' => 'admin.roles.index',
             'icon' => 'fas fa-id-card fa-fw ',
+            'can'    => 'admin.roles.index',
         ],
         ['header' => 'Menu Administrador'],
         [
