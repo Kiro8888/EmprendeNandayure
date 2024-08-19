@@ -320,8 +320,21 @@ return [
             // 'url' => 'admin',
             'route' => 'admin.home',
             'icon' => 'fas fa-tachometer-alt fa-fw ',
-            'label' => 4,
+            // 'label' => 4,
             'label_color' => 'success',
+            'can'         => 'admin.home',
+        ],
+        [
+            'text' => 'Usuarios',
+            // 'url' => 'admin',
+            'route' => 'admin.users.index',
+            'icon' => 'fas fa-users fa-fw ',
+            'can'         => 'admin.users.index',
+        ],
+        [
+            'text' => 'Roles',
+            'route' => 'admin.roles.index',
+            'icon' => 'fas fa-id-card fa-fw ',
         ],
         ['header' => 'Menu Administrador'],
         [
@@ -329,91 +342,81 @@ return [
             // 'url' => 'admin/settings',
             'route' => 'admin.categories.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can'    => 'admin.categories.index',
         ],
         [
             'text' => 'Emprendedores',
             'route' => 'admin.entrepreneurs.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/entrepreneurs*']
+            'active' => ['admin/entrepreneurs*'],
+            'can'    => 'admin.entrepreneurs.index',
         ],
         [
             'text' => 'Productos',
             'route' => 'admin.products.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/products*']
+            'active' => ['admin/products*'],
+            'can'    => 'admin.products.index',
         ],
         [
             'text' => 'Servicios',
             'route' => 'admin.services.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/services*']
+            'active' => ['admin/services*'],
+            'can'    => 'admin.services.index',
         ],
         [
             'text' => 'Eventos',
             'route' => 'admin.events.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/events*']
+            'active' => ['admin/events*'],
+            'can'    => 'admin.events.index',
         ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+        // [
+        //     'text' => 'change_password',
+        //     'url' => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
+        //=============================================DROPDOWN===================================================
+        // [
+        //     'text' => 'multilevel',
+        //     'icon' => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url' => '#',
+        //                 ],
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url' => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url' => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url' => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url' => '#',
+        //         ],
+        //     ],
+        // ],
     ],
 
     /*

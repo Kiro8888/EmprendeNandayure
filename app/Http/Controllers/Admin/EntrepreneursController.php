@@ -8,6 +8,11 @@ use App\Models\entrepreneur;
 
 class EntrepreneursController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('can:admin.entrepreneurs.index');
+    }
+
     /**
      * Display a listing of the resource.
      */

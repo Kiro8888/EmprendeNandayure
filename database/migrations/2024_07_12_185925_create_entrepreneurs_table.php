@@ -24,9 +24,8 @@ return new class extends Migration
             $table->unsignedBigInteger('etp_id_rol'); 
             $table->timestamps();
 
-
+            // Actualiza la clave foránea para apuntar a la tabla 'roles'
             $table->foreign('etp_id_rol')->references('id_rol')->on('rols')->onDelete('cascade');
-
         });
     }
 
