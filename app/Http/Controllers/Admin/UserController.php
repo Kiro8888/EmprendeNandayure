@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -31,7 +34,7 @@ class UserController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {        
         return view('admin.users.create');
     }
 
@@ -43,11 +46,18 @@ class UserController extends Controller
     {
         //hay que agregar la validacion unica
         $request->validate([
-            'name'  =>'required',
-            'last_name'  =>'required',
-            'email'  =>'required',
-            'password'  =>'required',
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'], // Puedes agregar reglas adicionales si es necesario
         ]);
+        User::create([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
 
         // ESTE ES EL VERDADERO
         $users = user::create($request->all());
