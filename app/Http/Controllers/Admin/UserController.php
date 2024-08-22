@@ -10,9 +10,12 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
 
-    public function __constructor(){
+    public function __construct(){
         $this->middleware('can:admin.users.index')->only('index');
-        $this->middleware('can:admin.users.index')->only('edit', 'update');
+        $this->middleware('can:admin.users.create')->only('create', 'store');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+        $this->middleware('can:admin.users.destroy')->only('destroy');
+        $this->middleware('can:admin.users.show')->only('show');
     }
 
 
@@ -29,15 +32,29 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        //
+        //hay que agregar la validacion unica
+        $request->validate([
+            'name'  =>'required',
+            'last_name'  =>'required',
+            'email'  =>'required',
+            'password'  =>'required',
+        ]);
+
+        // ESTE ES EL VERDADERO
+        $users = user::create($request->all());
+
+
+        return redirect()->route('admin.users.index', $users)
+        ->with('info', 'el usuario se guardo correctamente');
     }
 
     /**

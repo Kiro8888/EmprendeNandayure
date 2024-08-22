@@ -23,8 +23,9 @@ return new class extends Migration
             $table->timestamps();
 
             // Definición de las claves foráneas
+            $table->foreign('pdt_id_etp')->references('id')->on('entrepreneurships')->onDelete('cascade');
             $table->foreign('pdt_id_ctg')->references('id_ctg')->on('categories')->onDelete('cascade');
-            $table->foreign('pdt_id_etp')->references('id_etp')->on('entrepreneurs')->onDelete('cascade');
+           
         });
     }
 

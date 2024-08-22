@@ -19,11 +19,9 @@ return new class extends Migration
             $table->time('evt_hour'); // Hora del evento
             $table->string('evt_location'); // Ubicación del evento
             $table->string('evt_img')->nullable(); // Imagen del evento (ruta de la imagen, opcional)
-            $table->unsignedBigInteger('evt_id_rol'); // Clave foránea de roles
             $table->timestamps();
 
-            // Definición de la clave foránea
-            $table->foreign('evt_id_rol')->references('id_rol')->on('rols')->onDelete('cascade');
+     
         });
     }
 
