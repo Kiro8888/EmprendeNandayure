@@ -3,12 +3,12 @@
 @section('title', 'Admin Nandayure')
 
 @section('content_header')
-    <h1>Crear emprendedor</h1>
+    <h1>Crear emprendimiento</h1>
 @stop
 
 @section('content')
 
-            <form action="{{route('admin.entrepreneurs.store')}}" method="POST">
+            <form action="{{route('admin.entrepreneurships.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- Primer campo --}}
                 <div class="form-group">
@@ -20,38 +20,13 @@
                 </div>
                   {{-- Segundo campo --}}
                 <div class="form-group">
-                    <label for="etp_last_name" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" name="etp_last_name" id="etp_last_name">
-                    @error('etp_last_name')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div>
-                 {{-- Tercer campo --}}
-                 {{-- <div class="form-group">
-                    <label for="etp_latitude" class="form-label">Latitud</label>
-                    <input type="number" class="form-control" name="etp_latitude" id="etp_latitude">
-                    @error('etp_latitude')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
-
-                <div class="form-group">
                     <label for="etp_latitude" class="form-label">Latitud</label>
                     <input type="text" class="form-control" name="etp_latitude" id="etp_latitude" readonly>
                     @error('etp_latitude')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
-                </div>
-                
+                </div>          
                 {{-- Cuarto campo --}}
-                {{-- <div class="form-group">
-                    <label for="etp_longitude" class="form-label">Longitud</label>
-                    <input type="number" class="form-control" name="etp_longitude" id="etp_longitude">
-                    @error('etp_longitude')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
-
                 <div class="form-group">
                     <label for="etp_longitude" class="form-label">Longitud</label>
                     <input type="text" class="form-control" name="etp_longitude" id="etp_longitude" readonly>
@@ -60,14 +35,6 @@
                     @enderror
                 </div>
                 {{-- Quinto campo --}}
-                {{-- <div class="form-group">
-                    <label for="etp_status" class="form-label">Estatus</label>
-                    <input type="text" class="form-control" name="etp_status" id="etp_status">
-                    @error('etp_status')
-                    <p class="text-danger">{{$message}}</p>
-                @enderror
-                </div> --}}
-                {{-- Sexto campo --}}
                 <div class="form-group">
                     <label for="etp_num" class="form-label">Numero</label>
                     <input type="number" class="form-control" name="etp_num" id="etp_num">
@@ -82,6 +49,14 @@
                     @error('etp_email')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
+                </div>
+                 {{-- Campo para imagen --}}
+                 <div class="form-group">
+                    <label for="etp_img" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" name="etp_img" id="etp_img">
+                    @error('etp_img')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 {{-- MAP --}}

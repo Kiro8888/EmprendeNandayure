@@ -335,6 +335,7 @@ return [
             'text' => 'Roles',
             'route' => 'admin.roles.index',
             'icon' => 'fas fa-id-card fa-fw ',
+            'can'  => 'admin.roles.index',
         ],
         ['header' => 'Menu Administrador'],
         [
@@ -346,11 +347,11 @@ return [
             'can'    => 'admin.categories.index',
         ],
         [
-            'text' => 'Emprendedores',
-            'route' => 'admin.entrepreneurs.index',
+            'text' => 'Emprendimiento',
+            'route' => 'admin.entrepreneurships.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            'active' => ['admin/entrepreneurs*'],
-            'can'    => 'admin.entrepreneurs.index',
+            // 'active' => ['admin/entrepreneurships*'],
+            // 'can'    => 'admin.entrepreneurships.index',
         ],
         [
             'text' => 'Productos',

@@ -3,7 +3,7 @@
 @section('title', 'Admin Nandayure')
 
 @section('content_header')
-    <h1>Lista de emprendedores</h1>
+    <h1>Lista de emprendimientos</h1>
 @stop
 
 @section('content')
@@ -20,7 +20,7 @@
             <div class="card-body">
                 <div class="card-heder">
 
-                    <a class="btn btn-primary" href="{{route('admin.entrepreneurs.create')}}"><i class="fas fa-plus"></i>Crear Emprendedor</a>
+                    <a class="btn btn-primary" href="{{route('admin.entrepreneurships.create')}}"><i class="fas fa-plus"></i>Crear Emprendimiento</a>
 
                 </div>
                 <table class="table">
@@ -28,38 +28,36 @@
                       <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Apellidos</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Numero</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
-                        <th scope="col">Ubicacion</th>
+                        <th scope="col">Mostrar</th>
                       </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($entrepreneurs as $entrepreneur)
+                        @foreach ($entrepreneurships as $entrepreneurship)
 
                         <tr>
-                            <th scope="row">{{$entrepreneur->id_etp}}</th>
-                            <td>{{$entrepreneur->etp_name}}</td>
-                            <td>{{$entrepreneur->etp_last_name}}</td>
+                            <th scope="row">{{$entrepreneurship->id}}</th>
+                            <td>{{$entrepreneurship->etp_name}}</td>
+
                             <td>
-                                @if ($entrepreneur->etp_status == 1)
+                                @if ($entrepreneurship->etp_status == 1)
                                     Activo
-                                @elseif ($entrepreneur->etp_status == 2)
+                                @elseif ($entrepreneurship->etp_status == 2)
                                     Inactivo
                                 @else
                                     Desconocido
                                 @endif
                             </td>
-                            <td>{{$entrepreneur->etp_num}}</td>
-                            <td>{{$entrepreneur->etp_email}}</td>
-                            <td><a class="btn btn-warning" href="{{route('admin.entrepreneurs.edit', $entrepreneur)}}">Editar</a></td>
+                            <td>{{$entrepreneurship->etp_num}}</td>
+                            <td>{{$entrepreneurship->etp_email}}</td>
+                            <td><a class="btn btn-warning" href="{{route('admin.entrepreneurships.edit', $entrepreneurship)}}">Editar</a></td>
                             <td>
-
-                                <form action="{{route('admin.entrepreneurs.destroy', $entrepreneur)}}" method="POST">
+                                <form action="{{route('admin.entrepreneurships.destroy', $entrepreneurship)}}" method="POST">
 
                                     @csrf
                                     @method('delete')
@@ -69,8 +67,7 @@
                                 </form>
 
                             </td>
-
-                            <td><a class="btn btn-primary" href="{{route('admin.entrepreneurs.show', $entrepreneur)}}">Mostrar</a></td>
+                            <td><a class="btn btn-primary" href="{{route('admin.entrepreneurships.show', $entrepreneurship)}}">Mostrar</a></td>
                           </tr>
 
                         @endforeach

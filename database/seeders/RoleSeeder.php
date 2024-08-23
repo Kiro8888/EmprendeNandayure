@@ -43,10 +43,10 @@ class RoleSeeder extends Seeder
 
 
         //entrepreneur
-        Permission::create(['name' => 'admin.entrepreneurs.index', 'description' => 'Ver los emprendedores'])->syncRoles([ $role_admin]);
-        Permission::create(['name' => 'admin.entrepreneurs.create', 'description' => 'Crear los emprendedores'])->syncRoles([ $role_admin]);
-        Permission::create(['name' => 'admin.entrepreneurs.edit', 'description' => 'Editar los emprendedores'])->syncRoles([ $role_admin]);
-        Permission::create(['name' => 'admin.entrepreneurs.destroy','description' => 'Eliminar los emprendedores'])->syncRoles([ $role_admin]);
+        Permission::create(['name' => 'admin.entrepreneurships.index', 'description' => 'Ver los emprendimientos'])->syncRoles([ $role_admin,$role_entrepreneur]);
+        Permission::create(['name' => 'admin.entrepreneurships.create', 'description' => 'Crear los emprendimientos'])->syncRoles([ $role_admin, $role_entrepreneur]);
+        Permission::create(['name' => 'admin.entrepreneurships.edit', 'description' => 'Editar los emprendimientos'])->syncRoles([ $role_admin, $role_entrepreneur]);
+        Permission::create(['name' => 'admin.entrepreneurships.destroy','description' => 'Eliminar los emprendimientos'])->syncRoles([ $role_admin, $role_entrepreneur]);
 
         
         //products
@@ -66,6 +66,13 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.events.create',  'description' => 'Crear eventos'])->syncRoles([ $role_admin]);
         Permission::create(['name' => 'admin.events.edit',  'description' => 'Editar eventos'])->syncRoles([ $role_admin]);
         Permission::create(['name' => 'admin.events.destroy',  'description' => 'Eliminar eventos'])->syncRoles([ $role_admin]);
+
+
+        //roles
+        Permission::create(['name' => 'admin.roles.index', 'description' => 'Ver los roles'])->syncRoles([ $role_admin]);
+        Permission::create(['name' => 'admin.roles.create',  'description' => 'Crear roles'])->syncRoles([ $role_admin]);
+        Permission::create(['name' => 'admin.roles.edit',  'description' => 'Editar roles'])->syncRoles([ $role_admin]);
+        Permission::create(['name' => 'admin.roles.destroy',  'description' => 'Eliminar roles'])->syncRoles([ $role_admin]);
 
     }
 }
