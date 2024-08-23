@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\category;
-use App\Models\entrepreneur;
+// use App\Models\entrepreneur;
 
 class ProductController extends Controller
 {
@@ -39,8 +39,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = category::all(); // Asegúrate de importar correctamente el modelo
-        $entrepreneurs = entrepreneur::all(); // Asegúrate de importar correctamente el modelo
-        return view('admin.products.create', compact('categories', 'entrepreneurs'));
+        // $entrepreneurs = entrepreneur::all(); 
+        return view('admin.products.create', compact('categories'));
         // return view('admin.products.create');
     }
 
@@ -88,22 +88,22 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(product $product, category $categories,entrepreneur $entrepreneurs)
+    public function show(product $product, category $categories)
     { 
          $categories = category::all(); 
-         $entrepreneurs = entrepreneur::all(); 
-        return view('admin.products.show', compact('product','categories', 'entrepreneurs'));
+        //  $entrepreneurs = entrepreneur::all(); 
+        return view('admin.products.show', compact('product','categories'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product,category $categories,entrepreneur $entrepreneurs)
+    public function edit(product $product,category $categories)
     { 
          $categories = category::all(); 
-         $entrepreneurs = entrepreneur::all(); 
+        //  $entrepreneurs = entrepreneur::all(); 
        
-        return view('admin.products.edit', compact('product', 'categories', 'entrepreneurs'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**

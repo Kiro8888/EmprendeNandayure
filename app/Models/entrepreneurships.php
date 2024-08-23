@@ -15,7 +15,7 @@ class entrepreneurships extends Model
     use HasRoles;
     use HasFactory;
 
-    protected $fillable = ['etp_name', 'etp_latitude','etp_longitude', 'etp_status', 'etp_num', 'etp_email', 'etp_id_user'];
+    protected $fillable = ['etp_name', 'etp_latitude','etp_longitude', 'etp_status', 'etp_num', 'etp_email','etp_img', 'etp_id_user'];
 
 
     

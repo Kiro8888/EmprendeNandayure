@@ -51,7 +51,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'], // Puedes agregar reglas adicionales si es necesario
         ]);
-        User::create([
+        $users = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -60,7 +60,7 @@ class UserController extends Controller
 
 
         // ESTE ES EL VERDADERO
-        $users = user::create($request->all());
+        //  $users = user::create($request->all());
 
 
         return redirect()->route('admin.users.index', $users)

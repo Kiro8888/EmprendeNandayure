@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\service;
 use App\Models\category;
-use App\Models\entrepreneur;
+// use App\Models\entrepreneur;
 
 class ServiceController extends Controller
 {
@@ -36,8 +36,8 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = category::all();
-        $entrepreneurs = entrepreneur::all();
-        return view('admin.services.create', compact('categories', 'entrepreneurs'));
+        // $entrepreneurs = entrepreneur::all();
+        return view('admin.services.create', compact('categories'));
     }
 
     /**
@@ -95,22 +95,22 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(service $service,category $categories,entrepreneur $entrepreneurs)
+    public function show(service $service,category $categories)
     {
         $categories = category::all(); 
-        $entrepreneurs = entrepreneur::all(); 
-       return view('admin.services.show', compact('service','categories', 'entrepreneurs'));
+        // $entrepreneurs = entrepreneur::all(); 
+       return view('admin.services.show', compact('service','categories'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(service $service,category $categories,entrepreneur $entrepreneurs)
+    public function edit(service $service,category $categories)
     {
         $categories = category::all(); 
-        $entrepreneurs = entrepreneur::all(); 
+        // $entrepreneurs = entrepreneur::all(); 
       
-       return view('admin.services.edit', compact('service', 'categories', 'entrepreneurs'));
+       return view('admin.services.edit', compact('service', 'categories'));
     }
 
     /**
