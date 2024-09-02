@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\ClientEventController;
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +37,5 @@ Route::get('/', function () {
      return view('home');
     // return view('home', compact('usuarios'));
 });
+
+Route::get('/events', [ClientEventController::class, 'index'])->name('client.events.index');
