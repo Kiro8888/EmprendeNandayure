@@ -75,11 +75,11 @@
                 </div>
                 {{-- Sexto campo --}}
                 <div class="form-group">
-                    <label for="srv_id_etp" class="form-label">Emprendedor</label>
+                    <label for="srv_id_etp" class="form-label">Emprendimiento</label>
                     <select name="srv_id_etp" id="srv_id_etp" class="form-control">
-                        @foreach ($entrepreneurs as $entrepreneur)
-                            <option value="{{ $entrepreneur->id_etp }}" {{ $service->srv_id_etp == $entrepreneur->id_etp ? 'selected' : '' }}>
-                                {{ $entrepreneur->etp_name }}
+                        @foreach ($entrepreneurships as $entrepreneurship)
+                            <option value="{{ $entrepreneurship->id }}" {{ $service->srv_id_etp == $entrepreneurship->id ? 'selected' : '' }}>
+                                {{ $entrepreneurship->etp_name }}
                             </option>
                         @endforeach
                     </select>
