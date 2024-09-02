@@ -14,7 +14,7 @@ class service extends Model
     protected $fillable = ['srv_name', 'srv_description','srv_status','srv_img','srv_price', 'srv_id_ctg', 'srv_id_etp'];
     
     public function entrepreneurship(): BelongsTo {
-        return $this->belongsTo(Entrepreneurship::class, 'pdt_id_etp');
+        return $this->belongsTo(Entrepreneurship::class, 'srv_id_etp');
     }
 
     public function category()

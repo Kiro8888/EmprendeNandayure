@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\service;
 use App\Models\category;
-// use App\Models\entrepreneur;
+use App\Models\entrepreneurship;
 
 class ServiceController extends Controller
 {
@@ -16,7 +16,7 @@ class ServiceController extends Controller
         $this->middleware('can:admin.services.create')->only('create', 'store');
         $this->middleware('can:admin.services.edit')->only('edit', 'update');
         $this->middleware('can:admin.services.destroy')->only('destroy');
-        $this->middleware('can:admin.services.show')->only('show');
+        // $this->middleware('can:admin.services.show')->only('show');
     }
 
     /**
@@ -36,8 +36,8 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = category::all();
-        // $entrepreneurs = entrepreneur::all();
-        return view('admin.services.create', compact('categories'));
+        $entrepreneurships = entrepreneurship::all(); 
+        return view('admin.services.create', compact('categories', 'entrepreneurships'));
     }
 
     /**
@@ -69,48 +69,25 @@ class ServiceController extends Controller
      }
      
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'srv_name'        => 'required',
-    //         'srv_description' => 'required',
-    //         'srv_price' => 'required',
-    //     ]);
-    //     $serviceData = $request->all();
-
-       
-    //     if ($request->hasFile('srv_img')) {
-    //         $imageName = time().'.'.$request->srv_img->extension();  
-    //         $request->srv_img->move(public_path('images/services'), $imageName);
-    //         $serviceData['srv_img'] = 'images/services/' . $imageName;
-    //     }
-    //     $service = service::create($serviceData);
-
-    
-    //     return redirect()->route('admin.services.index', $service)
-    //     ->with('info', 'El servicio se creó correctamente');
-
-    // }
-
     /**
      * Display the specified resource.
      */
-    public function show(service $service,category $categories)
+    public function show(service $service,category $categories, entrepreneurship $entrepreneurships)
     {
         $categories = category::all(); 
-        // $entrepreneurs = entrepreneur::all(); 
-       return view('admin.services.show', compact('service','categories'));
+        $entrepreneurships = entrepreneurship::all(); 
+       return view('admin.services.show', compact('service','categories','entrepreneurships'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(service $service,category $categories)
+    public function edit(service $service,category $categories , entrepreneurship $entrepreneurships)
     {
         $categories = category::all(); 
-        // $entrepreneurs = entrepreneur::all(); 
+        $entrepreneurships = entrepreneurship::all(); 
       
-       return view('admin.services.edit', compact('service', 'categories'));
+       return view('admin.services.edit', compact('service', 'categories', 'entrepreneurships'));
     }
 
     /**
@@ -144,17 +121,7 @@ class ServiceController extends Controller
         ->with('info', 'El servicio se actualizó correctamente');
 }
 
-    // public function update(Request $request, service $service)
-    // {
-    //     $request->validate([
-    //         'srv_name'        => 'required',
-    //         'srv_description' => 'required',
-    //         'srv_price' => 'required',
-    //     ]);
-    //     $service->update($request->all());
-    //     return redirect()->route('admin.services.index',$service)
-    //     ->with('info', 'el servicio se actualizo correctamente');
-    // }
+
 
     /**
      * Remove the specified resource from storage.

@@ -30,7 +30,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Duenno</th>
+                        <th scope="col">Emprendimiento</th>
                         <th scope="col">Categoria</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
@@ -54,7 +54,7 @@
                                 @endif
                             </td>
                             <td>{{$product->pdt_price}}</td>
-                            <td>{{$product->entrepreneur->etp_name ?? 'Desconocido' }}</td>
+                            <td>{{$product->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                             <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
                             <td><a class="btn btn-warning" href="{{route('admin.products.edit', $product)}}">Editar</a></td>
                             <td>

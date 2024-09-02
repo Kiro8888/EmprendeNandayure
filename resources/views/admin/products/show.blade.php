@@ -70,8 +70,8 @@
                     <label for="pdt_id_etp" class="form-label">Emprendedor</label>
                     <select name="pdt_id_etp" id="pdt_id_etp" class="form-control" disabled>
                     
-                        @foreach ($entrepreneurs as $entrepreneur)
-                            <option value="{{ $entrepreneur->id_etp }}">{{ $entrepreneur->etp_name }}</option>
+                        @foreach ($entrepreneurships as $entrepreneurship)
+                            <option value="{{ $entrepreneurship->id_etp }}">{{ $entrepreneurship->etp_name }}</option>
                         @endforeach
                     </select>
                     @error('pdt_id_etp')

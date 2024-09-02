@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 //use spatie
 use Spatie\Permission\Traits\HasRoles;
 
-class entrepreneurships extends Model
+class entrepreneurship extends Model
 {
     //use spatie
     use HasRoles;

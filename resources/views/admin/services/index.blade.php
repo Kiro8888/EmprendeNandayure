@@ -25,7 +25,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">Dueño</th>
+                    <th scope="col">Emprendimiento</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
@@ -47,7 +47,7 @@
                         @endif
                     </td>
                     <td>{{ $service->srv_price }}</td>
-                    <td>{{ $service->entrepreneur->etp_name ?? 'Desconocido' }}</td>
+                    <td>{{ $service->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                     <td>{{ $service->category->ctg_name ?? 'Desconocido' }}</td>
                     <td><a class="btn btn-warning" href="{{ route('admin.services.edit', $service) }}">Editar</a></td>
                     <td>

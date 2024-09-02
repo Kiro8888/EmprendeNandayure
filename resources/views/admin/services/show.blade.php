@@ -67,8 +67,8 @@
                 <div class="form-group">
                     <label for="srv_id_etp" class="form-label">Emprendedor</label>
                     <select name="srv_id_etp" id="srv_id_etp" class="form-control" disabled>
-                        @foreach ($entrepreneurs as $entrepreneur)
-                            <option value="{{ $entrepreneur->id_etp }}">{{ $entrepreneur->etp_name }}</option>
+                        @foreach ($entrepreneurships as $entrepreneurship)
+                            <option value="{{ $entrepreneurship->id }}">{{ $entrepreneurship->etp_name }}</option>
                         @endforeach
                     </select>
                     @error('srv_id_etp')
