@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+// use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +29,11 @@ Route::middleware([
     Route::get('/Dashboard', function () {
         return view('admin/index');
     })->name('dashboard');
+});
+
+
+Route::get('/', function () {
+    // $usuarios = User::all(); 
+     return view('home');
+    // return view('home', compact('usuarios'));
 });
