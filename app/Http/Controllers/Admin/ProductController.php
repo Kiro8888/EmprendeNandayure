@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\category;
-// use App\Models\entrepreneur;
+use App\Models\entrepreneurship;
 
 class ProductController extends Controller
 {
@@ -18,7 +18,7 @@ class ProductController extends Controller
         $this->middleware('can:admin.products.create')->only('create', 'store');
         $this->middleware('can:admin.products.edit')->only('edit', 'update');
         $this->middleware('can:admin.products.destroy')->only('destroy');
-        $this->middleware('can:admin.products.show')->only('show');
+        // $this->middleware('can:admin.products.show')->only('show');
     }
 
 
@@ -39,9 +39,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = category::all(); // Asegúrate de importar correctamente el modelo
-        // $entrepreneurs = entrepreneur::all(); 
-        return view('admin.products.create', compact('categories'));
-        // return view('admin.products.create');
+        $entrepreneurships = entrepreneurship::all(); 
+        return view('admin.products.create', compact('categories', 'entrepreneurships'));
+
     }
 
     /**
@@ -70,46 +70,30 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index')
             ->with('info', 'el producto se creo correctamente');
     }
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'pdt_name'        => 'required',
-    //         'pdt_description' => 'required',
-    //         'pdt_price' => 'required',
-    //     ]);
-    
-    //     $product = product::create($request->all());
-    
-    
-    //         return redirect()->route('admin.products.index', $product)
-    //         ->with('info', 'el producto se creo correctamente');
-    // }
 
     /**
      * Display the specified resource.
      */
-    public function show(product $product, category $categories)
+    public function show(product $product, category $categories, entrepreneurship $entrepreneurships)
     { 
          $categories = category::all(); 
-        //  $entrepreneurs = entrepreneur::all(); 
-        return view('admin.products.show', compact('product','categories'));
+         $entrepreneurships = entrepreneurship::all(); 
+        return view('admin.products.show', compact('product','categories','entrepreneurships'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(product $product,category $categories)
+    public function edit(product $product,category $categories, entrepreneurship $entrepreneurships)
     { 
          $categories = category::all(); 
-        //  $entrepreneurs = entrepreneur::all(); 
-       
-        return view('admin.products.edit', compact('product', 'categories'));
+         $entrepreneurships = entrepreneurship::all(); 
+        return view('admin.products.edit', compact('product', 'categories', 'entrepreneurships'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-
 
      public function update(Request $request, product $product)
      {
@@ -137,19 +121,6 @@ class ProductController extends Controller
          return redirect()->route('admin.products.index', $product)
              ->with('info', 'El servicio se actualizó correctamente');
      }
-    // public function update(Request $request, product $product)
-    // {
-    //     $request->validate([
-    //         'pdt_name'        => 'required',
-    //         'pdt_description' => 'required',
-    //         'pdt_price' => 'required',
-    //     ]);
-    //     $product->update($request->all());
-    //     return redirect()->route('admin.products.index',$product)
-    //     ->with('info', 'el producto se actualizo correctamente');
-    // }
-
-
 
     /**
      * Remove the specified resource from storage.

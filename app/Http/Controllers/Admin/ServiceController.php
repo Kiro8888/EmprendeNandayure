@@ -16,7 +16,7 @@ class ServiceController extends Controller
         $this->middleware('can:admin.services.create')->only('create', 'store');
         $this->middleware('can:admin.services.edit')->only('edit', 'update');
         $this->middleware('can:admin.services.destroy')->only('destroy');
-        $this->middleware('can:admin.services.show')->only('show');
+        // $this->middleware('can:admin.services.show')->only('show');
     }
 
     /**

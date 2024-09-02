@@ -20,6 +20,6 @@ class product extends Model
     }
 
     public function entrepreneurship(): BelongsTo {
-        return $this->belongsTo(Entrepreneurship::class, 'pdt_id_etp');
+        return $this->belongsTo(Entrepreneurships::class, 'pdt_id_etp');
     }
 }

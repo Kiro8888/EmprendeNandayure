@@ -75,11 +75,11 @@
                 </div>
                 {{-- Sexto campo --}}
                 <div class="form-group">
-                    <label for="pdt_id_etp" class="form-label">Emprendedor</label>
+                    <label for="pdt_id_etp" class="form-label">Emprendimiento</label>
                     <select name="pdt_id_etp" id="pdt_id_etp" class="form-control">
                     
-                        @foreach ($entrepreneurs as $entrepreneur)
-                            <option value="{{ $entrepreneur->id_etp }}">{{ $entrepreneur->etp_name }}</option>
+                        @foreach ($entrepreneurships as $entrepreneurship)
+                            <option value="{{ $entrepreneurship->id }}">{{ $entrepreneurship->etp_name }}</option>
                         @endforeach
                     </select>
                     @error('pdt_id_etp')

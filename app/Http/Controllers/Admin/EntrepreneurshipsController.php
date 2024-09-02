@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\entrepreneurships;
+use App\Models\entrepreneurship;
 
 class EntrepreneurshipsController extends Controller
 {
@@ -27,10 +27,10 @@ class EntrepreneurshipsController extends Controller
     
         // Si el usuario tiene el rol de Entrepreneur, filtrar los emprendimientos por su ID
         if ($user->hasRole('Entrepreneur')) {
-            $entrepreneurships = entrepreneurships::where('etp_id_user', $user->id)->get();
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
         } else {
             // Si es Admin u otro rol, mostrar todos los emprendimientos
-            $entrepreneurships = entrepreneurships::all();
+            $entrepreneurships = entrepreneurship::all();
         }
     
         return view('admin.entrepreneurships.index', compact('entrepreneurships'));
@@ -55,7 +55,7 @@ class EntrepreneurshipsController extends Controller
         // Verificar si el usuario tiene el rol de Entrepreneur
         if ($user->hasRole('Entrepreneur')) {
             // Comprobar si el usuario ya tiene un emprendimiento registrado
-            if (entrepreneurships::where('etp_id_user', $user->id)->exists()) {
+            if (entrepreneurship::where('etp_id_user', $user->id)->exists()) {
                 return redirect()->route('admin.entrepreneurships.create')
                     ->withErrors(['msg' => 'Ya has creado un emprendimiento. No puedes agregar más.']);
             }
@@ -82,7 +82,7 @@ class EntrepreneurshipsController extends Controller
             $entrepreneurshipData['etp_img'] = 'images/entrepreneurships/' . $imageName;
         }
     
-        entrepreneurships::create($entrepreneurshipData);
+        entrepreneurship::create($entrepreneurshipData);
     
         return redirect()->route('admin.entrepreneurships.index')
             ->with('info', 'El emprendimiento se guardó correctamente');
@@ -92,7 +92,7 @@ class EntrepreneurshipsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(entrepreneurships $entrepreneurship)
+    public function show(entrepreneurship $entrepreneurship)
     {
         return view('admin.entrepreneurships.show',compact('entrepreneurship'));
     }
@@ -100,7 +100,7 @@ class EntrepreneurshipsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(entrepreneurships $entrepreneurship)
+    public function edit(entrepreneurship $entrepreneurship)
     {
         return view('admin.entrepreneurships.edit',compact('entrepreneurship'));
     }
@@ -108,7 +108,7 @@ class EntrepreneurshipsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, entrepreneurships $entrepreneurship)
+    public function update(Request $request, entrepreneurship $entrepreneurship)
     {
         $request->validate([
             'etp_name'  =>'required',
@@ -142,7 +142,7 @@ class EntrepreneurshipsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(entrepreneurships $entrepreneurship)
+    public function destroy(entrepreneurship $entrepreneurship)
     {
         $entrepreneurship->delete();
         return redirect()

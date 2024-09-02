@@ -14,7 +14,7 @@ class EventController extends Controller
         $this->middleware('can:admin.events.create')->only('create', 'store');
         $this->middleware('can:admin.events.edit')->only('edit', 'update');
         $this->middleware('can:admin.events.destroy')->only('destroy');
-        $this->middleware('can:admin.events.show')->only('show');
+        // $this->middleware('can:admin.events.show')->only('show');
     }
 
 
