@@ -43,6 +43,8 @@
                             <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Dashboard</a>
                             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">TEST</a>
                             <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Eventos</a>
+                            <a href="/products-services" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Productos o Servicios</a>
+                            
                             {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
                             {{-- @foreach ( $categories as $category)
                             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{{$category->ctg_name}}</a>

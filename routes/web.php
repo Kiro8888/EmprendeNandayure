@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientEventController;
+use App\Http\Controllers\ClientProductServiceController;
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::get('/', function () {
 });
 
 Route::get('/events', [ClientEventController::class, 'index'])->name('client.events.index');
+Route::get('/products-services', [ClientProductServiceController::class, 'index'])->name('client.products_services.index');
