@@ -1,7 +1,6 @@
 <x-app-layout>
-
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +55,14 @@
 
             .card-text {
                 font-size: 0.875rem; /* Tamaño más pequeño para el texto */
+            }
+            
+            .entrepreneurships-section {
+                margin-top: 40px; /* Espacio superior para separar esta sección de las anteriores */
+            }
+            
+            .entrepreneurships-section .card {
+                margin-bottom: 20px; /* Espacio inferior entre las tarjetas de emprendimientos */
             }
         </style>
     </head>
@@ -141,6 +148,24 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Sección de Emprendimientos -->
+            <div class="entrepreneurships-section">
+                <h2 class="text-center">Nuestros Emprendimientos</h2>
+                <div class="row">
+                    @foreach ($entrepreneurships as $entrepreneurship)
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <img src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/250x75' }}" class="card-img-top" alt="{{ $entrepreneurship->etp_name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $entrepreneurship->etp_name }}</h5>
+                                    <p class="card-text">{{ $entrepreneurship->etp_description ?? 'No description available' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     
         <!-- Scripts de Bootstrap -->
@@ -148,5 +173,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     </body>
     </html>
-
+    
 </x-app-layout>

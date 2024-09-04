@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +34,4 @@ Route::middleware([
 });
 
 
-Route::get('/', function () {
-    // $usuarios = User::all(); 
-     return view('home');
-    // return view('home', compact('usuarios'));
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
