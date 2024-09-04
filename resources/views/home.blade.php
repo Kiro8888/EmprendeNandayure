@@ -96,44 +96,45 @@
                 </div>
             </div>
             
-            <!-- Sección de Productos -->
-            <div class="products-section">
-                <div class="row">
-                    <!-- Productos de ejemplo -->
-                    <div class="col-md-4 mb-4">
-                        <img src="images/home/icono.png" class="img-fluid" alt="Producto 1">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="images/home/icono2.png" class="img-fluid" alt="Producto 2">
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="images/home/icono3.png" class="img-fluid" alt="Producto 3">
-                    </div>
-                </div>
-            </div>
+          <!-- Sección de Productos -->
+<div class="products-section">
+    <div class="row">
+        <!-- Productos de ejemplo -->
+        <div class="col-md-3 mb-4">
+            <img src="images/home/icono.png" class="img-fluid" alt="Producto 1">
+        </div>
+        <div class="col-md-3 mb-4">
+            <img src="images/home/icono2.png" class="img-fluid" alt="Producto 2">
+        </div>
+        <div class="col-md-3 mb-4">
+            <img src="images/home/icono3.png" class="img-fluid" alt="Producto 3">
+        </div>
+        <div class="col-md-3 mb-4">
+            <img src="images/home/icono4.png" class="img-fluid" alt="Producto 4">
+        </div>
+    </div>
+</div>
+
             
 <!-- Sección de Emprendimientos usando Tailwind CSS -->
 <div class="entrepreneurships-section">
     <h2 class="text-center mb-8 text-2xl font-bold">Nuestros Emprendimientos</h2>
     <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-        <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
             @foreach ($entrepreneurships as $entrepreneurship)
-                <div class="rounded overflow-hidden shadow-lg relative bg-white">
+                <div class="rounded overflow-hidden relative bg-white">
                     <a href="#">
-                        <img class="w-full h-48 object-cover" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
+                        <img class="w-full h-32 object-cover" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
                         <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25 hover:bg-transparent transition duration-300"></div>
                     </a>
-                    <div class="px-6 py-4 text-center">
-                        <a href="#" class="font-semibold text-lg block mb-2">
+                    <div class="px-4 py-2 text-center">
+                        <a href="#" class="font-semibold text-base block text-black">
                             {{ $entrepreneurship->etp_name }}
                         </a>
-                        <p class="text-gray-500 text-sm">
-                            {{ $entrepreneurship->etp_description ?? 'No description available' }}
-                        </p>
                     </div>
-                    <div class="px-6 py-4 text-center">
-                        <a href="#" class="bg-[#ADC178] text-white py-2 px-4 rounded-lg w-full">
-                            Ver más
+                    <div class="px-4 py-2 flex flex-col items-center">
+                        <a href="#" class="bg-[#ADC178] text-white py-2 px-4 rounded-lg w-full mb-1 text-center">
+                            Más detalles
                         </a>
                     </div>
                 </div>
@@ -141,6 +142,9 @@
         </div>
     </div>
 </div>
+
+
+
 
     
         <!-- Scripts de Bootstrap -->
