@@ -25,13 +25,12 @@
 
             <!-- Contenedor para Productos -->
             @if($products->isNotEmpty())
-                <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Productos</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                     @foreach ($products as $product)
                         <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <!-- Mostrar imagen -->
-                            <img src="{{ $product->pdt_img }}" alt="{{ $product->pdt_name }}" class="w-full h-48 object-cover rounded-md mb-4">
-                            
+                            <img src="{{ $product->pdt_img }}" alt="{{ $product->pdt_name }}" class="w-full h-48 object-cover rounded-md mb-4 ">
+
                             <!-- Mostrar nombre -->
                             <h2 class="text-xl font-bold text-gray-800">{{ $product->pdt_name }}</h2>
                             
@@ -40,6 +39,11 @@
                             
                             <!-- Mostrar precio -->
                             <p class="text-gray-900 font-bold mt-4">₡{{ number_format($product->pdt_price, 2) }}</p>
+                            
+                            <!-- Botón -->
+                            <a href="/" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                                Ver más
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -47,12 +51,11 @@
 
             <!-- Contenedor para Servicios -->
             @if($services->isNotEmpty())
-                <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Servicios</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                     @foreach ($services as $service)
                         <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <!-- Mostrar imagen -->
-                            <img src="{{ $service->srv_img }}" alt="{{ $service->srv_name }}" class="w-full h-48 object-cover rounded-md mb-4">
+                            <img src="{{ $service->srv_img }}" alt="{{ $service->srv_name }}" class="w-full h-48 object-cover rounded-md mb-4 ">
                             
                             <!-- Mostrar nombre -->
                             <h2 class="text-xl font-bold text-gray-800">{{ $service->srv_name }}</h2>
@@ -62,6 +65,11 @@
                             
                             <!-- Mostrar precio -->
                             <p class="text-gray-900 font-bold mt-4">₡{{ number_format($service->srv_price, 2) }}</p>
+                            
+                            <!-- Botón -->
+                            <a href="/" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                                Ver más
+                            </a>
                         </div>
                     @endforeach
                 </div>

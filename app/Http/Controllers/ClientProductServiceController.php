@@ -28,4 +28,6 @@ class ClientProductServiceController extends Controller
         // Pasar ambas colecciones a la vista
         return view('client.products_services', compact('products', 'services', 'filterType'));
     }
+
+
 }
