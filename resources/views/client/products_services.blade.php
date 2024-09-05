@@ -41,9 +41,10 @@
                             <p class="text-gray-900 font-bold mt-4">₡{{ number_format($product->pdt_price, 2) }}</p>
                             
                             <!-- Botón -->
-                            <a href="/" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                            <a href="{{ route('client.product_details', $product->id_pdt) }}" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
                                 Ver más
                             </a>
+                            
                         </div>
                     @endforeach
                 </div>
@@ -67,9 +68,10 @@
                             <p class="text-gray-900 font-bold mt-4">₡{{ number_format($service->srv_price, 2) }}</p>
                             
                             <!-- Botón -->
-                            <a href="/" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                            <a href="{{ route('client.service_details', $service->id_srv) }}" class="block mt-4 text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
                                 Ver más
                             </a>
+                                                       
                         </div>
                     @endforeach
                 </div>
