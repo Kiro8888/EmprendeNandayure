@@ -132,11 +132,6 @@
                             {{ $entrepreneurship->etp_name }}
                         </a>
                     </div>
-                    <div class="px-4 py-2 flex flex-col items-center">
-                        <a href="#" class="bg-[#ADC178] text-white py-2 px-4 rounded-lg w-full mb-1 text-center">
-                            Más detalles
-                        </a>
-                    </div>
                 </div>
             @endforeach
         </div>

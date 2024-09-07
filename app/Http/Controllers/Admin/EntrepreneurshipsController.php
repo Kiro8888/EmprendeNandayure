@@ -92,11 +92,12 @@ class EntrepreneurshipsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(entrepreneurship $entrepreneurship)
+    public function show($id)
     {
-        return view('admin.entrepreneurships.show',compact('entrepreneurship'));
+        $entrepreneurship = Entrepreneurship::findOrFail($id);
+        return view('entrepreneurships.show', compact('entrepreneurship'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */

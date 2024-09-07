@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EntrepreneurshipController;
+
 
 // use App\Models\User; 
 /*
@@ -35,3 +37,4 @@ Route::middleware([
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/entrepreneurships/{id}', [EntrepreneurshipController::class, 'show'])->name('entrepreneurships.show');
