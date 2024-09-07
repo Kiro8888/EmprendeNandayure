@@ -13,16 +13,21 @@
             <!-- Precio del servicio -->
             <p class="text-3xl font-extrabold text-indigo-600 mb-6">₡{{ number_format($service->srv_price, 2) }}</p>
 
-            
             <!-- Nombre del emprendimiento -->
             <p class="text-xl font-medium text-gray-600 mb-4">
                 Emprendimiento: {{ $service->entrepreneurship->etp_name }}
             </p>
 
-            <!-- Botón para contratar el servicio (opcional) -->
-            <a href="#" class="inline-block bg-indigo-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-200">
-                Contratar servicio
-            </a>
+            <!-- Botón para contactar por WhatsApp -->
+            @if ($service->entrepreneurship->etp_num)
+                <a href="https://wa.me/{{ preg_replace('/\D/', '', $service->entrepreneurship->etp_num) }}?text=Hola%20{{ urlencode($service->entrepreneurship->etp_name) }}%2C%20estoy%20interesado%20en%20el%20servicio%20{{ urlencode($service->srv_name) }}."
+                   target="_blank"
+                   class="inline-block bg-indigo-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-200">
+                   Contactar con {{ $service->entrepreneurship->etp_name }}
+                </a>
+            @else
+                <p class="text-red-600">Número de contacto no disponible.</p>
+            @endif
         </div>
     </div>
 
