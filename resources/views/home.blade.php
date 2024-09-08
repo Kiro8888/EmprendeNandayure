@@ -303,22 +303,20 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="fs-5 fw-bold text-primary"style="color: #348E38 !important;">Nuestros Emprendimientos</p>
+            <p class="fs-5 fw-bold text-primary" style="color: #348E38 !important;">Nuestros Emprendimientos</p>
             <h1 class="display-5 mb-5">Servicios y Productos que Ofrecemos para Ti</h1>
         </div>
         <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
             <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
                 @foreach ($entrepreneurships as $entrepreneurship)
-                    <div class="rounded overflow-hidden relative bg-white">
-                        <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}">
-                            <img class="w-full h-32 object-cover" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
-                            <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25 hover:bg-transparent transition duration-300"></div>
+                    <div class="relative rounded overflow-hidden bg-white shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
+                        <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}" class="block">
+                            <img class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900 to-transparent opacity-60 hover:opacity-0 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
+                                <h4 class="text-white text-xl font-semibold mb-2">{{ $entrepreneurship->etp_name }}</h4>
+                            </div>
                         </a>
-                        <div class="px-4 py-2 text-center">
-                            <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}" class="font-semibold text-base block text-black">
-                                {{ $entrepreneurship->etp_name }}
-                            </a>
-                        </div>
                     </div>
                 @endforeach
             </div>
@@ -326,6 +324,7 @@
     </div>
 </div>
 <!-- Service End -->
+
 
 
    <!-- Projects Start -->
