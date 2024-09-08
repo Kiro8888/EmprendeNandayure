@@ -116,6 +116,8 @@
 </div>
 
             
+<!-- resources/views/home.blade.php -->
+
 <!-- Sección de Emprendimientos usando Tailwind CSS -->
 <div class="entrepreneurships-section">
     <h2 class="text-center mb-8 text-2xl font-bold">Nuestros Emprendimientos</h2>
@@ -123,12 +125,12 @@
         <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
             @foreach ($entrepreneurships as $entrepreneurship)
                 <div class="rounded overflow-hidden relative bg-white">
-                    <a href="#">
+                    <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}">
                         <img class="w-full h-32 object-cover" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
                         <div class="absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25 hover:bg-transparent transition duration-300"></div>
                     </a>
                     <div class="px-4 py-2 text-center">
-                        <a href="#" class="font-semibold text-base block text-black">
+                        <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}" class="font-semibold text-base block text-black">
                             {{ $entrepreneurship->etp_name }}
                         </a>
                     </div>
@@ -137,6 +139,7 @@
         </div>
     </div>
 </div>
+
 
 
 
