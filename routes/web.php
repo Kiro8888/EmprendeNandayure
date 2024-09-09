@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EntrepreneurshipController;
 use App\Http\Controllers\EntrepreneurshipDetailController;
+use App\Http\Controllers\ClientEventController;
 
 
 // use App\Models\User; 
@@ -37,5 +39,8 @@ Route::middleware([
 });
 
 
+
+Route::get('/events', [ClientEventController::class, 'index'])->name('client.events.index');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 'show'])->name('entrepreneurships.show');
+

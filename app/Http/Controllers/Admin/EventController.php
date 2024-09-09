@@ -65,30 +65,6 @@ class EventController extends Controller
         return redirect()->route('admin.events.index', $events)
         ->with('info', 'el evento se guardo correctamente');
     }
-    // public function store(Request $request)
-    // {
-    //     //hay que agregar la validacion unica
-    //     $request->validate([
-    //         'evt_name'  =>'required',
-    //         'evt_description'  =>'required',
-    //         'evt_date'  =>'required',
-    //         'evt_hour'  =>'required',
-    //         'evt_location'  =>'required',
-          
-    //     ]);
-
-        
-
-    //     $eventData = $request->all();
-    //     $eventData['evt_id_rol'] = 1; 
-    
-    //     $events = event::create($eventData);
-    
-
-
-    //     return redirect()->route('admin.events.index', $events)
-    //     ->with('info', 'el evento se guardo correctamente');
-    // }
 
     /**
      * Display the specified resource.
@@ -140,21 +116,6 @@ class EventController extends Controller
              ->with('info', 'El servicio se actualizó correctamente');
      }
 
-
-    // public function update(Request $request, event $event)
-    // {
-    //     $request->validate([
-    //         'evt_name'  =>'required',
-    //         'evt_description'  =>'required',
-    //         'evt_date'  =>'required',
-    //         'evt_hour'  =>'required',
-    //         'evt_location'  =>'required',
-    //     ]);
-    //     $event->update($request->all());
-    //     return redirect()->route('admin.events.index', $event)
-    //     ->with('info', 'El emprendedor se actualizo correctamente');
-    // }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -165,4 +126,12 @@ class EventController extends Controller
         ->route('admin.events.index')
         ->with('info', 'el evento: '.$event->evt_name.'ha sido elimado');
     }
+
+    // View Users
+    public function showEventsToClients()
+    {
+    $events = event::where('evt_date', '>=', now())->get();
+    return view('events.index', compact('events'));
+    }
+
 }
