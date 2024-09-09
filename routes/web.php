@@ -1,9 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EntrepreneurshipController;
+use App\Http\Controllers\EntrepreneurshipDetailController;
 use App\Http\Controllers\ClientEventController;
 use App\Http\Controllers\ClientProductServiceController;
 use App\Http\Controllers\ClientDetailsPSController;
+
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +40,11 @@ Route::middleware([
 });
 
 
-Route::get('/', function () {
-    // $usuarios = User::all(); 
-     return view('home');
-    // return view('home', compact('usuarios'));
-});
 
 Route::get('/events', [ClientEventController::class, 'index'])->name('client.events.index');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 'show'])->name('entrepreneurships.show');
 Route::get('/products-services', [ClientProductServiceController::class, 'index'])->name('client.products_services.index');
 Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');
+
