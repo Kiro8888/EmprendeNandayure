@@ -2,6 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EntrepreneurshipController;
+use App\Http\Controllers\EntrepreneurshipDetailController;
+
+
+// use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +35,7 @@ Route::middleware([
         return view('admin/index');
     })->name('dashboard');
 });
+
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 'show'])->name('entrepreneurships.show');
