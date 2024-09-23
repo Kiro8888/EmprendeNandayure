@@ -350,8 +350,8 @@ return [
             'text' => 'Emprendimiento',
             'route' => 'admin.entrepreneurships.index',
             'icon' => 'fas fa-folder-open fa-fw',
-            // 'active' => ['admin/entrepreneurships*'],
-            // 'can'    => 'admin.entrepreneurships.index',
+            'active' => ['admin/entrepreneurships*'],
+            'can'    => 'admin.entrepreneurships.index',
         ],
         [
             'text' => 'Productos',
