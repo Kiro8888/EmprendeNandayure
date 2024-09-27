@@ -47,4 +47,8 @@ Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 
 Route::get('/products-services', [ClientProductServiceController::class, 'index'])->name('client.products_services.index');
 Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');
+Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
+
+
+
 
