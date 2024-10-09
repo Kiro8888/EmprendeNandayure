@@ -32,13 +32,13 @@ class ProductController extends Controller
         // Obtener el usuario autenticado
         $user = auth()->user();
     
-        // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por su emprendimiento
+        // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por sus emprendimientos
         if ($user->hasRole('Entrepreneur')) {
-            // Obtener el emprendimiento del usuario
-            $entrepreneurship = entrepreneurship::where('etp_id_user', $user->id)->first();
+            // Obtener todos los emprendimientos del usuario
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->pluck('id');
     
-            // Filtrar los productos asociados a ese emprendimiento
-            $products = product::where('pdt_id_etp', $entrepreneurship->id)->get();
+            // Filtrar los productos asociados a esos emprendimientos
+            $products = product::whereIn('pdt_id_etp', $entrepreneurships)->get();
         } else {
             // Si es Admin u otro rol, mostrar todos los productos
             $products = product::all();
@@ -46,13 +46,23 @@ class ProductController extends Controller
     
         return view('admin.products.index', compact('products'));
     }
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         $categories = category::all(); // Asegúrate de importar correctamente el modelo
-        $entrepreneurships = entrepreneurship::all(); 
+        $user = auth()->user();
+
+    // Si el usuario tiene el rol de Entrepreneur, filtrar sus emprendimientos
+    if ($user->hasRole('Entrepreneur')) {
+        $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
+    } else {
+        // Si es Admin u otro rol, mostrar todos los emprendimientos
+        $entrepreneurships = entrepreneurship::all();
+    }
+
         return view('admin.products.create', compact('categories', 'entrepreneurships'));
 
     }
