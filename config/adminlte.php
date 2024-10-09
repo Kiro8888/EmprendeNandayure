@@ -332,6 +332,13 @@ return [
             'can'         => 'admin.users.index',
         ],
         [
+            'text' => 'Emprendedores en espera',
+            // 'url' => 'admin',
+            'route' => 'admin.waiting_entrepreneur.index',
+            'icon' => 'fas fa-users fa-fw ',
+            // 'can'         => 'admin.users.index',
+        ],
+        [
             'text' => 'Roles',
             'route' => 'admin.roles.index',
             'icon' => 'fas fa-id-card fa-fw ',
