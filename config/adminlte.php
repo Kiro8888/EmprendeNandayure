@@ -336,7 +336,7 @@ return [
             // 'url' => 'admin',
             'route' => 'admin.waiting_entrepreneur.index',
             'icon' => 'fas fa-users fa-fw ',
-            // 'can'         => 'admin.users.index',
+            // 'can'         => 'admin.waiting_entrepreneur.index',
         ],
         [
             'text' => 'Roles',

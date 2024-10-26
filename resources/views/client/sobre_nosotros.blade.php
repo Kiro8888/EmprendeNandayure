@@ -6,7 +6,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('registerEmprendedor') }}">
             @csrf
 
             <div>
@@ -20,6 +20,16 @@
             </div>
 
         
+            <div class="mt-4">
+                <x-label for="cellphone" value="{{ __('Cellphone') }}" />
+                <x-input id="cellphone" class="block mt-1 w-full" type="number" name="cellphone" :value="old('cellphone')" required autocomplete="username" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="cedula" value="{{ __('Cedula') }}" />
+                <x-input id="cedula" class="block mt-1 w-full" type="number" name="cedula" :value="old('cedula')" required autocomplete="username" />
+            </div>
+
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />

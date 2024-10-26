@@ -9,7 +9,7 @@ use App\Http\Controllers\EntrepreneurshipDetailController;
 use App\Http\Controllers\ClientEventController;
 use App\Http\Controllers\ClientProductServiceController;
 use App\Http\Controllers\ClientDetailsPSController;
-
+use App\Http\Controllers\RegisterController;
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ Route::get('/products-services', [ClientProductServiceController::class, 'index'
 Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');
 Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
-
+Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
 
 
 
