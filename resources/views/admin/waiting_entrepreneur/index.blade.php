@@ -22,6 +22,8 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Correo</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Cedula</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -32,17 +34,18 @@
                         <th scope="row">{{ $entrepreneur->id }}</th>
                         <td>{{ $entrepreneur->name }} {{ $entrepreneur->last_name }}</td>
                         <td>{{ $entrepreneur->email }}</td>
+                        <td>{{ $entrepreneur->cellphone }}</td>
+                        <td>{{ $entrepreneur->cedula }}</td>
                         <td>{{ $entrepreneur->status }}</td>
                         <td>
-                            <!-- Botón para mostrar detalles -->
-                            <a class="btn btn-info" href="{{ route('admin.waiting_entrepreneur.show', $entrepreneur) }}">Detalles</a>
+                   
+                           
                             
                             <!-- Formulario para cambiar el estado a Activo -->
                             <form action="{{ route('admin.waiting_entrepreneur.activate', $entrepreneur) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button class="btn btn-success" type="submit">Activar</button>
                             </form>
-
                             <!-- Formulario para eliminar el registro -->
                             <form action="{{ route('admin.waiting_entrepreneur.destroy', $entrepreneur) }}" method="POST" style="display:inline;">
                                 @csrf

@@ -51,10 +51,11 @@ class WaitingEntrepreuserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $waiting_entrepreneur)
     {
-        return view('admin.waiting_entrepreneur.show', compact('user'));
+        return view('admin.waiting_entrepreneur.show', ['user' => $waiting_entrepreneur]);
     }
+    
     
 
     /**

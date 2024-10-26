@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->enum('status', ['En espera', 'Activo', 'Inactivo'])->default('Activo');
+            $table->string('cellphone')->nullable(); 
+            $table->string('cedula')->unique()->nullable(); 
             $table->timestamps();
         });
     }

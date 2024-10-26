@@ -20,7 +20,10 @@ Route::resource('entrepreneurship', EntrepreneurshipsController::class)->names('
 Route::resource('products', ProductController::class)->names('admin.products');
 Route::resource('services', ServiceController::class)->names('admin.services');
 Route::resource('events', EventController::class)->names('admin.events');
+
 Route::resource('waiting_entrepreneur', WaitingEntrepreuserController::class)->names('admin.waiting_entrepreneur');
+
+
 Route::post('admin/waiting-entrepreneur/{user}/activate', [WaitingEntrepreuserController::class, 'activate'])->name('admin.waiting_entrepreneur.activate');
 Route::delete('admin/waiting-entrepreneur/{user}', [WaitingEntrepreuserController::class, 'destroy'])->name('admin.waiting_entrepreneur.destroy');
 
