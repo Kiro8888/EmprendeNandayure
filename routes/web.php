@@ -50,5 +50,5 @@ Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->
 Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
 
-
+Route::get('/chat', function () {return view('client.chat');});
 
