@@ -8,8 +8,8 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    <x-chatbot />
 @stop
-
 @section('css')
     {{-- Add here extra stylesheets --}}
     <link rel="stylesheet" href="/css/admin_custom.css">

@@ -49,6 +49,3 @@ Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])-
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');
 Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
-
-Route::get('/chat', function () {return view('client.chat');});
-
