@@ -381,6 +381,11 @@ return [
             'active' => ['admin/events*'],
             'can'    => 'admin.events.index',
         ],
+        [
+            'text' => 'Consultas',
+            'url' => 'admin/controlfood',
+            'icon' => 'fas fa-comments',
+        ],
         // [
         //     'text' => 'change_password',
         //     'url' => 'admin/settings',
