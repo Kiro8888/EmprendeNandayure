@@ -13,6 +13,7 @@
               <th scope="col">ID</th>
               <th scope="col">Nombre</th>
               <th scope="col">Email</th>
+              <th scope="col">Estado</th>
               <th scope="col">Editar</th>
             </tr>
           </thead>
@@ -24,6 +25,7 @@
                   <th scope="row">{{$user->id}}</th>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
+                  <td>{{$user->status}}</td>
                   <td width="200px">
                       <a class="btn btn-warning" href="{{route('admin.users.edit', $user)}}">Editar</a>
                   </td>

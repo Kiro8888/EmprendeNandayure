@@ -60,8 +60,8 @@
                     <label for="pdt_id_etp" class="form-label">Emprendimiento</label>
                     <select name="pdt_id_etp" id="pdt_id_etp" class="form-control">
                         <option value="">Seleccione un emprendimiento</option>
-                        @foreach ($entrepreneurships as $entrepreneurships)
-                            <option value="{{ $entrepreneurships->id}}">{{ $entrepreneurships->etp_name }}</option>
+                        @foreach ($entrepreneurships as $entrepreneurship)
+                            <option value="{{ $entrepreneurship->id }}">{{ $entrepreneurship->etp_name }}</option>
                         @endforeach
                     </select>
                     @error('pdt_id_etp')

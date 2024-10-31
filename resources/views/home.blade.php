@@ -153,7 +153,6 @@
 }
 </style>
 
-
     <!-- Top Feature Start -->
     <div class="container-fluid top-feature py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
@@ -164,6 +163,7 @@
                             <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
                                 <i class="fa fa-times text-primary"></i>
                             </div>
+                    
                             <div class="ps-3">
                                 <h4>No Hidden Cost</h4>
                                 <span>Clita erat ipsum lorem sit sed stet duo justo</span>

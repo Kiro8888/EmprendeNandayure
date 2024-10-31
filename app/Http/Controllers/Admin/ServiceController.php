@@ -24,9 +24,24 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        // $entrepreneurs = entrepreneur::all();
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+    
+        // Si el usuario tiene el rol de Entrepreneur, filtrar los servicios por sus emprendimientos
+        if ($user->hasRole('Entrepreneur')) {
+            // Obtener todos los emprendimientos del usuario
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->pluck('id');
+    
+            // Filtrar los servicios asociados a esos emprendimientos
+            $services = service::whereIn('srv_id_etp', $entrepreneurships)->get();
+        } else {
+            // Si es Admin u otro rol, mostrar todos los servicios
+            $services = service::all();
+        }
+    
+        // Obtener todas las categorías (opcional, según lo que necesites en la vista)
         $categories = category::all();
-        $services = service::all();
+    
         return view('admin.services.index', compact('services', 'categories'));
     }
 
@@ -36,7 +51,15 @@ class ServiceController extends Controller
     public function create()
     {
         $categories = category::all();
-        $entrepreneurships = entrepreneurship::all(); 
+        $user = auth()->user();
+
+        // Si el usuario tiene el rol de Entrepreneur, filtrar sus emprendimientos
+        if ($user->hasRole('Entrepreneur')) {
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
+        } else {
+            // Si es Admin u otro rol, mostrar todos los emprendimientos
+            $entrepreneurships = entrepreneurship::all();
+        }
         return view('admin.services.create', compact('categories', 'entrepreneurships'));
     }
 

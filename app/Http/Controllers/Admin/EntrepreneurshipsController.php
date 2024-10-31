@@ -52,14 +52,14 @@ class EntrepreneurshipsController extends Controller
         // Obtener el usuario autenticado
         $user = auth()->user();
     
-        // Verificar si el usuario tiene el rol de Entrepreneur
-        if ($user->hasRole('Entrepreneur')) {
-            // Comprobar si el usuario ya tiene un emprendimiento registrado
-            if (entrepreneurship::where('etp_id_user', $user->id)->exists()) {
-                return redirect()->route('admin.entrepreneurships.create')
-                    ->withErrors(['msg' => 'Ya has creado un emprendimiento. No puedes agregar más.']);
-            }
-        }
+    
+        // if ($user->hasRole('Entrepreneur')) {
+        
+        //     if (entrepreneurship::where('etp_id_user', $user->id)->exists()) {
+        //         return redirect()->route('admin.entrepreneurships.create')
+        //             ->withErrors(['msg' => 'Ya has creado un emprendimiento. No puedes agregar más.']);
+        //     }
+        // }
     
         // Validación de los datos recibidos
         $request->validate([
@@ -92,10 +92,10 @@ class EntrepreneurshipsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(entrepreneurship $entrepreneurship)
     {
-        $entrepreneurship = Entrepreneurship::findOrFail($id);
-        return view('entrepreneurships.show', compact('entrepreneurship'));
+
+        return view('admin.entrepreneurships.show', compact('entrepreneurship'));
     }
     
     /**
