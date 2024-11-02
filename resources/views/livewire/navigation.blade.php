@@ -57,7 +57,7 @@
                                   
                                     </div>
                                 </div>
-                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Sobre nosotros</a>
+                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Como ser emprendedor?</a>
                             
                             {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
                             {{-- @foreach ( $categories as $category)
@@ -123,8 +123,8 @@
 
                 @else    
 
-                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Login</a>
+                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Register</a>
                 @endauth
             </div>
         </div>

@@ -36,9 +36,9 @@
                     @if($products->isNotEmpty())
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                         @foreach ($products as $product)
-                            <div class="card relative border-2 border-black rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                            <div class="cardd relative border-2 border-black rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                                 <img src="{{ $product->pdt_img }}" alt="{{ $product->pdt_name }}" class="w-full h-full object-cover transition-transform duration-300 ease-in-out">
-                                <div class="content absolute inset-0 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <div class="contentt absolute inset-0 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                                     <p class="title text-center text-white font-bold">
                                         {{ $product->pdt_name }}<br>
                                         <span>₡{{ number_format($product->pdt_price, 2) }}</span>
@@ -67,7 +67,7 @@
 
     <!-- Additional Styles -->
     <style>
-        .card {
+        .cardd {
             position: relative;
             width: 100%;
             height: 254px;
@@ -77,15 +77,15 @@
             overflow: hidden; /* Asegura que el contenido no sobresalga */
         }
 
-        .card img {
+        .cardd img {
             transition: transform 0.5s ease;
         }
 
-        .card:hover img {
+        .cardd:hover img {
             transform: scale(1.1); /* Escala la imagen al hacer hover */
         }
 
-        .content {
+        .contentt {
             position: absolute;
             top: 0; /* Posición en la parte superior */
             left: 0;
@@ -101,11 +101,11 @@
             padding: 1rem; /* Espaciado */
         }
 
-        .card:hover .content {
+        .cardd:hover .contentt {
             opacity: 1; /* Muestra el contenido al hacer hover */
         }
 
-        .content .title {
+        .contentt .title {
             color: #fff;
             font-weight: bold;
             text-align: center;
