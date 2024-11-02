@@ -316,7 +316,7 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Dashboard',
+            'text' => 'Panel',
             // 'url' => 'admin',
             'route' => 'admin.home',
             'icon' => 'fas fa-tachometer-alt fa-fw ',
