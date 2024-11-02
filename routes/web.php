@@ -45,8 +45,8 @@ Route::get('/events', [ClientEventController::class, 'index'])->name('client.eve
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 'show'])->name('entrepreneurships.show');
 
-Route::get('/products', [ClientProductServiceController::class, 'indexProduct'])->name('client.products_services.index');
-Route::get('/services', [ClientProductServiceController::class, 'indexService'])->name('client.products_services.index');
+Route::get('/products', [ClientProductServiceController::class, 'indexProduct'])->name('client.products');
+Route::get('/services', [ClientProductServiceController::class, 'indexService'])->name('client.services');
 
 Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');

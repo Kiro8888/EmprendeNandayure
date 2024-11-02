@@ -52,8 +52,8 @@
                                         Que ofrecen nuestros emprendedores?
                                     </button>
                                     <div x-show="dropdownOpen" class="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                        <a href="/productos" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Productos</a>
-                                        <a href="/servicios" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Servicios</a>
+                                        <a href="/products" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Productos</a>
+                                        <a href="/services" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Servicios</a>
                                   
                                     </div>
                                 </div>
