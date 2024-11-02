@@ -59,7 +59,8 @@
         </table>
     </div>
 </div>
-
+   
+<x-chatbot />
 @stop
 
 @section('css')

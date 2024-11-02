@@ -124,6 +124,8 @@
         @endif
     </div>
 </div>
+   
+<x-chatbot />
 
 <!-- Additional Styles -->
 <style>

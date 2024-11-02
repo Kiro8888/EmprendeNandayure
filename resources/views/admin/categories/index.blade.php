@@ -60,6 +60,8 @@
                       </tbody>
                   </table>
             </div>
+               
+    <x-chatbot />
         </div>
 
 

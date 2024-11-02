@@ -8,6 +8,8 @@
 
 @section('content')
      @livewire('admin.user-index')
+        
+    <x-chatbot />
 @stop
 
 @section('css')

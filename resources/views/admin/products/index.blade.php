@@ -78,6 +78,7 @@
             </div>
         </div>
 
-
+   
+        <x-chatbot />
 
 @stop
