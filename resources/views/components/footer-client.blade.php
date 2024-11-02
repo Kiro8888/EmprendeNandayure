@@ -11,9 +11,67 @@
 <link href="lib/animate/animate.min.css" rel="stylesheet">
 <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <style>
+        /* Ajustar la altura del carrusel */
+        .carousel-inner img {
+            height: 400px; /* Aumenta la altura del carrusel */
+            object-fit: cover;
+        }
+
+        .carousel-container {
+            margin-top: 20px; /* Añade espacio entre el carrusel y el nav */
+            margin-bottom: 40px; /* Ajusta el espacio entre el carrusel y la sección de productos */
+            position: relative; /* Necesario para la superposición */
+        }
+
+        /* Estilos para la capa de superposición */
+        .carousel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .carousel-overlay h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .carousel-overlay p {
+            font-size: 1.5rem;
+        }
+
+        .products-section {
+            margin-top: 40px; /* Espacio superior para separar esta sección del carrusel */
+            margin-bottom: 40px; /* Espacio inferior para separar esta sección de la sección de emprendimientos */
+        }
+
+        .products-section .card {
+            border: 2px solid green; /* Borde verde */
+            margin-bottom: 20px; /* Espacio inferior entre las tarjetas de productos */
+        }
+
+        .entrepreneurships-section {
+            margin-top: 40px; /* Espacio superior para separar esta sección de los productos */
+        }
+        body {
+background-color: #ffffff; /* Color de fondo blanco */
+}
+    </style>
 </head>
+
+
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer  py-5 wow fadeIn" data-wow-delay="0.1s">
+<div class="container-fluid bg-dark text-light footer py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
             <!-- Office Info -->
