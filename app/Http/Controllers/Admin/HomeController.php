@@ -17,11 +17,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categoriesCount = Category::count();
-        $entrepreneurshipsCount = Entrepreneurship::count();
-        $eventsCount = Event::count();
-        $productsCount = Product::count();
-        $servicesCount = Service::count();
+        $categoriesCount = category::count();
+        $entrepreneurshipsCount = entrepreneurship::count();
+        $eventsCount = event::count();
+        $productsCount = product::count();
+        $servicesCount = service::count();
         $usersCount = User::count();
 
         return view('admin.index', compact('categoriesCount', 'entrepreneurshipsCount', 'eventsCount', 'productsCount', 'servicesCount', 'usersCount'));

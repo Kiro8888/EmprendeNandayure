@@ -10,6 +10,7 @@ use App\Http\Controllers\ClientEventController;
 use App\Http\Controllers\ClientProductServiceController;
 use App\Http\Controllers\ClientDetailsPSController;
 use App\Http\Controllers\RegisterController;
+
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -29,17 +30,7 @@ Route::get('/', function () {
 // Route::get('/', [EventController::class, 'index'])->name('events.index');
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin/index');
-    })->name('dashboard');
-});
-
-
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () { Route::get('/dashboard', [HomeController::class, 'indexAdmin'], function () {return view('admin/index');})->name('dashboard');});
 
 Route::get('/events', [ClientEventController::class, 'index'])->name('client.events.index');
 Route::get('/', [HomeController::class, 'index'])->name('home');

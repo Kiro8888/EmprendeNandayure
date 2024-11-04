@@ -11,7 +11,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>{{ $categoriesCount }}</h3>
+                    <h3>{{$categoriesCount}}</h3>
                     <p>Categorías</p>
                 </div>
                 <div class="icon">
