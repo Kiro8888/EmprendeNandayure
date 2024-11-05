@@ -8,17 +8,25 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
        
        <style>
+            body {
+                background-color: #f7f7f7;
+                color: #333;
+            }
+
             .hero-title {
-                background-color: #6C584C; /* Color de fondo del título */
-                color: white;
+                background-color: #6C757D;
+                color: #fff;
                 padding: 20px;
                 text-align: center;
                 border-radius: 5px;
                 margin-top: 20px;
+                font-size: 2rem;
+                font-weight: 600;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
 
             .details-card {
-                background-color: #f8f9fa;
+                background-color: #ffffff;
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -26,6 +34,11 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                transition: transform 0.2s ease;
+            }
+
+            .details-card:hover {
+                transform: scale(1.02);
             }
 
             .details-info {
@@ -36,86 +49,107 @@
             .details-info h1 {
                 font-size: 2rem;
                 font-weight: bold;
-                color: #2d3748;
-                text-align: center; /* Centrando el título del emprendimiento */
+                color: #495057;
+                text-align: center;
+                margin-bottom: 20px;
             }
 
             .details-info p {
-                margin-bottom: 10px;
+                margin-bottom: 15px;
                 font-size: 1.1rem;
             }
 
-            .details-info .detail-icon {
+            .detail-icon {
                 margin-right: 10px;
-                color: #6C584C;
+                color: #6C757D;
             }
 
             .details-image {
                 flex: 1;
                 text-align: right;
-                position: relative; /* Para permitir el posicionamiento absoluto de la imagen */
-                overflow: hidden; /* Oculta la parte de la imagen que sobresale del contenedor */
+                overflow: hidden;
             }
 
             .details-image .image-container {
                 position: relative;
-                width: 100%;
                 max-width: 400px;
-                height: 200px; /* Altura del contenedor del cuadrado */
-                margin: 0 auto; /* Centra el contenedor */
-                border: 5px solid #9acd32; /* Borde cuadrado verde oscuro */
-                border-radius: 10px; /* Borde redondeado para el cuadro */
+                height: 200px;
+                border: 5px solid #e0e0e0;
+                border-radius: 10px;
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                overflow: hidden; /* Oculta la parte de la imagen que sobresale del contenedor */
+                overflow: hidden;
             }
 
             .details-image img {
-                position: absolute; /* Posiciona la imagen sobre el contenedor */
-                top: -50px; /* Ajusta la posición para que solo se vea la mitad */
-                left: 0;
                 width: 100%;
                 height: auto;
-                border-radius: 10px;
                 object-fit: cover;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
             }
 
             .section-title {
-                background-color: #6C584C;
-                color: white;
-                padding: 10px;
+                background-color: #495057;
+                color: #fff;
+                padding: 15px;
                 text-align: center;
                 border-radius: 5px;
                 margin-bottom: 20px;
-            }
-
-            .product-card img {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                border-radius: 10px;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                font-weight: 500;
+                font-size: 1.5rem;
             }
 
             .product-card {
                 background-color: #fff;
-                border-radius: 10px;
+                border-radius: 8px;
                 padding: 15px;
                 text-align: center;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                border: 2px solid #9acd32; /* Borde verde oscuro */
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                border: 2px solid #e0e0e0;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .product-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+                border-color: #6C757D;
+            }
+
+            .product-card img {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
             }
 
             .product-card h4 {
-                margin-top: 10px;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 font-weight: bold;
-                color: #9acd32; /* Mismo color verde oscuro que el borde */
+                color: #333;
+                margin-top: 10px;
             }
 
             .product-card p {
-                font-size: 1rem;
-                color: #6C584C;
+                font-size: 0.9rem;
+                color: #666;
+            }
+
+            .btn-contact {
+                background-color: #6C757D;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-align: center;
+                display: inline-block;
+                transition: background-color 0.2s ease;
+            }
+
+            .btn-contact:hover {
+                background-color: #495057;
+                color: #fff;
+                text-decoration: none;
             }
         </style>
     </head>
@@ -126,30 +160,15 @@
     </div>
 
     <div class="container mt-5">
-        <!-- Detalles del emprendimiento sin card -->
-        <div class="row">
-            <!-- Datos del emprendimiento -->
-            <div class="col-md-6">
-                <h1 style="color: #9acd32;">{{ $entrepreneurship->etp_name }}</h1> <!-- Nombre del emprendimiento en verde -->
-                <p style="font-size: 1.2rem; color: #333;">
-                    <i class="bi bi-shop-window" style="color: #6C584C; margin-right: 5px;"></i>
-                    Somos el emprendimiento <strong>{{ $entrepreneurship->etp_name }}</strong>.
-                </p>
-                <p style="font-size: 1.2rem; color: #333;">
-                    <i class="bi bi-geo-alt-fill" style="color: #6C584C; margin-right: 5px;"></i>
-                    Nos ubicamos en: <strong>({{ $entrepreneurship->etp_latitude }}, {{ $entrepreneurship->etp_longitude }})</strong>.
-                </p>
-                <p style="font-size: 1.2rem; color: #333;">
-                    <i class="bi bi-telephone-fill" style="color: #6C584C; margin-right: 5px;"></i>
-                    Nos puedes contactar al número <strong>{{ $entrepreneurship->etp_num }}</strong>.
-                </p>
-                <p style="font-size: 1.2rem; color: #333;">
-                    <i class="bi bi-envelope-fill" style="color: #6C584C; margin-right: 5px;"></i>
-                    Al correo <strong>{{ $entrepreneurship->etp_email }}</strong>.
-                </p>
+        <div class="row details-card">
+            <div class="col-md-6 details-info">
+                <h1>{{ $entrepreneurship->etp_name }}</h1>
+                <p><i class="bi bi-shop-window detail-icon"></i> Somos el emprendimiento <strong>{{ $entrepreneurship->etp_name }}</strong>.</p>
+                <p><i class="bi bi-geo-alt-fill detail-icon"></i> Nos ubicamos en: <strong>({{ $entrepreneurship->etp_latitude }}, {{ $entrepreneurship->etp_longitude }})</strong>.</p>
+                <p><i class="bi bi-telephone-fill detail-icon"></i> Nos puedes contactar al número <strong>{{ $entrepreneurship->etp_num }}</strong>.</p>
+                <p><i class="bi bi-envelope-fill detail-icon"></i> Al correo <strong>{{ $entrepreneurship->etp_email }}</strong>.</p>
             </div>
 
-            <!-- Imagen del emprendimiento -->
             <div class="col-md-6 details-image">
                 <div class="image-container">
                     <img src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $entrepreneurship->etp_name }}">
@@ -158,7 +177,6 @@
         </div>
     </div>
 
-    <!-- Sección de productos -->
     <div class="row mt-5">
         <div class="col-12">
             <div class="section-title">
@@ -166,8 +184,8 @@
             </div>
         </div>
 
-        <!-- Tarjeta de producto 1 -->
-        <div class="col-md-6 mb-4">
+        <!-- Repeat product cards -->
+        <div class="col-md-4 mb-4">
             <div class="product-card">
                 <img src="/images/productsdetails/producto1.jpeg" alt="Producto 1">
                 <h4>Mangos</h4>
@@ -175,22 +193,25 @@
             </div>
         </div>
 
-        <!-- Tarjeta de producto 2 -->
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="product-card">
                 <img src="/images/productsdetails/producto2.jpeg" alt="Producto 2">
                 <h4>Cucumber</h4>
-                <p>Cucumber - Pepinos frescos para ensaladas.</p>
+                <p>Pepinos frescos para ensaladas.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="product-card">
+                <img src="/images/productsdetails/product3.jpg" alt="Producto 3">
+                <h4>Tomatoes</h4>
+                <p>Tomates frescos ideales para ensaladas.</p>
             </div>
         </div>
     </div>
-    </div>
 
-    <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-    <!-- Iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     </body>
     </html>
