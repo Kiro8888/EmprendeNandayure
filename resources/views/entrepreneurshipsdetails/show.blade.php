@@ -164,51 +164,81 @@
             <div class="col-md-6 details-info">
                 <h1>{{ $entrepreneurship->etp_name }}</h1>
                 <p><i class="bi bi-shop-window detail-icon"></i> Somos el emprendimiento <strong>{{ $entrepreneurship->etp_name }}</strong>.</p>
-                <p><i class="bi bi-geo-alt-fill detail-icon"></i> Nos ubicamos en: <strong>({{ $entrepreneurship->etp_latitude }}, {{ $entrepreneurship->etp_longitude }})</strong>.</p>
+                {{-- <p><i class="bi bi-geo-alt-fill detail-icon"></i> Nos ubicamos en: <strong>({{ $entrepreneurship->etp_latitude }}, {{ $entrepreneurship->etp_longitude }})</strong>.</p> --}}
                 <p><i class="bi bi-telephone-fill detail-icon"></i> Nos puedes contactar al número <strong>{{ $entrepreneurship->etp_num }}</strong>.</p>
                 <p><i class="bi bi-envelope-fill detail-icon"></i> Al correo <strong>{{ $entrepreneurship->etp_email }}</strong>.</p>
             </div>
-
             <div class="col-md-6 details-image">
                 <div class="image-container">
                     <img src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $entrepreneurship->etp_name }}">
                 </div>
             </div>
         </div>
+        <div id="map" style="width: 100%; height: 400px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-top: 20px;"></div>
     </div>
+
 
     <div class="row mt-5">
         <div class="col-12">
             <div class="section-title">
-                <h3>Productos del Emprendimiento</h3>
+                <h3>Que ofrece el Emprendimiento</h3>
             </div>
         </div>
-
-        <!-- Repeat product cards -->
-        <div class="col-md-4 mb-4">
-            <div class="product-card">
-                <img src="/images/productsdetails/producto1.jpeg" alt="Producto 1">
-                <h4>Mangos</h4>
-                <p>Mango X - Mangos frescos de alta calidad.</p>
+    
+        <!-- Mostrar los productos -->
+        @foreach ($products as $product)
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $product->pdt_name }}">
+                    <h4>{{ $product->pdt_name }}</h4>
+                    <p>{{ $product->pdt_description }}</p>
+                    <p><strong>${{ number_format($product->pdt_price, 2) }}</strong></p>
+                    <a style="text-decoration: none" href="{{ route('client.product_details', $product->id_pdt) }}" class="mt-2 inline-block bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                        Ver más
+                    </a>
+                </div>
+                
             </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="product-card">
-                <img src="/images/productsdetails/producto2.jpeg" alt="Producto 2">
-                <h4>Cucumber</h4>
-                <p>Pepinos frescos para ensaladas.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="product-card">
-                <img src="/images/productsdetails/product3.jpg" alt="Producto 3">
-                <h4>Tomatoes</h4>
-                <p>Tomates frescos ideales para ensaladas.</p>
-            </div>
+        @endforeach
+    <!-- Mostrar los servicios -->
+    @foreach ($services as $service)
+    <div class="col-md-4 mb-4">
+        <div class="product-card">
+            <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $service->srv_name }}">
+            <h4>{{ $service->srv_name }}</h4>
+            <p>{{ $service->srv_description }}</p>
+            <p><strong>${{ number_format($service->srv_price, 2) }}</strong></p>
+            <a style="text-decoration: none" href="{{ route('client.service_details', $service->id_srv) }}" class="mt-2 inline-block bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+                Ver más
+            </a>
         </div>
     </div>
+    @endforeach
+
+    </div>
+
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
+    <script>
+        function initMap() {
+            var entrepreneurshipLocation = { 
+                lat: parseFloat("{{ $entrepreneurship->etp_latitude }}"), 
+                lng: parseFloat("{{ $entrepreneurship->etp_longitude }}") 
+            };
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: entrepreneurshipLocation,
+                zoom: 15
+            });
+    
+            var marker = new google.maps.Marker({
+                position: entrepreneurshipLocation,
+                map: map,
+                title: "{{ $entrepreneurship->etp_name }}"
+            });
+        }
+    </script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>

@@ -299,6 +299,71 @@
             
 <!-- resources/views/home.blade.php -->
 
+{{-- MAP --}}
+<center>
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0 rounded-3 overflow-hidden" style="max-width: 2100px">
+            <div class="card-header text-center text-white" style="background: #5e453ce3">
+                <h5 class="m-0">Ubicación de los Emprendimientos</h5>
+            </div>
+            <div class="card-body position-relative" style="background-color: #f8f9fa; padding: 0;">
+                <!-- Botón flotante para centrar mapa -->
+                <button onclick="centerMap()" class="btn btn-dark position-absolute" style="top: 10px; right: 10px; z-index: 10;">
+                    <i class="bi bi-geo-alt-fill"></i> Centrar Mapa
+                </button>
+                <div id="map" style="height: 500px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+</center>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
+<script>
+    var map;
+    var defaultCenter = { lat: 9.7489, lng: -83.7534 };
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: defaultCenter,
+            zoom: 8,
+            
+        });
+
+        // Obtener las ubicaciones desde Blade y convertirlas en una lista JavaScript
+        var entrepreneurships = @json($entrepreneurships);
+
+        entrepreneurships.forEach(function(etp) {
+            if (etp.etp_latitude && etp.etp_longitude) {
+                var marker = new google.maps.Marker({
+                    position: { lat: parseFloat(etp.etp_latitude), lng: parseFloat(etp.etp_longitude) },
+                    map: map,
+                    title: etp.etp_name,
+                    icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+    content: `
+        <div style="color: #333;">
+            <h6>${etp.etp_name}</h6>
+            <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width:100px;height:auto;display:block;margin-top:10px;">
+        </div>
+    `
+});
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
+        });
+    }
+
+    function centerMap() {
+        map.setCenter(defaultCenter);
+        map.setZoom(8);
+    }
+</script>
+
+
+
 <!-- Service Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -330,13 +395,12 @@
    <!-- Projects Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="fs-5 fw-bold text-primary">Nuestras actividades</p>
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 100%;">
+            <p class="fs-5 fw-bold" style="background: #348E38">Nuestras actividades</p>
             <h1 class="display-5 mb-5">Ferias de emprendimiento en Nandayure</h1>
         </div>
         <div class="row wow fadeInUp" data-wow-delay="0.3s">
             <div class="col-12 text-center">
-                <!-- Aquí puedes agregar un texto introductorio o dejar vacío si no necesitas nada -->
             </div>
         </div>
         <div class="row g-4 portfolio-container">

@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-    <nav x-data="{open: false}" class="bg-gray-800">
+    <nav x-data="{open: false}" class="bg-gray-800" style="    background: #ffffff;">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -44,11 +44,12 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page" style="text-decoration: none;">Inicio</a>
-                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Eventos</a>
+                            {{-- <a href="/" class="rounded-md px-3 py-2 text-sm font-medium" aria-current="page" style="text-decoration: none; color:black">Inicio</a> --}}
+                            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Inicio</a>
+                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Eventos</a>
                                   <!-- Dropdown Productos o Servicios -->
                                   <div x-data="{ dropdownOpen: false }" class="relative">
-                                    <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">
+                                    <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">
                                         Que ofrecen nuestros emprendedores?
                                     </button>
                                     <div x-show="dropdownOpen" class="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
@@ -57,7 +58,7 @@
                                   
                                     </div>
                                 </div>
-                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Como ser emprendedor?</a>
+                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Como ser emprendedor?</a>
                             
                             {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
                             {{-- @foreach ( $categories as $category)
@@ -75,13 +76,13 @@
                     
             
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    {{-- <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View notifications</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                         </svg>
-                    </button>
+                    </button> --}}
 
                     <!-- Profile dropdown -->
                     <div class="relative ml-3" x-data="{open: false}">
@@ -123,8 +124,8 @@
 
                 @else    
 
-                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Login</a>
-                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Register</a>
+                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Login</a>
+                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Register</a>
                 @endauth
             </div>
         </div>
