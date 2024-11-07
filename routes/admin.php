@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\WaitingEntrepreuserController;
 use App\Http\Controllers\Admin\ControlFoodController; // Asegúrate de que esta línea sea correcta
 use App\Http\Controllers\Admin\OpenAIController;
 
-Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
+Route::get('/', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 // Route::resource('users', UserController::class)->only(['index', 'edit', 'update', 'create', 'store'])->names('admin.users');
 Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('roles', RoleController::class)->names('admin.roles');

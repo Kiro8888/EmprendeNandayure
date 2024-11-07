@@ -58,6 +58,7 @@
         @endif
     </div>
 </center>
+
     <style>
         .hero {
             background: url('/client/Events-hero.jpg') no-repeat center center/cover;
@@ -202,3 +203,4 @@
         }
     </script>
 </x-app-layout>
+<x-footer-client />

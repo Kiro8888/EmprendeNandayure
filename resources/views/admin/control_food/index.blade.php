@@ -95,8 +95,8 @@
                                     <p>¿Deseas hacer una consulta sobre este producto?</p>
                                     <form id="consultationForm{{ $product->id_pdt }}">
                                         <div class="form-group">
-                                            <label for="userQuestion">Tu consulta:</label>
-                                            <textarea class="form-control" id="userQuestion{{ $product->id_pdt }}" rows="3" required></textarea>
+                                            <label for="userQuestion">Tienes algun padecimiento?<br>puedes describirlo acontinuacion:</label>
+                                            <textarea class="form-control" id="userQuestion{{ $product->id_pdt }}" rows="3" maxlength="100" required></textarea>
                                         </div>
                                     </form>
                                     <div id="response{{ $product->id_pdt }}" class="mt-3"></div>
@@ -124,6 +124,8 @@
         @endif
     </div>
 </div>
+   
+<x-chatbot />
 
 <!-- Additional Styles -->
 <style>
@@ -172,7 +174,7 @@
                     messages: [
                         {
                             role: 'user',
-                            content: `Soy un experto en salud. Estoy consultando sobre el producto ${productName} (${productDescription}). El usuario tiene la siguiente condición: "${question}". ¿Es recomendable consumir este producto y en qué cantidad?`
+                            content: `Soy un experto en salud. Estoy consultando sobre el producto ${productName} (${productDescription}). El usuario tiene la siguiente condición: "${question}". ¿Es recomendable consumir este producto y en qué cantidad?, por favor puedes ser breve e ignorar cualquier consulta fuera del tema de salud`
                         }
                     ],
                     max_tokens: 100, // Limita la respuesta a 100 tokens

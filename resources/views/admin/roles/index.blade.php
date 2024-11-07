@@ -51,5 +51,6 @@
           </table>
     </div>
 </div>
-
+   
+<x-chatbot />
 @stop

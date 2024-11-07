@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar Example</title>
@@ -35,15 +37,28 @@
 
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <a href="/" class="flex flex-shrink-0 items-center">
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                        <i class="fas fa-lightbulb"></i>
+
+                        {{-- <img class="h-8 w-auto" src="/images/icon.png" alt="Icon" > --}}
                     </a>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Inicio</a>
-                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Eventos</a>
-                            <a href="/products-services" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Productos o Servicios</a>
-                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sobre nosotros</a>
+                            <a href="/" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page" style="text-decoration: none;">Inicio</a>
+                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Eventos</a>
+                                  <!-- Dropdown Productos o Servicios -->
+                                  <div x-data="{ dropdownOpen: false }" class="relative">
+                                    <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">
+                                        Que ofrecen nuestros emprendedores?
+                                    </button>
+                                    <div x-show="dropdownOpen" class="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                        <a href="/products" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Productos</a>
+                                        <a href="/services" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Servicios</a>
+                                  
+                                    </div>
+                                </div>
+                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Como ser emprendedor?</a>
+                            
                             {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
                             {{-- @foreach ( $categories as $category)
                             <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{{$category->ctg_name}}</a>
@@ -108,8 +123,8 @@
 
                 @else    
 
-                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Login</a>
+                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none;">Register</a>
                 @endauth
             </div>
         </div>
