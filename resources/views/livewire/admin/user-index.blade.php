@@ -12,6 +12,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
               <th scope="col">Email</th>
               <th scope="col">Estado</th>
               <th scope="col">Editar</th>
@@ -19,19 +20,20 @@
           </thead>
           <tbody>
 
-              @foreach ($users as $user)
-
-              <tr>
-                  <th scope="row">{{$user->id}}</th>
-                  <td>{{$user->name}}</td>
-                  <td>{{$user->email}}</td>
-                  <td>{{$user->status}}</td>
-                  <td width="200px">
-                      <a class="btn btn-warning" href="{{route('admin.users.edit', $user)}}">Editar</a>
-                  </td>
-                </tr>
-
-              @endforeach
+            @foreach ($users as $user)
+            @if ($user->status === 'Activo')
+                            <tr>
+                                <th scope="row">{{ $user->id }}</th>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->last_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->status }}</td>
+                                <td width="200px">
+                                    <a class="btn btn-warning" href="{{ route('admin.users.edit', $user) }}">Editar</a>
+                                </td>
+                            </tr>
+                        @endif
+        @endforeach
             </tbody>
         </table>
     </div>

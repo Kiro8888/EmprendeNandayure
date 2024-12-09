@@ -27,8 +27,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::where('status', 'Activo')->paginate(10);
+    
+        // Depuración: Verifica cuántos usuarios se están obteniendo
+        // dd($users->toArray());
+    
+        return view('admin.users.index', compact('users'));
     }
+    
 
     /**
      * Show the form for creating a new resource.

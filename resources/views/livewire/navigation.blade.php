@@ -93,7 +93,6 @@
                                 <img class="h-8 w-8 rounded-full" src="{{auth()->user()->profile_photo_url}}" alt="">
                             </button>
                         </div>
-
                         <!--
                         Dropdown menu, show/hide based on menu state.
                         Entering: "transition ease-out duration-100"
