@@ -4,42 +4,41 @@
         <div class="custom-footer-row">
             <!-- Office Info -->
             <div class="custom-footer-column">
-                <h4 class="custom-text-white custom-mb-4">Nuestra Oficina</h4>
-                <p><i class="fas fa-map-marker-alt custom-me-3"></i>123 Calle, Ciudad, País</p>
-                <p><i class="fas fa-phone-alt custom-me-3"></i>+123 456 7890</p>
-                <p><i class="fas fa-envelope custom-me-3"></i>info@ejemplo.com</p>
+                <h4 class="custom-text-white custom-mb-4">Información</h4>
+                <p><i class="fas fa-map-marker-alt custom-me-3"></i>Nandayure, Guanacaste, Costa Rica</p>
+                <p><i class="fas fa-phone-alt custom-me-3"></i>+506 2657-7081</p>
+                <p><i class="fas fa-envelope custom-me-3"></i>info@nandayure.go.cr</p>
                 <div class="custom-footer-social-links">
-                    <a class="custom-social-link" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="custom-social-link" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="custom-social-link" href="#"><i class="fab fa-youtube"></i></a>
-                    <a class="custom-social-link" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    {{-- <a class="custom-social-link" href="#"><i class="fab fa-twitter"></i></a> --}}
+                    <a class="custom-social-link" href="https://www.facebook.com/share/1EpBAHve4f/?mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a>
+                    {{-- <a class="custom-social-link" href="#"><i class="fab fa-youtube"></i></a> --}}
+                    {{-- <a class="custom-social-link" href="#"><i class="fab fa-linkedin-in"></i></a> --}}
                 </div>
             </div>
             <!-- Services -->
-            <div class="custom-footer-column">
-                <h4 class="custom-text-white custom-mb-4">Servicios</h4>
+            {{-- <div class="custom-footer-column">
+                <h4 class="custom-text-white custom-mb-4"></h4>
                 <a class="custom-footer-link" href="#">Paisajismo</a>
                 <a class="custom-footer-link" href="#">Poda de plantas</a>
                 <a class="custom-footer-link" href="#">Jardinería urbana</a>
                 <a class="custom-footer-link" href="#">Mantenimiento de jardines</a>
                 <a class="custom-footer-link" href="#">Tecnología verde</a>
-            </div>
+            </div> --}}
             <!-- Quick Links -->
             <div class="custom-footer-column">
                 <h4 class="custom-text-white custom-mb-4">Enlaces Rápidos</h4>
-                <a class="custom-footer-link" href="#">Sobre Nosotros</a>
-                <a class="custom-footer-link" href="#">Contáctanos</a>
-                <a class="custom-footer-link" href="#">Nuestros Servicios</a>
-                <a class="custom-footer-link" href="#">Términos y Condiciones</a>
-                <a class="custom-footer-link" href="#">Soporte</a>
+                <a class="custom-footer-link" href="/sobreNosotros">Sobre Nosotros</a>
+                <a class="custom-footer-link" href="/events">Eventos</a>
+                <a class="custom-footer-link" href="/products">Productos</a>
+                <a class="custom-footer-link" href="/services">Servicios</a>
+                {{-- <a class="custom-footer-link" href="#">Soporte</a> --}}
             </div>
             <!-- Newsletter -->
             <div class="custom-footer-column">
-                <h4 class="custom-text-white custom-mb-4">Suscríbete</h4>
-                <p>Recibe noticias y actualizaciones directamente en tu correo.</p>
-                <div class="custom-newsletter-form">
-                    <input class="custom-form-input" type="text" placeholder="Tu correo electrónico">
-                    <button type="button" class="custom-submit-btn">Suscribirse</button>
+                <h4 class="custom-text-white custom-mb-4">Iniciar sesión / Registrarse</h4>
+                    <div class="custom-newsletter-form">
+                        <a class="custom-footer-link" href="{{route('login')}}">Iniciar</a>
+                        <a class="custom-footer-link" href="{{route('register')}}">Registrarse</a>
                 </div>
             </div>
         </div>

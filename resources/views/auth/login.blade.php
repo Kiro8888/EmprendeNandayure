@@ -133,6 +133,12 @@
                     <x-input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" />
                 </div>
 
+                <div style="margin-top: 1rem;">
+                    <a href="{{ route('google.login') }}" class="login-button" style="display: inline-block; background-color: #db4437;">
+                        Iniciar sesión con Google
+                    </a>
+                </div>
+
                 <div class="checkbox-group mt-4">
                     <label for="remember_me" class="flex items-center">
                         <x-checkbox id="remember_me" name="remember" />

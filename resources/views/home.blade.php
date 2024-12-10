@@ -153,54 +153,100 @@
 }
 </style>
 
+   
+<style>
+    /* Asegura que el carrusel ocupe el 100% del viewport */
+    #carouselExample {
+        height: 100vh; /* Ajusta la altura del carrusel al 100% del viewport */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .carousel-inner, .carousel-item, .carousel-item img {
+        height: 100%; /* Hace que el carrusel y las imágenes ocupen el 100% de la altura */
+    }
+
+    .carousel-item img {
+        object-fit: cover; /* Asegura que la imagen cubra el área del carrusel sin deformarse */
+    }
+
+    /* Efecto de filtro verde en las imágenes cuando se pasa el cursor */
+    .carousel-item img {
+        transition: filter 0.5s ease;
+    }
+
+    
+
+    /* Estilo para el texto del carrusel */
+    .carousel-caption {
+        position: absolute;
+        bottom: 20px; /* Ajusta la posición del texto */
+        left: 0;
+        right: 0;
+        z-index: 10;
+        color: white;
+    }
+
+    .carousel-caption h1 {
+        font-weight: bold; /* Hace que el título sea más grueso */
+    }
+
+    .carousel-caption p {
+        font-weight: bold; /* Hace que el párrafo sea más grueso */
+    }
+    i, .fa {
+    color: #009A00 !important;
+}
+</style>
+
     <!-- Top Feature Start -->
-    <div class="container-fluid top-feature py-5 pt-lg-0">
-        <div class="container py-5 pt-lg-0">
-            <div class="row gx-0">
-                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-times text-primary"></i>
-                            </div>
-                    
-                            <div class="ps-3">
-                                <h4>No Hidden Cost</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
-                            </div>
+<div class="container-fluid top-feature py-5 pt-lg-0">
+    <div class="container py-5 pt-lg-0">
+        <div class="row gx-0">
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Apoyo a Emprendedores</h4>
+                            <span>Ofrecemos herramientas de promoción y gestión para visibilizar negocios locales.</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-users text-primary"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h4>Dedicated Team</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
-                            </div>
+            </div>
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-map-marker-alt text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Mapas Personalizados</h4>
+                            <span>Integramos Google Maps para mostrar la ubicación de los negocios.</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                                <i class="fa fa-phone text-primary"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h4>24/7 Available</h4>
-                                <span>Clita erat ipsum lorem sit sed stet duo justo</span>
-                            </div>
+            </div>
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-comments text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Asistente Virtual</h4>
+                            <span>Un asistente IA que guía a los emprendedores y facilita la interacción.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Top Feature End -->
+</div>
+<!-- Top Feature End -->
+
 <!-- About Start -->
 <div class="container-xxl py-5">
     <div class="container">
@@ -209,10 +255,11 @@
                 <img class="img-fluid rounded custom-img" data-wow-delay="0.1s" src="images/home/image1.jpeg" alt="Imagen de emprendedores en Nandayure">
             </div>
             <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                <h1 class="display-5 mb-4">Empoderamos a los Emprendedores en Nandayure</h1>
-                <p class="mb-4">Nuestro sitio web está diseñado para apoyar a los emprendedores de Nandayure conectándolos con recursos, oportunidades y una comunidad de apoyo. Ofrecemos herramientas para gestionar sus negocios, promocionar sus productos y participar en eventos locales.</p>
-                <a class="btn btn-primary py-3 px-4" href="about-us.html" style="background-color: #348E38; border-color: #348E38; color: #ffffff;">Descubre Más</a>
+                <h1 class="display-5 mb-4 subir-y-bajar">Empoderamos a los Emprendedores en Nandayure</h1>
+                <p class="mb-4">Nuestro sistema web apoya a los emprendedores de Nandayure, conectándolos con recursos tecnológicos. Facilitamos la gestión de negocios, la promoción de productos, y el anuncios de ferias locales.</p>
+                <a class="btn btn-primary py-3 px-4" href="about-us.html" style="background-color: #009A00; border-color: #009A00; color: #ffffff;">Descubre Más</a>
             </div>
+            
             <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="row g-5">
                     <div class="col-12 col-sm-6 col-lg-12">
@@ -244,17 +291,39 @@
         height: 400px; /* Establece una altura fija para la imagen */
         object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarse */
     }
+    @keyframes subirYbajar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Cambia el valor para ajustar la altura del movimiento */
+    }
+}
+
+.subir-y-bajar {
+    animation: subirYbajar 2s infinite; /* Duración de 2 segundos, se repite infinitamente */
+}
+</style>
+
+
+<style>
+    .custom-img {
+        width: 100%; /* Hace que la imagen ocupe el 100% del contenedor */
+        height: 400px; /* Establece una altura fija para la imagen */
+        object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarse */
+    }
 </style>
 <!-- Features Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="fs-5 fw-bold" style="color: #348E38 !important;">¿Por Qué Elegirnos?</p>
+                <p class="fs-5 fw-bold" style="color: #00B0F0 !important;">¿Por Qué Elegirnos?</p>
                 <h1 class="display-5 mb-4">Razones para Elegir Nuestra Plataforma</h1>
-                <p class="mb-4">Nuestra plataforma está diseñada para ofrecer a los emprendedores de Nandayure las herramientas y recursos necesarios para el éxito. Desde apoyo en la gestión de negocios hasta oportunidades de networking y marketing local, estamos aquí para ayudarte a crecer y destacar en tu comunidad.</p>
-                <a class="btn btn-primary py-3 px-4" href="features.html" style="background-color: #348E38; border-color: #348E38; color: #ffffff;">Descubre Más</a>
+                <p class="mb-4">"Emprende Nandayure" ofrece un espacio integral para que los emprendedores de la región puedan gestionar sus negocios de manera eficiente. Proporcionamos herramientas para promocionar productos, participar en eventos locales.</p>
+                <a class="btn btn-primary py-3 px-4" href="features.html" style="background-color: #009A00; border-color: #009A00; color: #ffffff;">Descubre Más</a>
             </div>
+            
             <div class="col-lg-6">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-6">
@@ -262,7 +331,7 @@
                             <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                                     <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                        <i class="fa fa-thumbs-up fa-3x" style="color: #348E38;"></i>
+                                        <i class="fa fa-thumbs-up fa-3x" style="color: #009A00;"></i>
                                     </div>
                                     <h4 class="mb-0">Soporte Integral</h4>
                                     <p>Recibe asistencia completa en la gestión y promoción de tu emprendimiento, asegurando que tengas todo lo necesario para triunfar.</p>
@@ -271,7 +340,7 @@
                             <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
                                 <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                                     <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                        <i class="fa fa-network-wired fa-3x" style="color: #348E38;"></i>
+                                        <i class="fa fa-network-wired fa-3x" style="color: #009A00;"></i>
                                     </div>
                                     <h4 class="mb-0">Red de Contactos</h4>
                                     <p>Conéctate con otros emprendedores, proveedores y clientes potenciales a través de nuestra red de contactos local.</p>
@@ -282,7 +351,7 @@
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
                         <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
                             <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                <i class="fa fa-calendar-check fa-3x" style="color: #348E38;"></i>
+                                <i class="fa fa-calendar-check fa-3x" style="color: #009A00;"></i>
                             </div>
                             <h4 class="mb-0">Eventos y Talleres</h4>
                             <p>Participa en eventos locales y talleres diseñados para mejorar tus habilidades y expandir tu red de contactos.</p>
@@ -298,6 +367,71 @@
 
             
 <!-- resources/views/home.blade.php -->
+
+{{-- MAP --}}
+<center>
+    <div class="container mt-5">
+        <div class="card shadow-lg border-0 rounded-3 overflow-hidden" style="max-width: 2100px">
+            <div class="card-header text-center text-white" style="background: #5e453ce3">
+                <h5 class="m-0">Ubicación de los Emprendimientos</h5>
+            </div>
+            <div class="card-body position-relative" style="background-color: #f8f9fa; padding: 0;">
+                <!-- Botón flotante para centrar mapa -->
+                <button onclick="centerMap()" class="btn btn-dark position-absolute" style="top: 10px; right: 10px; z-index: 10;">
+                    <i class="bi bi-geo-alt-fill"></i> Centrar Mapa
+                </button>
+                <div id="map" style="height: 500px; width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+</center>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
+<script>
+    var map;
+    var defaultCenter = { lat: 9.7489, lng: -83.7534 };
+    
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: defaultCenter,
+            zoom: 8,
+            
+        });
+
+        // Obtener las ubicaciones desde Blade y convertirlas en una lista JavaScript
+        var entrepreneurships = @json($entrepreneurships);
+
+        entrepreneurships.forEach(function(etp) {
+            if (etp.etp_latitude && etp.etp_longitude) {
+                var marker = new google.maps.Marker({
+                    position: { lat: parseFloat(etp.etp_latitude), lng: parseFloat(etp.etp_longitude) },
+                    map: map,
+                    title: etp.etp_name,
+                    icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                });
+
+                var infowindow = new google.maps.InfoWindow({
+    content: `
+        <div style="color: #333;">
+            <h6>${etp.etp_name}</h6>
+            <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width:100px;height:auto;display:block;margin-top:10px;">
+        </div>
+    `
+});
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+            }
+        });
+    }
+
+    function centerMap() {
+        map.setCenter(defaultCenter);
+        map.setZoom(8);
+    }
+</script>
+
+
 
 <!-- Service Start -->
 <div class="container-xxl py-5">
@@ -330,13 +464,12 @@
    <!-- Projects Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="fs-5 fw-bold text-primary">Nuestras actividades</p>
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 100%;">
+            <p class="fs-5 fw-bold" style="background: #348E38">Nuestras actividades</p>
             <h1 class="display-5 mb-5">Ferias de emprendimiento en Nandayure</h1>
         </div>
         <div class="row wow fadeInUp" data-wow-delay="0.3s">
             <div class="col-12 text-center">
-                <!-- Aquí puedes agregar un texto introductorio o dejar vacío si no necesitas nada -->
             </div>
         </div>
         <div class="row g-4 portfolio-container">

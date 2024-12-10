@@ -60,16 +60,20 @@
 </center>
 
     <style>
-        .hero {
-            background: url('/client/Events-hero.jpg') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
+.hero {
+    background: url('/client/Events-hero.jpg') no-repeat center center;
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen en ambos ejes */
+    height: 400px; /* Define la altura del contenedor */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
         .hero-content {
             background: rgba(0, 0, 0, 0.5);
             padding: 2rem;
