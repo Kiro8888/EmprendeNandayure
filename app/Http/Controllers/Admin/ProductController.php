@@ -126,7 +126,7 @@ class ProductController extends Controller
             'pdt_price' => 'required',
         ]);
          $productData = $request->all();
-     
+
          // Si se sube una nueva imagen, guárdala y actualiza la ruta
          if ($request->hasFile('pdt_img')) {
              // Eliminar la imagen anterior si existe
