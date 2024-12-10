@@ -30,8 +30,10 @@ class ClientProductServiceController extends Controller
     
     public function indexService(Request $request)
     {
-
-        $services = Service::all();
+        // Obtener solo los servicios activos
+        $services = Service::where('srv_status', 1)->get();
+    
         return view('client.services', compact('services'));
     }
+    
 }

@@ -90,7 +90,7 @@
                 {{-- Setimo campo --}}
                 <div class="form-group">
                     <label for="srv_status" class="form-label">Estatus</label>
-                    <select class="form-control" name="srv_status" id="srv_status">
+                        <select class="form-control" name="srv_status" id="srv_status" {{ !auth()->user()->hasRole('Admin') ? 'disabled' : '' }}>
                         <option value="1" {{ $service->srv_status == 1 ? 'selected' : '' }}>Activo</option>
                         <option value="2" {{ $service->srv_status == 2 ? 'selected' : '' }}>Inactivo</option>
                     </select>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_srv'); // Clave primaria
             $table->string('srv_name'); // Nombre del servicio
             $table->text('srv_description')->nullable(); // Descripción del servicio (opcional)
-            $table->enum('srv_status', [1, 2])->default(1); 
+            $table->enum('srv_status', [1, 2])->default(2); 
             $table->string('srv_img')->nullable(); // Imagen del servicio (ruta de la imagen, opcional)
             $table->decimal('srv_price', 8, 2); // Precio del servicio
             $table->unsignedBigInteger('srv_id_ctg'); // Clave foránea de la categoría
