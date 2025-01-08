@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_pdt'); // Clave primaria
             $table->string('pdt_name'); // Nombre del producto
             $table->text('pdt_description')->nullable(); // Descripción del producto (opcional)
-            $table->enum('pdt_status', [1, 2])->default(1); 
+            $table->enum('pdt_status', [1, 2])->default(2); 
             $table->string('pdt_img')->nullable(); // Imagen del producto (ruta de la imagen, opcional)
             $table->decimal('pdt_price', 8, 2); // Precio del producto
             $table->unsignedBigInteger('pdt_id_ctg'); // Clave foránea de la categoría
