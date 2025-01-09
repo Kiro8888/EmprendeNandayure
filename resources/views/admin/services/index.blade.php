@@ -13,10 +13,13 @@
     {{session('info')}}
 </div>
 @endif
+
 <div class="card">
     <div class="card-body">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{ route('admin.services.create') }}"><i class="fas fa-plus"></i> Crear Servicio</a>
+            <a class="btn btn-primary" href="{{ route('admin.services.create') }}">
+                <i class="fas fa-plus"></i> Crear Servicio
+            </a>
         </div>
         <table class="table">
             <thead class="thead-dark">
@@ -49,21 +52,51 @@
                     <td>{{ $service->srv_price }}</td>
                     <td>{{ $service->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                     <td>{{ $service->category->ctg_name ?? 'Desconocido' }}</td>
-                    <td><a class="btn btn-warning" href="{{ route('admin.services.edit', $service) }}">Editar</a></td>
                     <td>
-                        <form action="{{ route('admin.services.destroy', $service) }}" method="POST">
+                        <a class="btn btn-warning" href="{{ route('admin.services.edit', $service) }}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="delete-form">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-primary" href="{{ route('admin.services.show', $service) }}">Mostrar</a></td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('admin.services.show', $service) }}">Mostrar</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
-   
+
 <x-chatbot />
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const form = this.closest('form'); // Encuentra el formulario más cercano
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "No podrás deshacer esta acción",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Envía el formulario si se confirma
+                    }
+                });
+            });
+        });
+    });
+</script>
 @stop
