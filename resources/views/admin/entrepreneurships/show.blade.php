@@ -103,9 +103,11 @@
                     @endif
                 </div>             
                 {{-- MAP --}}
-                <div id="map" style="height: 400px; width: 100%;"readonly ></div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div id="map" style="height: 400px; width: 100%;" readonly></div>
             </form>
+            <br>
+            <a href="/admin/entrepreneurship" class="btn btn-primary">Atrás</a>
+            <br>
 @stop
 
 @section('css')
@@ -114,34 +116,51 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 @section('js')
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Obtener las coordenadas iniciales del emprendedor desde el objeto $entrepreneurship
-        var initialLat = {{ $entrepreneurship->etp_latitude ?? 9.7489 }}; // Usa 9.7489 como valor por defecto si no hay latitud
-        var initialLng = {{ $entrepreneurship->etp_longitude ?? -83.7534 }}; // Usa -83.7534 como valor por defecto si no hay longitud
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
+    <script>
+function initMap() {
+    // Obtener las coordenadas iniciales del emprendimiento desde los campos del formulario
+    var lat = parseFloat(document.getElementById('etp_latitude').value) || 9.7489; // Valor por defecto si no hay coordenadas
+    var lng = parseFloat(document.getElementById('etp_longitude').value) || -83.7534;
 
-        // Crear el mapa centrado en las coordenadas iniciales
-        var map = L.map('map').setView([initialLat, initialLng], 15); // Ajusta el zoom según sea necesario
-
-        // Añadir el tile layer de OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Crear un marcador inicial en las coordenadas del emprendedor
-        var marker = L.marker([initialLat, initialLng], { draggable: true }).addTo(map);
-
-        // Actualizar latitud y longitud al mover el marcador
-        marker.on('dragend', function(event) {
-            var position = marker.getLatLng();
-            document.getElementById('etp_latitude').value = position.lat;
-            document.getElementById('etp_longitude').value = position.lng;
-        });
-
-        
+    // Crear el mapa centrado en las coordenadas iniciales
+   var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: lat, lng: lng },
+        zoom: 15,
+        disableDefaultUI: true, // Deshabilitar los controles del mapa
+        gestureHandling: 'none' // Evitar interacciones con el mapa
     });
-</script>
-<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    // Crear un marcador en la ubicación inicial
+    var marker = new google.maps.Marker({
+        position: { lat: lat, lng: lng },
+        map: map,
+        draggable: false // Deshabilitar el arrastre del marcador
+    });
+
+    // Función para obtener y centrar en la ubicación actual del usuario
+    function setLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var currentLat = position.coords.latitude;
+                var currentLng = position.coords.longitude;
+
+                // Centrar el mapa y mover el marcador a la ubicación actual
+                map.setCenter({ lat: currentLat, lng: currentLng });
+                marker.setPosition({ lat: currentLat, lng: currentLng });
+
+                // Actualizar los campos de latitud y longitud en el formulario
+                document.getElementById('etp_latitude').value = currentLat;
+                document.getElementById('etp_longitude').value = currentLng;
+            }, function(error) {
+                console.error('Error al obtener la ubicación: ' + error.message);
+                alert('No se pudo obtener la ubicación actual.');
+            });
+        } else {
+            console.error('Geolocation no está soportado por este navegador.');
+            alert('Geolocation no está soportado por este navegador.');
+        }
+    }
+}
+    </script>
 @stop
