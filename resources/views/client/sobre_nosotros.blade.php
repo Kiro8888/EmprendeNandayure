@@ -45,33 +45,7 @@
 </section>
 
 
-            <!-- Cards Section -->
-<section class="w-full py-16 bg-gray-200">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Recursos para Emprendedores</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-4">
-        <div class="card bg-white rounded-lg shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
-            <img src="/client/resource-1.jpg" alt="Resource 1" class="w-full h-[300px] object-cover">
-            <div class="p-6">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Visibiliza tus Productos</h3>
-                <p class="text-gray-600">Publica tus productos en nuestra plataforma para que los potenciales clientes puedan encontrarlos fácilmente y hacerles llegar cotizaciones.</p>
-            </div>
-        </div>
-        <div class="card bg-white rounded-lg shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
-            <img src="/client/resource-2.jpg" alt="Resource 2" class="w-full h-[300px] object-cover">
-            <div class="p-6">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Recibe Cotizaciones</h3>
-                <p class="text-gray-600">Conecta con posibles clientes que te enviarán cotizaciones basadas en los productos que ofreces, facilitando las negociaciones.</p>
-            </div>
-        </div>
-        <div class="card bg-white rounded-lg shadow-xl overflow-hidden transition-transform duration-300 hover:scale-105">
-            <img src="/client/resource-3.jpg" alt="Resource 3" class="w-full h-[300px] object-cover">
-            <div class="p-6">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Anuncios de Ferias</h3>
-                <p class="text-gray-600">Mantente informado sobre las ferias y eventos donde podrás mostrar tus productos y conectar con más clientes potenciales.</p>
-            </div>
-        </div>
-    </div>
-</section>
+       
 
 
             <!-- Registration Form Section -->
@@ -128,6 +102,8 @@
                     </x-authentication-card>
                 </div>
             </section>
+
+            
         </div>
     </x-guest-layout>
     <!-- Footer Start -->
