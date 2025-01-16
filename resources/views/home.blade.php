@@ -107,6 +107,53 @@
     </div>
 </div>
 <!-- Carousel End -->
+ <!-- Top Feature Start -->
+ <div class="container-fluid top-feature py-5 pt-lg-0">
+    <div class="container py-5 pt-lg-0">
+        <div class="row gx-0">
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Apoyo a Emprendedores</h4>
+                            <span>Ofrecemos herramientas de promoción y gestión para visibilizar negocios locales.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-map-marker-alt text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Mapas Personalizados</h4>
+                            <span>Integramos Google Maps para mostrar la ubicación de los negocios.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                            <i class="fa fa-comments text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Asistente Virtual</h4>
+                            <span>Un asistente IA que guía a los emprendedores y facilita la interacción.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Top Feature End -->
 
 <style>
     /* Asegura que el carrusel ocupe el 100% del viewport */
@@ -199,85 +246,34 @@
 }
 </style>
 
-    <!-- Top Feature Start -->
-<div class="container-fluid top-feature py-5 pt-lg-0">
-    <div class="container py-5 pt-lg-0">
-        <div class="row gx-0">
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                            <i class="fa fa-users text-primary"></i>
-                        </div>
-                        <div class="ps-3">
-                            <h4>Apoyo a Emprendedores</h4>
-                            <span>Ofrecemos herramientas de promoción y gestión para visibilizar negocios locales.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                            <i class="fa fa-map-marker-alt text-primary"></i>
-                        </div>
-                        <div class="ps-3">
-                            <h4>Mapas Personalizados</h4>
-                            <span>Integramos Google Maps para mostrar la ubicación de los negocios.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
-                            <i class="fa fa-comments text-primary"></i>
-                        </div>
-                        <div class="ps-3">
-                            <h4>Asistente Virtual</h4>
-                            <span>Un asistente IA que guía a los emprendedores y facilita la interacción.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Top Feature End -->
-
-<!-- About Start -->
-<div class="container-xxl py-5">
+    
+  <div class="container-xxl py-5">
     <div class="container">
-        <div class="row g-5 align-items-end">
-            <div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
-                <img class="img-fluid rounded custom-img" data-wow-delay="0.1s" src="images/home/image1.jpeg" alt="Imagen de emprendedores en Nandayure">
-            </div>
-            <div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
-                <h1 class="display-5 mb-4 subir-y-bajar">Empoderamos a los Emprendedores en Nandayure</h1>
-                <p class="mb-4">Nuestro sistema web apoya a los emprendedores de Nandayure, conectándolos con recursos tecnológicos. Facilitamos la gestión de negocios, la promoción de productos, y el anuncios de ferias locales.</p>
-                <a class="btn btn-primary py-3 px-4" href="about-us.html" style="background-color: #009A00; border-color: #009A00; color: #ffffff;">Descubre Más</a>
-            </div>
-            
-            <div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="row g-5">
-                    <div class="col-12 col-sm-6 col-lg-12">
-                        <div class="border-start ps-4">
-                            <i class="fa fa-thumbs-up fa-3x text-primary mb-3"></i>
-                            <h4 class="mb-3">Apoyo Local</h4>
-                            <span>Estamos comprometidos con el desarrollo de la comunidad local y trabajamos para ofrecer apoyo continuo a los emprendedores de Nandayure.</span>
-                        </div>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-end">
+                        <img class="img-fluid bg-white w-100 mb-3 wow fadeIn" data-wow-delay="0.1s" src="images/home/about-1.jpg" alt="">
+                        <img class="img-fluid bg-white w-50 wow fadeIn" data-wow-delay="0.2s" src="images/home/about-3.jpg" alt="">
                     </div>
-                    <div class="col-12 col-sm-6 col-lg-12">
-                        <div class="border-start ps-4">
-                            <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
-                            <h4 class="mb-3">Red de Contactos</h4>
-                            <span>Conéctate con una amplia red de contactos y oportunidades para colaborar y crecer en tu emprendimiento.</span>
-                        </div>
+                    <div class="col-6">
+                        <img class="img-fluid bg-white w-50 mb-3 wow fadeIn" data-wow-delay="0.3s" src="images/home/about-4.jpg" alt="">
+                        <img class="img-fluid bg-white w-100 wow fadeIn" data-wow-delay="0.4s" src="images/home/about-2.jpg" alt="">
                     </div>
-                    
                 </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="display-5 mb-4">Bienvenido  a Emprende Nandayure</h1>
+                <p class="mb-4">Somos una plataforma web creada como parte de un
+                     proyecto impulsado por la Municipalidad de Nandayure, en
+                      colaboración con estudiantes de la Universidad Nacional de Costa Rica. 
+                      Nuestro objetivo principal es ser una herramienta que permita a los 
+                      emprendedores de Nandayure, Guanacaste, promover sus productos y servicios, 
+                      fortaleciendo su presencia en el mercado. El sitio web ofrece herramientas como: </p>
+                <p><i class="fa fa-check text-primary me-3"></i>Mapas personalizados con la ubicación de los emprendedores</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Asistente virtual</p>
+                <p><i class="fa fa-check text-primary me-3"></i>Asistente para el control de comidas</p>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Más información</a>
             </div>
         </div>
     </div>
@@ -312,60 +308,88 @@
         height: 400px; /* Establece una altura fija para la imagen */
         object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarse */
     }
+
+    .bg-icon {
+    background: url(../images/home/bg-icon.png) center center repeat;
+    background-size: contain;
+}
+
 </style>
-<!-- Features Start -->
-<div class="container-xxl py-5">
+
+<!-- Feature Start -->
+<div class="container-fluid bg-light bg-icon my-5 py-6">
     <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="fs-5 fw-bold" style="color: #00B0F0 !important;">¿Por Qué Elegirnos?</p>
-                <h1 class="display-5 mb-4">Razones para Elegir Nuestra Plataforma</h1>
-                <p class="mb-4">"Emprende Nandayure" ofrece un espacio integral para que los emprendedores de la región puedan gestionar sus negocios de manera eficiente. Proporcionamos herramientas para promocionar productos, participar en eventos locales.</p>
-                <a class="btn btn-primary py-3 px-4" href="features.html" style="background-color: #009A00; border-color: #009A00; color: #ffffff;">Descubre Más</a>
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Nuestras categorías</h1>
+            <p>Actualmente, los emprendedores de Nandayure ofrecen productos y servicios en una amplia variedad de categorías</p>
+        </div>
+        <div class="row g-4 justify-content-center"> <!-- Añadido justify-content-center aquí -->
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white text-center h-100 p-4 p-xl-5">
+                    <div class="icon-container d-flex justify-content-center mb-4"> <!-- Añadido para centrar el icono -->
+                        <img class="img-fluid" src="images/home/icon-1.png" alt="">
+                    </div>
+                    <h4 class="mb-3">Frutas y verduras</h4>
+                    <p class="mb-4">Algunos de nuestros emprendedores se especializan en ofrecer productos frescos 
+                        y naturales.</p>
+                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                </div>
             </div>
-            
-            <div class="col-lg-6">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6">
-                        <div class="row g-4">
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                                    <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                        <i class="fa fa-thumbs-up fa-3x" style="color: #009A00;"></i>
-                                    </div>
-                                    <h4 class="mb-0">Soporte Integral</h4>
-                                    <p>Recibe asistencia completa en la gestión y promoción de tu emprendimiento, asegurando que tengas todo lo necesario para triunfar.</p>
-                                </div>
-                            </div>
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                                    <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                        <i class="fa fa-network-wired fa-3x" style="color: #009A00;"></i>
-                                    </div>
-                                    <h4 class="mb-0">Red de Contactos</h4>
-                                    <p>Conéctate con otros emprendedores, proveedores y clientes potenciales a través de nuestra red de contactos local.</p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-white text-center h-100 p-4 p-xl-5">
+                    <div class="icon-container d-flex justify-content-center mb-4"> <!-- Añadido para centrar el icono -->
+                        <img class="img-fluid" src="images/home/icon-2.png" alt="">
                     </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
-                        <div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
-                            <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 90px; height: 90px;">
-                                <i class="fa fa-calendar-check fa-3x" style="color: #009A00;"></i>
-                            </div>
-                            <h4 class="mb-0">Eventos y Talleres</h4>
-                            <p>Participa en eventos locales y talleres diseñados para mejorar tus habilidades y expandir tu red de contactos.</p>
-                        </div>
+                    <h4 class="mb-3">Respostería y alimentación</h4>
+                    <p class="mb-4">Varios de nuestros emprendedores se dedican a la repostería y
+                         a ofrecer deliciosos servicios de catering</p>
+                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-white text-center h-100 p-4 p-xl-5">
+                    <div class="icon-container d-flex justify-content-center mb-4"> <!-- Añadido para centrar el icono -->
+                        <img class="img-fluid" src="images/home/icon-3.png" alt="">
                     </div>
+                    <h4 class="mb-3">Artesanías</h4>
+                    <p class="mb-4">Algunos de nuestros emprendedores se especializan
+                         en la creación de productos
+                         artesanales, como collares,
+                         aretes, pulseras, peluches tejidos, bolsos y mucho más.</p>
+                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Features End -->
+<!-- Feature End -->
 
 
-            
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Nuestras empresas</h1>
+            <p>Contamos con una amplia variedad de empresas que reflejan el esfuerzo y la 
+                dedicación de los emprendedores de Nandayure.</p>
+        </div>
+        <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
+                @foreach ($entrepreneurships as $entrepreneurship)
+                    <div class="relative rounded overflow-hidden bg-white shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
+                        <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}" class="block">
+                            <img class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900 to-transparent opacity-60 hover:opacity-0 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
+                                <h4 class="text-white text-xl font-semibold mb-2">{{ $entrepreneurship->etp_name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
 <!-- resources/views/home.blade.php -->
 
 {{-- MAP --}}
@@ -432,81 +456,40 @@
 </script>
 
 
-
-<!-- Service Start -->
+<!-- Blog Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="fs-5 fw-bold text-primary" style="color: #348E38 !important;">Nuestros Emprendimientos</p>
-            <h1 class="display-5 mb-5">Servicios y Productos que Ofrecemos para Ti</h1>
+        <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <h1 class="display-5 mb-3">Galería de eventos</h1>
+            <p>Te ofrecemos algunas imágenes de ferias anteriores, 
+                donde podrás observar a nuestros emprendedores en acción.</p>
         </div>
-        <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-            <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
-                @foreach ($entrepreneurships as $entrepreneurship)
-                    <div class="relative rounded overflow-hidden bg-white shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl duration-300">
-                        <a href="{{ route('entrepreneurships.show', $entrepreneurship->id) }}" class="block">
-                            <img class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110" src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/500x300' }}" alt="{{ $entrepreneurship->etp_name }}">
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900 to-transparent opacity-60 hover:opacity-0 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-0 left-0 right-0 p-4 text-center">
-                                <h4 class="text-white text-xl font-semibold mb-2">{{ $entrepreneurship->etp_name }}</h4>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
+        <div class="row g-2">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-1.jpg" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-2.jpg" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-3.jpg" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-4.jpg" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-5.jpg" alt="">
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid" style="width: 90%;" src="images/home/blog-6.jpg" alt="">
             </div>
         </div>
     </div>
 </div>
-<!-- Service End -->
+<!-- Blog End -->
 
 
 
-   <!-- Projects Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 100%;">
-            <p class="fs-5 fw-bold" style="background: #348E38">Nuestras actividades</p>
-            <h1 class="display-5 mb-5">Ferias de emprendimiento en Nandayure</h1>
-        </div>
-        <div class="row wow fadeInUp" data-wow-delay="0.3s">
-            <div class="col-12 text-center">
-            </div>
-        </div>
-        <div class="row g-4 portfolio-container">
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-1.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-2.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-3.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-4.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-5.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
-                <div class="portfolio-inner rounded">
-                    <img class="img-fluid" src="images/home/service-6.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Projects End -->
 
 
 <!-- Footer Start -->
