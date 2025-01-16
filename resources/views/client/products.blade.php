@@ -15,11 +15,12 @@
                 <h1 class="text-4xl font-bold mb-10 text-center text-gray-800">Explora nuestros productos</h1>
                 
                 <div class="flex">
-                    <!-- Filtro de Precio -->
+                    <!-- Filtro de Precio y Categoría -->
                     <div class="w-1/4 pr-6">
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h2 class="text-xl font-bold mb-4 text-gray-700">Filtrar por precio</h2>
+                            <h2 class="text-xl font-bold mb-4 text-gray-700">Filtrar</h2>
                             <form action="{{ route('client.products') }}" method="GET">
+                                <!-- Filtro por Precio -->
                                 <div class="mb-4">
                                     <label for="min_price" class="block text-gray-600">Precio mínimo</label>
                                     <input type="number" name="min_price" id="min_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡0" value="{{ request('min_price') }}">
@@ -27,6 +28,17 @@
                                 <div class="mb-4">
                                     <label for="max_price" class="block text-gray-600">Precio máximo</label>
                                     <input type="number" name="max_price" id="max_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡100000" value="{{ request('max_price') }}">
+                                </div>
+                                <!-- Filtro por Categoría -->
+                                <div class="mb-4">
+                                    <label for="categories" class="block text-gray-600">Categoría</label>
+                                    <select name="categories" id="categories" class="w-full px-3 py-2 border rounded-md">
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="frutas" {{ request('categories') == 'frutas' ? 'selected' : '' }}>Frutas</option>
+                                        <option value="verdura" {{ request('categories') == 'verdura' ? 'selected' : '' }}>Verdura</option>
+                                        <option value="reposteria" {{ request('categories') == 'reposteria' ? 'selected' : '' }}>Repostería</option>
+                                        <option value="accesorios" {{ request('categories') == 'accesorios' ? 'selected' : '' }}>Accesorios</option>
+                                    </select>
                                 </div>
                                 <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200">Filtrar</button>
                             </form>
@@ -56,18 +68,17 @@
                                                 Ver más
                                             </a>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             @endforeach
                         </div>
 
-                            <!-- Paginación -->
-                            <div class="mt-6">
-                                {{ $products->links() }}
-                            </div>
+                        <!-- Paginación -->
+                        <div class="mt-6">
+                            {{ $products->links() }}
+                        </div>
                         @else
-                            <p class="text-center text-gray-600">No hay productos disponibles en este rango de precio.</p>
+                            <p class="text-center text-gray-600">No hay productos disponibles en este rango de precio y categoría.</p>
                         @endif
                     </div>
                 </div>
