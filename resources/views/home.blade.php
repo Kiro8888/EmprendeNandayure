@@ -282,11 +282,7 @@
 
 
 <style>
-    .custom-img {
-        width: 100%; /* Hace que la imagen ocupe el 100% del contenedor */
-        height: 400px; /* Establece una altura fija para la imagen */
-        object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarse */
-    }
+ 
     @keyframes subirYbajar {
     0%, 100% {
         transform: translateY(0);
