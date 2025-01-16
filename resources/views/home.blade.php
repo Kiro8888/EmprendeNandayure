@@ -273,7 +273,7 @@
                 <p><i class="fa fa-check text-primary me-3"></i>Mapas personalizados con la ubicación de los emprendedores</p>
                 <p><i class="fa fa-check text-primary me-3"></i>Asistente virtual</p>
                 <p><i class="fa fa-check text-primary me-3"></i>Asistente para el control de comidas</p>
-                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Más información</a>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="" style="background-color: #009A00 !important; border-color: #009A00 !important;">Más información</a>
             </div>
         </div>
     </div>
@@ -313,6 +313,24 @@
     background: url(../images/home/bg-icon.png) center center repeat;
     background-size: contain;
 }
+.btn-outline-primary {
+        border-color: #009A00 !important;
+        color: #009A00 !important;
+    }
+
+    .btn-outline-primary:hover {
+        border-color: #009A00 !important;
+        color: #009A00 !important;
+        background-color: transparent; /* Para que el fondo no cambie */
+    }
+    .img-fluid {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .img-fluid:hover {
+        transform: scale(1.1); /* Aumenta el tamaño de la imagen */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    }
 
 </style>
 
@@ -332,8 +350,8 @@
                     <h4 class="mb-3">Frutas y verduras</h4>
                     <p class="mb-4">Algunos de nuestros emprendedores se especializan en ofrecer productos frescos 
                         y naturales.</p>
-                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
-                </div>
+                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                    </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="bg-white text-center h-100 p-4 p-xl-5">
@@ -343,8 +361,8 @@
                     <h4 class="mb-3">Respostería y alimentación</h4>
                     <p class="mb-4">Varios de nuestros emprendedores se dedican a la repostería y
                          a ofrecer deliciosos servicios de catering</p>
-                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
-                </div>
+                         <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-white text-center h-100 p-4 p-xl-5">
@@ -355,9 +373,9 @@
                     <p class="mb-4">Algunos de nuestros emprendedores se especializan
                          en la creación de productos
                          artesanales, como collares,
-                         aretes, pulseras, peluches tejidos, bolsos y mucho más.</p>
-                    <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
-                </div>
+                         aretes y mucho más.</p>
+                         <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        </div>
             </div>
         </div>
     </div>
@@ -369,7 +387,7 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <h1 class="display-5 mb-3">Nuestras empresas</h1>
+            <h1 class="display-5 mb-3" style="color: black;">Nuestras empresas</h1>
             <p>Contamos con una amplia variedad de empresas que reflejan el esfuerzo y la 
                 dedicación de los emprendedores de Nandayure.</p>
         </div>
@@ -456,13 +474,51 @@
 </script>
 
 
+
+
+<style>
+    .section-header h1 {
+        font-size: 3rem; /* Tamaño más grande para el título */
+        font-weight: bold; /* Aumenta el grosor de la fuente */
+        color: #009A00; /* Color verde para el texto */
+        text-transform: uppercase; /* Todo en mayúsculas */
+        letter-spacing: 2px; /* Espaciado entre letras */
+        position: relative;
+        display: block; /* Asegura que el texto ocupe el espacio completo disponible */
+        white-space: normal; /* Permite que el texto se ajuste a varias líneas si es necesario */
+    }
+
+    .section-header h1::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #009A00; /* Línea verde debajo */
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+    }
+
+    .section-header h1:hover::before {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+
+    .section-header h1:hover {
+        color: #006600; /* Color de texto verde más oscuro al hacer hover */
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil en el texto */
+    }
+</style>
+
+
 <!-- Blog Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
             <h1 class="display-5 mb-3">Galería de eventos</h1>
-            <p>Te ofrecemos algunas imágenes de ferias anteriores, 
-                donde podrás observar a nuestros emprendedores en acción.</p>
+            <p>Te ofrecemos algunas imágenes de ferias anteriores, donde podrás observar a nuestros emprendedores en acción.</p>
         </div>
         <div class="row g-2">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -487,6 +543,8 @@
     </div>
 </div>
 <!-- Blog End -->
+
+
 
 
 
