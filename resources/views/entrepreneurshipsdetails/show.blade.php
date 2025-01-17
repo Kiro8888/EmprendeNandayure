@@ -155,10 +155,7 @@
     </head>
     <body>
 
-    <div class="hero-title">
-        <h1>Detalles de Emprendimiento</h1>
-    </div>
-
+  
     <div class="container mt-5">
         <div class="row details-card">
             <div class="col-md-6 details-info">
@@ -174,7 +171,6 @@
                 </div>
             </div>
         </div>
-        <div id="map" style="width: 100%; height: 400px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-top: 20px;"></div>
     </div>
 
 
@@ -239,7 +235,9 @@
         }
     </script>
     
-
+<!-- Footer Start -->
+<x-footer-client />
+<!-- Footer End -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">

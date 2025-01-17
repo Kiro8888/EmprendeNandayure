@@ -14,7 +14,7 @@
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                     <!-- Mobile menu button-->
-                    <button @click="open = !open" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                    <button @click="open = !open" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="absolute -inset-0.5"></span>
                         <span class="sr-only">Open main menu</span>
                         <!--
@@ -45,12 +45,12 @@
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             {{-- <a href="/" class="rounded-md px-3 py-2 text-sm font-medium" aria-current="page" style="text-decoration: none; color:black">Inicio</a> --}}
-                            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Inicio</a>
-                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Eventos</a>
+                            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Inicio</a>
+                            <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Eventos</a>
                                   <!-- Dropdown Productos o Servicios -->
                                   <div x-data="{ dropdownOpen: false }" class="relative">
-                                    <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">
-                                        Que ofrecen nuestros emprendedores?
+                                    <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">
+                                        ¿Qué ofrecen nuestros emprendedores?
                                     </button>
                                     <div x-show="dropdownOpen" class="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                         <a href="/products" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Productos</a>
@@ -58,7 +58,7 @@
                                   
                                     </div>
                                 </div>
-                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Como ser emprendedor?</a>
+                            <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">¿Cómo ser emprendedor?</a>
                             
                             {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
                             {{-- @foreach ( $categories as $category)
@@ -123,8 +123,8 @@
 
                 @else    
 
-                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Login</a>
-                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" style="text-decoration: none; color:black">Register</a>
+                <a href="{{route('login')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Login</a>
+                <a href="{{route('register')}}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Register</a>
                 @endauth
             </div>
         </div>
@@ -134,9 +134,9 @@
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">Team</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Projects</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">Calendar</a>
             </div>
         </div>
     </nav>
