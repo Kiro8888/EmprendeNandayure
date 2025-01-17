@@ -26,7 +26,7 @@
                                 <label for="max_price" class="block text-gray-600">Precio máximo</label>
                                 <input type="number" name="max_price" id="max_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡100000" value="{{ request('max_price') }}">
                             </div>
-                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200">Filtrar</button>
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200" style="background-color: #009A00;">Filtrar</button>
                         </form>
                     </div>
                 </div>
