@@ -47,3 +47,6 @@
         }
     </style>
 </x-app-layout>
+<!-- Footer Start -->
+<x-footer-client />
+<!-- Footer End -->
