@@ -155,10 +155,7 @@
     </head>
     <body>
 
-    <div class="hero-title">
-        <h1>Detalles de Emprendimiento</h1>
-    </div>
-
+  
     <div class="container mt-5">
         <div class="row details-card">
             <div class="col-md-6 details-info">
