@@ -40,7 +40,7 @@
                                         <option value="accesorios" {{ request('categories') == 'accesorios' ? 'selected' : '' }}>Accesorios</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200">Filtrar</button>
+                                <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200" style="background-color: #009A00;">Filtrar</button>
                             </form>
                         </div>
                     </div>
