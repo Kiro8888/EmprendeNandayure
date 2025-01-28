@@ -62,13 +62,13 @@ class EntrepreneurshipsController extends Controller
         // }
     
         // Validación de los datos recibidos
+
         $request->validate([
-            'etp_name'  => 'required',
-            'etp_latitude'  => 'required',
-            'etp_longitude'  => 'required',
-            'etp_num'  => 'required|unique:entrepreneurships,etp_num',
-            'etp_email'  => 'required|unique:entrepreneurships,etp_email',
-            // Validación adicional para la imagen si es necesario
+            'etp_name' => ['required', 'string'],
+            'etp_latitude' => ['required'],
+            'etp_longitude' => ['required'],
+            'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num'],
+            'etp_email' => ['required', 'string', 'email', 'unique:entrepreneurships,etp_email'],
         ]);
     
         // Guardar el nuevo emprendimiento
@@ -112,11 +112,11 @@ class EntrepreneurshipsController extends Controller
     public function update(Request $request, entrepreneurship $entrepreneurship)
     {
         $request->validate([
-            'etp_name'  =>'required',
-            'etp_latitude'  =>'required',
-            'etp_longitude'  =>'required',
-            'etp_num'  =>'required',
-            'etp_email'  =>'required',
+            'etp_name' => ['required', 'string'],
+            'etp_latitude' => ['required'],
+            'etp_longitude' => ['required'],
+            'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num'],
+            'etp_email' => ['required'],
         ]);
     
         // Si se sube una nueva imagen, guárdala y actualiza la ruta
