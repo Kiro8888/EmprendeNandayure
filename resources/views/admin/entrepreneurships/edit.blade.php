@@ -13,7 +13,7 @@
     {{session('info')}}
 </div>
 @endif
-            <form action="{{route('admin.entrepreneurships.update', $entrepreneurship)}}" method="POST">
+            <form action="{{route('admin.entrepreneurships.update', $entrepreneurship)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 {{-- Primer campo --}}

@@ -6,14 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio - Emprendimientos</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">   
 <!-- Google Web Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">  
-<link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
         <style>
             /* Ajustar la altura del carrusel */
             .carousel-inner img {
@@ -407,12 +404,19 @@
 <!-- resources/views/home.blade.php -->
 
 {{-- MAP --}}
+
+</div>
+<div class="container" style="margin-top: 10px">
+<div class="section-header mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+    <h1 class="display-5 mb-3">Ubicación de los Emprendimientos</h1>
+    {{-- <p>Ubicaciones de los emprnedimientos del sistemas</p> --}}
+</div></div>
 <center>
     <div class="container mt-5">
         <div class="card shadow-lg border-0 rounded-3 overflow-hidden" style="max-width: 2100px">
-            <div class="card-header text-center text-white" style="background: #5e453ce3">
+            {{-- <div class="card-header text-center text-white" style="background: #84af78bd;">
                 <h5 class="m-0">Ubicación de los Emprendimientos</h5>
-            </div>
+            </div> --}}
             <div class="card-body position-relative" style="background-color: #f8f9fa; padding: 0;">
                 <!-- Botón flotante para centrar mapa -->
                 <button onclick="centerMap()" class="btn btn-dark position-absolute" style="top: 10px; right: 10px; z-index: 10;">
