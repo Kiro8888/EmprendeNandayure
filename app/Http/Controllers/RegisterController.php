@@ -17,7 +17,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], // Asegúrate de tener 'password_confirmation' en el formulario
+            'password' => ['required', 'string', 'min:8', 'confirmed'], 
+            'cellphone' => ['required', 'digits:8', 'unique:users,cellphone'],
+            'cedula' => ['required', 'digits:9', 'unique:users,cedula'],
         ]);
 
         if ($validator->fails()) {
@@ -32,7 +34,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'cellphone' => $request->cellphone,
             'cedula'=> $request->cedula,
-            'status' => 'En espera', // Establecer el estado por defecto
+            'status' => 'En espera', 
         ]);
 
         // Asignar el rol "Entrepreneur" (ID 2)

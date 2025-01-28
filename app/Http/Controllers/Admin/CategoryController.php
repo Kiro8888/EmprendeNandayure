@@ -40,12 +40,11 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
-           $request->validate([
-        'ctg_name'        => 'required',
-        'ctg_description' => 'required'
-
+    {     
+          $request->validate([
+        'ctg_name' => ['required', 'string', 'unique:categories,ctg_name']
     ]);
+
 
     $category = category::create($request->all());
 

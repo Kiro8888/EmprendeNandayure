@@ -74,15 +74,26 @@
                             </div>
                             <div class="mb-4">
                                 <x-label for="cellphone" value="{{ __('Celular') }}" />
-                                <x-input id="cellphone" class="block w-full mt-1" type="number" name="cellphone" :value="old('cellphone')" required />
+                                <x-input id="cellphone" class="block w-full mt-1" type="number" name="cellphone" :value="old('cellphone')" required maxlength="8" />
+                                
+                                @error('cellphone')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="cedula" value="{{ __('Cédula') }}" />
-                                <x-input id="cedula" class="block w-full mt-1" type="number" name="cedula" :value="old('cedula')" required />
+                                <x-input id="cedula" class="block w-full mt-1" type="number" name="cedula" :value="old('cedula')" required maxlength="9" />
+
+                                @error('cedula')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="email" value="{{ __('Email') }}" />
                                 <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                                @error('email')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="password" value="{{ __('Password') }}" />
@@ -91,6 +102,9 @@
                             <div class="mb-4">
                                 <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                                 <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required autocomplete="new-password" />
+                                @error('password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                             </div>
                             <div class="mt-6">
                                 <x-button class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200">
