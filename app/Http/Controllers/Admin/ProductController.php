@@ -74,9 +74,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pdt_name'        => 'required',
-            'pdt_description' => 'required',
-            'pdt_price' => 'required',
+            'pdt_name' => ['required', 'string'],
+            'pdt_description' => ['required'],
+            'pdt_price' => ['required'],
+            'pdt_id_ctg' => ['required'],
+            'pdt_id_etp' => ['required'],
         ]);
 
         $productData = $request->all();

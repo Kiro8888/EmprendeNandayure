@@ -74,7 +74,8 @@ class ServiceController extends Controller
              'srv_name'        => 'required',
              'srv_description' => 'required',
              'srv_price'       => 'required',
-         
+             'srv_id_ctg'       => 'required',
+             'srv_id_etp'       => 'required',
          ]);
      
          $serviceData = $request->all();
