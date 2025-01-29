@@ -86,7 +86,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            width: 100%;
+            /* width: 100%; */
             margin-top: 1rem;
         }
 
@@ -133,11 +133,7 @@
                     <x-input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" />
                 </div>
 
-                <div style="margin-top: 1rem;">
-                    <a href="{{ route('google.login') }}" class="login-button" style="display: inline-block; background-color: #db4437;">
-                        Iniciar sesión con Google
-                    </a>
-                </div>
+  
 
                 <div class="checkbox-group mt-4">
                     <label for="remember_me" class="flex items-center">
@@ -147,16 +143,24 @@
                 </div>
 
                 <div class="actions mt-4">
+                    <x-button class="login-button">
+                        Iniciar sesión
+                    </x-button>
+                    <div style="margin-top: 1rem;">
+                        <a href="{{ route('google.login') }}" class="login-button" style="display: inline-block; background-color: #db4437;     margin-bottom: 10px;">
+                            Iniciar sesión con Google
+                        </a>
+                    </div>
                     @if (Route::has('password.request'))
                         <a class="forgot-password-link" href="{{ route('password.request') }}">
                             ¿Olvidaste tu contraseña?
                         </a>
                     @endif
 
-                    <x-button class="login-button">
-                        Iniciar sesión
-                    </x-button>
+         
+                    
                 </div>
+            
             </form>
         </div>
     </div>

@@ -87,7 +87,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            width: 100%;
+            /* width: 100%; */
             margin-top: 1rem;
         }
 
@@ -118,27 +118,30 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <div class="input-group">
-                    <x-label for="name" value="Nombre" />
-                    <x-input id="name" class="input-field" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-                </div>
+                <div style="display: ruby-text;">
 
-                <div class="input-group mt-4">
-                    <x-label for="last_name" value="Apellido" />
-                    <x-input id="last_name" class="input-field" type="text" name="last_name" :value="old('last_name')" required />
+                    <div class="input-group">
+                        <x-label for="name" value="Nombre" />
+                        <x-input id="name" class="input-field" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                    </div>
+    
+                    <div class="input-group mt-4">
+                        <x-label for="last_name" value="Apellido" />
+                        <x-input id="last_name" class="input-field" type="text" name="last_name" :value="old('last_name')" required />
+                    </div>
                 </div>
-
-                <div class="input-group mt-4">
+     
+                <div class="input-group mt-4" style="text-align: justify;">
                     <x-label for="email" value="Correo electrónico" />
                     <x-input id="email" class="input-field" type="email" name="email" :value="old('email')" required autocomplete="username" />
                 </div>
 
-                <div class="input-group mt-4">
+                <div class="input-group mt-4"  style="text-align: justify;">
                     <x-label for="password" value="Contraseña" />
                     <x-input id="password" class="input-field" type="password" name="password" required autocomplete="new-password" />
                 </div>
 
-                <div class="input-group mt-4">
+                <div class="input-group mt-4"  style="text-align: justify;">
                     <x-label for="password_confirmation" value="Confirmar contraseña" />
                     <x-input id="password_confirmation" class="input-field" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
