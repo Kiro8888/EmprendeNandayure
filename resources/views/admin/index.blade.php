@@ -8,6 +8,7 @@
 
 @section('content')
     <div class="row">
+        @can('admin.categories.index')
         <div class="col-lg-4 col-6">
             <div class="small-box" style="background-color: #00B0F0;"> <!-- Cambié bg-info por un color personalizado -->
                 <div class="inner">
@@ -20,7 +21,9 @@
                 <a href="{{ route('admin.categories.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+        @endcan
+
+        @can('admin.entrepreneurships.index')
         <div class="col-lg-4 col-6">
             <div class="small-box bg-success" style="background-color: #009A00;">  
                 <div class="inner">
@@ -33,7 +36,9 @@
                 <a href="{{ route('admin.entrepreneurships.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+        @endcan
+
+        @can('admin.events.index')
         <div class="col-lg-4 col-6">
             <div class="small-box bg-warning" style="background-color: #E1D711;">
                 <div class="inner">
@@ -46,7 +51,9 @@
                 <a href="{{ route('admin.events.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+        @endcan
+
+        @can('admin.products.index')
         <div class="col-lg-4 col-6">
             <div class="small-box bg-success" style="background-color: #009A00;">  
                 <div class="inner">
@@ -59,7 +66,9 @@
                 <a href="{{ route('admin.products.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+        @endcan
+
+        @can('admin.services.index')
         <div class="col-lg-4 col-6">
             <div class="small-box bg-warning" style="background-color: #E1D711;">
                 <div class="inner">
@@ -72,7 +81,9 @@
                 <a href="{{ route('admin.services.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        
+        @endcan
+
+        @can('admin.users.index')
         <div class="col-lg-4 col-6">
             <div class="small-box" style="background-color: #00B0F0;"> <!-- Cambié bg-info por un color personalizado -->
                 <div class="inner">
@@ -86,8 +97,11 @@
             </div>
         </div>
     </div>
+    @endcan
+
 
     <!-- Gráfico de Barras debajo de las Cards -->
+    @can('admin.users.index')
     <div class="row mt-4">
         <div class="col-12">
             <div class="card">
@@ -100,7 +114,7 @@
             </div>
         </div>
     </div>
-
+    @endcan
     <x-chatbot />
 @stop
 
