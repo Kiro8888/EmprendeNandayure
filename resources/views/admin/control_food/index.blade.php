@@ -15,8 +15,8 @@
 </div> --}}
 
 <div class="text-center mb-4">
-    <h1 class="display-4">¿Qué es nuestro Asistente de Salud?</h1>
-    <p class="lead">Nuestro Asistente de Salud te ayuda a tomar decisiones informadas sobre los productos que consumes. Utiliza tecnología de Procesamiento de Lenguaje Natural (NLP) para ofrecerte recomendaciones personalizadas según tus condiciones de salud.</p>
+    <h1 class="display-4">¿Qué es nuestra Inteligencia Articial para la salud?</h1>
+    <p class="lead">Nuestra Inteligencia Artificial para Salud te ayuda a tomar decisiones informadas sobre los productos que consumes. Utiliza tecnología de Procesamiento de Lenguaje Natural (NLP) para ofrecerte recomendaciones personalizadas según tus condiciones de salud.</p>
 </div>
 
 <!-- Icono para instrucciones -->
@@ -91,11 +91,10 @@
                                 <div class="modal-body">
                                     <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="img-fluid mb-3">
                                     <p>{{ $product->pdt_description }}</p>
-                                    <p class="font-weight-bold">Precio: ₡{{ number_format($product->pdt_price, 2) }}</p>
                                     <p>¿Deseas hacer una consulta sobre este producto?</p>
                                     <form id="consultationForm{{ $product->id_pdt }}">
                                         <div class="form-group">
-                                            <label for="userQuestion">Tienes algun padecimiento?<br>puedes describirlo acontinuacion:</label>
+                                            <label for="userQuestion">¿Tienes algún padecimiento?<br>Puedes describirlo a continuación:</label>
                                             <textarea class="form-control" id="userQuestion{{ $product->id_pdt }}" rows="3" maxlength="100" required></textarea>
                                         </div>
                                     </form>
