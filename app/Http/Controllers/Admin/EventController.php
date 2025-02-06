@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\event;
-
+use App\Mail\EventCreatedMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -35,36 +37,39 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //hay que agregar la validacion unica
-        $request->validate([
-            'evt_name'  =>'required',
-            'evt_description'  =>'required',
-            'evt_date'  =>'required',
-            'evt_hour'  =>'required',
-            'evt_location'  =>'required',
-          
-        ]);
 
-        
-
-        $eventData = $request->all();
-        $eventData['evt_id_rol'] = 1; 
-
-        if ($request->hasFile('evt_img')) {
-            $imageName = time().'.'.$request->evt_img->extension();  
-            $request->evt_img->move(public_path('images/events'), $imageName);
-            $eventData['evt_img'] = 'images/events/' . $imageName;
-        }
-    
-        $events = event::create($eventData);
-    
-
-
-        return redirect()->route('admin.events.index', $events)
-        ->with('info', 'el evento se guardo correctamente');
-    }
+     public function store(Request $request)
+     {
+         $request->validate([
+             'evt_name'  =>'required',
+             'evt_description'  =>'required',
+             'evt_date'  =>'required',
+             'evt_hour'  =>'required',
+             'evt_location'  =>'required',
+         ]);
+     
+         $eventData = $request->all();
+         $eventData['evt_id_rol'] = 1;
+     
+         if ($request->hasFile('evt_img')) {
+             $imageName = time().'.'.$request->evt_img->extension();
+             $request->evt_img->move(public_path('images/events'), $imageName);
+             $eventData['evt_img'] = 'images/events/' . $imageName;
+         }
+     
+         $event = Event::create($eventData);
+     
+         // Obtener los usuarios activos
+         $users = User::where('status', 'Activo')->pluck('email');
+     
+         // Enviar el correo a cada usuario
+         foreach ($users as $email) {
+             Mail::to($email)->send(new EventCreatedMail($event));
+         }
+     
+         return redirect()->route('admin.events.index', $event)
+             ->with('info', 'El evento se guardó y se envió el correo a los usuarios registrados correctamente');
+     }
 
     /**
      * Display the specified resource.
