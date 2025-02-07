@@ -6,6 +6,15 @@
                 <img src="{{ asset('images/services/' . basename($service->srv_img)) }}" alt="{{ $service->srv_name }}" class="w-full h-auto object-cover rounded-lg">
             </div>
 
+            <div class="gtranslate_wrapper"></div>
+            <script>
+                window.gtranslateSettings = {
+                    "default_language": "es",  // Español como idioma predeterminado
+                    "languages": ["es", "en", "de"],  // Español, inglés, alemán
+                    "wrapper_selector": ".gtranslate_wrapper"  // Selector donde aparecerá el widget
+                };
+            </script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
             <!-- Detalles del servicio -->
             <div class="w-1/2 pl-8">
                 <!-- Título del servicio -->
