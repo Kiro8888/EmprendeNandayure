@@ -133,10 +133,10 @@
         <div x-show="open" @click.outside="open = false" class="sm:hidden" id="mobile-menu"> 
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">Team</a>
+                <a href="/" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Inicio</a>
+                <a href="/events" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">Eventos</a>
                 <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:text-white">Projects</a>
-                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">Calendar</a>
+                <a href="/sobreNosotros" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300  hover:text-white">¿Cómo ser emprendedor?</a>
             </div>
         </div>
     </nav>
@@ -144,3 +144,36 @@
 
 </body>
 </html>
+
+
+
+
+
+<div class="hidden sm:ml-6 sm:block">
+    <div class="flex space-x-4">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        {{-- <a href="/" class="rounded-md px-3 py-2 text-sm font-medium" aria-current="page" style="text-decoration: none; color:black">Inicio</a> --}}
+        <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Inicio</a>
+        <a href="/events" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">Eventos</a>
+              <!-- Dropdown Productos o Servicios -->
+              <div x-data="{ dropdownOpen: false }" class="relative">
+                <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">
+                    ¿Qué ofrecen nuestros emprendedores?
+                </button>
+                <div x-show="dropdownOpen" class="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <a href="/products" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Productos</a>
+                    <a href="/services" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" style="text-decoration: none;">Servicios</a>
+              
+                </div>
+            </div>
+        <a href="/sobreNosotros" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300  hover:text-white" style="text-decoration: none; color:black">¿Cómo ser emprendedor?</a>
+        
+        {{-- ESTO LLAMA AL NAV LOS NOMBRES DE LAS CATEGORIAS --}}
+        {{-- @foreach ( $categories as $category)
+        <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">{{$category->ctg_name}}</a>
+        @endforeach
+          --}}
+      
+
+    </div>
+</div>

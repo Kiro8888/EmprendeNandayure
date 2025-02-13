@@ -11,6 +11,12 @@ use App\Http\Controllers\ClientProductServiceController;
 use App\Http\Controllers\ClientDetailsPSController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
+
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
+
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +53,15 @@ Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'es', 'de'])) {
+        session(['locale' => $locale]);
+        App::setLocale($locale);
+    }
+
+    // Verificar si el idioma se está guardando correctamente
+    return back()->with('status', 'Idioma cambiado a ' . session('locale'));
+})->name('change.language');
+
