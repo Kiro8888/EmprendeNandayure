@@ -20,7 +20,7 @@
                 </div>
                   {{-- Segundo campo --}}
                 <div class="form-group">
-                    <label for="pdt_description" class="form-label">Descripcion</label>
+                    <label for="pdt_description" class="form-label">Descripción</label>
                     <input type="text" class="form-control" name="pdt_description" id="pdt_description">
                     @error('pdt_description')
                     <p class="text-danger">{{$message}}</p>
