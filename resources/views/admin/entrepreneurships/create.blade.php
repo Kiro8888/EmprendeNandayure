@@ -36,7 +36,7 @@
     </div>
     {{-- Quinto campo --}}
     <div class="form-group">
-        <label for="etp_num" class="form-label">Numero</label>
+        <label for="etp_num" class="form-label">Número</label>
         <input type="number" class="form-control" name="etp_num" id="etp_num">
         @error('etp_num')
             <p class="text-danger">{{ $message }}</p>
