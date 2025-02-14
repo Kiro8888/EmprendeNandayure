@@ -20,7 +20,7 @@
                 </div>
                   {{-- Segundo campo --}}
                 <div class="form-group">
-                    <label for="srv_description" class="form-label">Descripcion</label>
+                    <label for="srv_description" class="form-label">Descripción</label>
                     <input type="text" class="form-control" name="srv_description" id="srv_description">
                     @error('srv_description')
                     <p class="text-danger">{{$message}}</p>
