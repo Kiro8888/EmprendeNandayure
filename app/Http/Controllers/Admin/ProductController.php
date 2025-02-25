@@ -31,6 +31,9 @@ class ProductController extends Controller
     {
         // Obtener el usuario autenticado
         $user = auth()->user();
+        $categories = category::all(); // Asegúrate de importar correctamente el modelo
+        $entrepreneurships = collect(); // Esto asegura que siempre haya una colección vacía
+
     
         // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por sus emprendimientos
         if ($user->hasRole('Entrepreneur')) {
@@ -42,9 +45,11 @@ class ProductController extends Controller
         } else {
             // Si es Admin u otro rol, mostrar todos los productos
             $products = product::all();
+            $entrepreneurships = entrepreneurship::all(); // Admin puede ver todos los emprendimientos
+
         }
     
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products','categories', 'entrepreneurships'));
     }
     
     /**
