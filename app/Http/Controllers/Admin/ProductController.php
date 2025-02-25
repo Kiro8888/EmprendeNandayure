@@ -28,24 +28,29 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Obtener el usuario autenticado
-        $user = auth()->user();
+{
+    // Obtener el usuario autenticado
+    $user = auth()->user();
+    $categories = category::all(); // Asegúrate de que las categorías estén disponibles
     
-        // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por sus emprendimientos
-        if ($user->hasRole('Entrepreneur')) {
-            // Obtener todos los emprendimientos del usuario
-            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->pluck('id');
-    
-            // Filtrar los productos asociados a esos emprendimientos
-            $products = product::whereIn('pdt_id_etp', $entrepreneurships)->get();
-        } else {
-            // Si es Admin u otro rol, mostrar todos los productos
-            $products = product::all();
-        }
-    
-        return view('admin.products.index', compact('products'));
+    // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por sus emprendimientos
+    if ($user->hasRole('Entrepreneur')) {
+        // Obtener todos los emprendimientos del usuario
+        $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->pluck('id');
+
+        // Filtrar los productos asociados a esos emprendimientos
+        $products = product::whereIn('pdt_id_etp', $entrepreneurships)->get();
+    } else {
+        // Si es Admin u otro rol, mostrar todos los productos
+        $products = product::all();
+        // Si no es Entrepreneur, también asignar un valor vacío a $entrepreneurships
+        $entrepreneurships = entrepreneurship::all();
     }
+
+    // Pasar $products, $categories y $entrepreneurships a la vista
+    return view('admin.products.index', compact('products', 'categories', 'entrepreneurships'));
+}
+
     
     /**
      * Show the form for creating a new resource.
