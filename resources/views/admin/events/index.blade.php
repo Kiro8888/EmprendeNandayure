@@ -46,7 +46,9 @@
                     <td>{{ $event->evt_hour }}</td>
                     <td>{{ $event->evt_location }}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{ route('admin.events.edit', $event) }}">Editar</a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal">
+                            Editar Evento
+                        </button>                    
                     </td>
                     <td>
                         <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="delete-form">
@@ -126,6 +128,78 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEventModalLabel">Editar evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.events.update', $event)}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="form-group">
+                        <label for="evt_name">Nombre</label>
+                        <input type="text" class="form-control" name="evt_name" id="evt_name" value="{{$event->evt_name}}">
+                        @error('evt_name')<p class="text-danger">{{$message}}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_description">Descripción</label>
+                        <input type="text" class="form-control" name="evt_description" id="evt_description" value="{{$event->evt_description}}">
+                        @error('evt_description')<p class="text-danger">{{$message}}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_date">Fecha</label>
+                        <input type="date" class="form-control" name="evt_date" id="evt_date" value="{{$event->evt_date}}">
+                        @error('evt_date')<p class="text-danger">{{$message}}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_hour">Hora</label>
+                        <input type="time" class="form-control" name="evt_hour" id="evt_hour" value="{{$event->evt_hour}}">
+                        @error('evt_hour')<p class="text-danger">{{$message}}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_location">Lugar</label>
+                        <input type="text" class="form-control" name="evt_location" id="evt_location" value="{{$event->evt_location}}">
+                        @error('evt_location')<p class="text-danger">{{$message}}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_img">Imagen Actual</label>
+                        @if ($event->evt_img)
+                            <div>
+                                <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                            </div>
+                        @else
+                            <p>No hay imagen disponible.</p>
+                        @endif
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="evt_img">Nueva Imagen</label>
+                        <input type="file" class="form-control" name="evt_img" id="evt_img">
+                        @error('evt_img')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @foreach ($events as $event)
 <!-- Modal para mostrar evento -->
 <div class="modal fade" id="showEventModal{{ $event->id_evt }}" tabindex="-1" role="dialog" aria-labelledby="showEventModalLabel{{ $event->id_evt }}" aria-hidden="true">
