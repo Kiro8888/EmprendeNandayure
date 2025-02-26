@@ -10,17 +10,18 @@
 
 @if (session('info'))
 <div class="alert alert-info" role="alert">
-    {{session('info')}}
+    {{ session('info') }}
 </div>
 @endif
 
 <div class="card">
     <div class="card-body">
-        <div class="card-heder">
-            <a class="btn btn-primary" href="{{route('admin.events.create')}}">
+        <div class="card-header">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#createEventModal">
                 <i class="fas fa-plus"></i> Crear evento
-            </a>
+            </button>
         </div>
+
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -38,24 +39,24 @@
             <tbody>
                 @foreach ($events as $event)
                 <tr>
-                    <th scope="row">{{$event->id_evt}}</th>
-                    <td>{{$event->evt_name}}</td>
-                    <td>{{$event->evt_description}}</td>
-                    <td>{{$event->evt_date}}</td>
-                    <td>{{$event->evt_hour}}</td>
-                    <td>{{$event->evt_location}}</td>
+                    <th scope="row">{{ $event->id_evt }}</th>
+                    <td>{{ $event->evt_name }}</td>
+                    <td>{{ $event->evt_description }}</td>
+                    <td>{{ $event->evt_date }}</td>
+                    <td>{{ $event->evt_hour }}</td>
+                    <td>{{ $event->evt_location }}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{route('admin.events.edit', $event)}}">Editar</a>
+                        <a class="btn btn-warning" href="{{ route('admin.events.edit', $event) }}">Editar</a>
                     </td>
                     <td>
-                        <form action="{{route('admin.events.destroy', $event)}}" method="POST" class="delete-form">
+                        <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="delete-form">
                             @csrf
                             @method('delete')
                             <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
                         </form>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('admin.events.show', $event)}}">Mostrar</a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#showEventModal{{ $event->id_evt }}">Mostrar</button>
                     </td>
                 </tr>
                 @endforeach
@@ -63,6 +64,100 @@
         </table>
     </div>
 </div>
+
+<!-- Modal para crear evento -->
+<div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="createEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createEventModalLabel">Crear Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="evt_name">Nombre</label>
+                        <input type="text" class="form-control" name="evt_name" id="evt_name">
+                        @error('evt_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_description">Descripción</label>
+                        <input type="text" class="form-control" name="evt_description" id="evt_description">
+                        @error('evt_description')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_date">Fecha</label>
+                        <input type="date" class="form-control" name="evt_date" id="evt_date">
+                        @error('evt_date')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_hour">Hora</label>
+                        <input type="time" class="form-control" name="evt_hour" id="evt_hour">
+                        @error('evt_hour')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_location">Lugar</label>
+                        <input type="text" class="form-control" name="evt_location" id="evt_location">
+                        @error('evt_location')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_img">Imagen</label>
+                        <input type="file" class="form-control" name="evt_img" id="evt_img">
+                        @error('evt_img')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@foreach ($events as $event)
+<!-- Modal para mostrar evento -->
+<div class="modal fade" id="showEventModal{{ $event->id_evt }}" tabindex="-1" role="dialog" aria-labelledby="showEventModalLabel{{ $event->id_evt }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showEventModalLabel{{ $event->id_evt }}">Detalles del Evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Nombre:</strong> {{ $event->evt_name }}</p>
+                <p><strong>Descripción:</strong> {{ $event->evt_description }}</p>
+                <p><strong>Fecha:</strong> {{ $event->evt_date }}</p>
+                <p><strong>Hora:</strong> {{ $event->evt_hour }}</p>
+                <p><strong>Lugar:</strong> {{ $event->evt_location }}</p>
+                <div class="form-group">
+                    <label for="evt_img" class="form-label">Imagen Actual</label>
+                    @if ($event->evt_img)
+                        <div>
+                            <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <x-chatbot />
 
@@ -72,7 +167,7 @@
         const deleteButtons = document.querySelectorAll('.btn-delete');
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {
-                const form = this.closest('form'); // Encuentra el formulario más cercano
+                const form = this.closest('form');
                 Swal.fire({
                     title: '¿Estás seguro?',
                     text: "No podrás deshacer esta acción",
@@ -84,11 +179,12 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit(); // Envía el formulario si se confirma
+                        form.submit();
                     }
                 });
             });
         });
     });
 </script>
+
 @stop
