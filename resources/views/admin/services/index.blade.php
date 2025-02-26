@@ -17,9 +17,9 @@
 <div class="card">
     <div class="card-body">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{ route('admin.services.create') }}">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#createServiceModal">
                 <i class="fas fa-plus"></i> Crear Servicio
-            </a>
+            </button>
         </div>
         <table class="table">
             <thead class="thead-dark">
@@ -69,6 +69,77 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+</div>
+<!-- Modal de crear servicio -->
+<div class="modal fade" id="createServiceModal" tabindex="-1" aria-labelledby="createServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createServiceModalLabel">Crear Servicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.services.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="srv_name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="srv_name" id="srv_name">
+                        @error('srv_name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="srv_description" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" name="srv_description" id="srv_description">
+                        @error('srv_description')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="srv_price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="srv_price" id="srv_price">
+                        @error('srv_price')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="srv_img" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" name="srv_img" id="srv_img">
+                        @error('srv_img')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="srv_id_ctg" class="form-label">Categoría</label>
+                        <select name="srv_id_ctg" id="srv_id_ctg" class="form-control">
+                            <option value="">Seleccione una categoría</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id_ctg }}">{{ $category->ctg_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_ctg')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="srv_id_etp" class="form-label">Emprendimiento</label>
+                        <select name="srv_id_etp" id="srv_id_etp" class="form-control">
+                            <option value="">Seleccione un emprendimiento</option>
+                            @foreach ($entrepreneurships as $entrepreneurship)
+                                <option value="{{ $entrepreneurship->id }}">{{ $entrepreneurship->etp_name }}</option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_etp')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Servicio</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
