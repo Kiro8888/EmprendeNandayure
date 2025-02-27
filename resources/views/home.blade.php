@@ -453,12 +453,14 @@
                 });
 
                 var infowindow = new google.maps.InfoWindow({
-    content: `
-        <div style="color: #333;">
-            <h6>${etp.etp_name}</h6>
-            <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width:100px;height:auto;display:block;margin-top:10px;">
-        </div>
-    `
+                    content: `
+    <div style="color: #333; font-family: Arial, sans-serif; max-width: 250px; padding: 10px;">
+        <h6 style="margin: 0; font-size: 16px; font-weight: bold; color: #007bff;">${etp.etp_name}</h6>
+        <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Número:</strong> ${etp.etp_num}</p>
+        <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width: 100%; max-height: 120px; object-fit: cover; border-radius: 5px; margin-top: 10px;">
+    </div>
+`
+
 });
                 marker.addListener('click', function() {
                     infowindow.open(map, marker);
