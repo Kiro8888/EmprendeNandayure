@@ -25,10 +25,10 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Precio</th>
+                    <th scope="col">Id </th>
+                    <th scope="col">Nombre </th>
+                    <th scope="col">Estado </th>
+                    <th scope="col">Precio </th>
                     <th scope="col">Emprendimiento</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Editar</th>
@@ -54,7 +54,10 @@
                     <td>{{$product->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                     <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{route('admin.products.edit', $product)}}">Editar</a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">
+                            Editar 
+                        </button>
+                                           
                     </td>
                     <td>
                         <form action="{{route('admin.products.destroy', $product)}}" method="POST" class="delete-form">
@@ -64,8 +67,10 @@
                         </form>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('admin.products.show', $product)}}">Mostrar</a>
-                    </td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showProductModal{{ $product->id_pdt }}">
+                            Ver Detalles
+                        </button>                  
+                      </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -88,35 +93,35 @@
                 <form action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="pdt_name" class="form-label">Nombre</label>
+                        <label for="pdt_name" class="form-label">Nombre producto</label>
                         <input type="text" class="form-control" name="pdt_name" id="pdt_name">
                         @error('pdt_name')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="pdt_description" class="form-label">Descripción</label>
+                        <label for="pdt_description" class="form-label">Descripción producto</label>
                         <input type="text" class="form-control" name="pdt_description" id="pdt_description">
                         @error('pdt_description')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="pdt_price" class="form-label">Precio</label>
+                        <label for="pdt_price" class="form-label">Precio producto</label>
                         <input type="number" class="form-control" name="pdt_price" id="pdt_price">
                         @error('pdt_price')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="pdt_img" class="form-label">Imagen</label>
+                        <label for="pdt_img" class="form-label">Imagen producto</label>
                         <input type="file" class="form-control" name="pdt_img" id="pdt_img">
                         @error('pdt_img')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="pdt_id_ctg" class="form-label">Categoría</label>
+                        <label for="pdt_id_ctg" class="form-label">Categoría producto</label>
                         <select name="pdt_id_ctg" id="pdt_id_ctg" class="form-control">
                             <option value="">Seleccione una categoría</option>
                             @foreach ($categories as $category)
@@ -145,6 +150,121 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.products.update', $product) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="form-group">
+                        <label for="pdt_name">Nombre producto</label>
+                        <input type="text" class="form-control" name="pdt_name" id="pdt_name" value="{{ old('pdt_name', $product->pdt_name) }}">
+                        @error('pdt_name')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_description">Descripción producto</label>
+                        <input type="text" class="form-control" name="pdt_description" id="pdt_description" value="{{ old('pdt_description', $product->pdt_description) }}">
+                        @error('pdt_description')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_price">Precio producto</label>
+                        <input type="number" class="form-control" name="pdt_price" id="pdt_price" value="{{ old('pdt_price', $product->pdt_price) }}">
+                        @error('pdt_price')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_img">Imagen Actual</label>
+                        @if ($product->pdt_img)
+                            <div>
+                                <img src="{{ asset($product->pdt_img) }}" alt="Imagen del Producto" width="150">
+                            </div>
+                        @else
+                            <p>No hay imagen disponible.</p>
+                        @endif
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_img">Nueva Imagen</label>
+                        <input type="file" class="form-control" name="pdt_img" id="pdt_img">
+                        @error('pdt_img')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_id_ctg">Categoría producto</label>
+                        <select name="pdt_id_ctg" id="pdt_id_ctg" class="form-control">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id_ctg }}" {{ $product->pdt_id_ctg == $category->id_ctg ? 'selected' : '' }}>
+                                    {{ $category->ctg_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('pdt_id_ctg')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pdt_status">Estatus</label>
+                        <select class="form-control" name="pdt_status" id="pdt_status" {{ !auth()->user()->hasRole('Admin') ? 'disabled' : '' }}>
+                            <option value="1" {{ $product->pdt_status == 1 ? 'selected' : '' }}>Activo</option>
+                            <option value="2" {{ $product->pdt_status == 2 ? 'selected' : '' }}>Inactivo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@foreach ($products as $product)
+<!-- Modal para mostrar producto -->
+<div class="modal fade" id="showProductModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="showProductModalLabel{{ $product->id_pdt }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showProductModalLabel{{ $product->id_pdt }}">Detalles del Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Nombre:</strong> {{ $product->pdt_name }}</p>
+                <p><strong>Descripción:</strong> {{ $product->pdt_description }}</p>
+                <p><strong>Precio:</strong> ₡{{ number_format($product->pdt_price, 2) }}</p>
+                <p><strong>Categoría:</strong> {{ $product->category->ctg_name }}</p>
+                <p><strong>Emprendedor:</strong> {{ $product->entrepreneurship->etp_name }}</p>
+                <p><strong>Estatus:</strong> {{ $product->pdt_status == 1 ? 'Activo' : 'Inactivo' }}</p>
+
+                <!-- Mostrar imagen -->
+                <div class="form-group">
+                    <label for="pdt_img" class="form-label">Imagen del Producto</label>
+                    @if ($product->pdt_img)
+                        <div>
+                            <img src="{{ asset($product->pdt_img) }}" alt="Imagen del producto" width="150">
+                        </div>
+                    @else
+                        <p>No hay imagen disponible.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <x-chatbot />
 
