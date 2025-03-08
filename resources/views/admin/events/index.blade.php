@@ -26,14 +26,14 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Hora</th>
-                    <th scope="col">Lugar</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">Mostrar</th>
+                    <th scope="col">Nombre evento</th>
+                    <th scope="col">Descripción evento</th>
+                    <th scope="col">Fecha evento</th>
+                    <th scope="col">Hora evento</th>
+                    <th scope="col">Lugar evento</th>
+                    <th scope="col">Editar evento</th>
+                    <th scope="col">Eliminar evento</th>
+                    <th scope="col">Mostrar evento</th>
                 </tr>
             </thead>
             <tbody>
@@ -81,42 +81,42 @@
                 <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="evt_name">Nombre</label>
+                        <label for="evt_name">Nombre evento</label>
                         <input type="text" class="form-control" name="evt_name" id="evt_name">
                         @error('evt_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="evt_description">Descripción</label>
+                        <label for="evt_description">Descripción evento</label>
                         <input type="text" class="form-control" name="evt_description" id="evt_description">
                         @error('evt_description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="evt_date">Fecha</label>
-                        <input type="date" class="form-control" name="evt_date" id="evt_date">
+                        <label for="evt_date">Fecha evento</label>
+                        <input type="date" class="form-control" name="evt_date" id="evt_date" min="{{ date('Y-m-d') }}">
                         @error('evt_date')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="evt_hour">Hora</label>
+                        <label for="evt_hour">Hora evento</label>
                         <input type="time" class="form-control" name="evt_hour" id="evt_hour">
                         @error('evt_hour')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="evt_location">Lugar</label>
+                        <label for="evt_location">Lugar evento</label>
                         <input type="text" class="form-control" name="evt_location" id="evt_location">
                         @error('evt_location')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="evt_img">Imagen</label>
+                        <label for="evt_img">Imagen evento</label>
                         <input type="file" class="form-control" name="evt_img" id="evt_img">
                         @error('evt_img')
                             <p class="text-danger">{{ $message }}</p>
@@ -144,31 +144,31 @@
                     @method('PUT')
                     
                     <div class="form-group">
-                        <label for="evt_name">Nombre</label>
+                        <label for="evt_name">Nombre evento</label>
                         <input type="text" class="form-control" name="evt_name" id="evt_name" value="{{$event->evt_name}}">
                         @error('evt_name')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_description">Descripción</label>
+                        <label for="evt_description">Descripción evento</label>
                         <input type="text" class="form-control" name="evt_description" id="evt_description" value="{{$event->evt_description}}">
                         @error('evt_description')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_date">Fecha</label>
+                        <label for="evt_date">Fecha evento</label>
                         <input type="date" class="form-control" name="evt_date" id="evt_date" value="{{$event->evt_date}}">
                         @error('evt_date')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_hour">Hora</label>
+                        <label for="evt_hour">Hora evento</label>
                         <input type="time" class="form-control" name="evt_hour" id="evt_hour" value="{{$event->evt_hour}}">
                         @error('evt_hour')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_location">Lugar</label>
+                        <label for="evt_location">Lugar evento</label>
                         <input type="text" class="form-control" name="evt_location" id="evt_location" value="{{$event->evt_location}}">
                         @error('evt_location')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
@@ -212,11 +212,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Nombre:</strong> {{ $event->evt_name }}</p>
-                <p><strong>Descripción:</strong> {{ $event->evt_description }}</p>
-                <p><strong>Fecha:</strong> {{ $event->evt_date }}</p>
-                <p><strong>Hora:</strong> {{ $event->evt_hour }}</p>
-                <p><strong>Lugar:</strong> {{ $event->evt_location }}</p>
+                <p><strong>Nombre evento:</strong> {{ $event->evt_name }}</p>
+                <p><strong>Descripción evento:</strong> {{ $event->evt_description }}</p>
+                <p><strong>Fecha evento:</strong> {{ $event->evt_date }}</p>
+                <p><strong>Hora evento:</strong> {{ $event->evt_hour }}</p>
+                <p><strong>Lugar evento:</strong> {{ $event->evt_location }}</p>
                 <div class="form-group">
                     <label for="evt_img" class="form-label">Imagen Actual</label>
                     @if ($event->evt_img)
