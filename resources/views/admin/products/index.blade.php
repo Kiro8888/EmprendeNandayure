@@ -242,16 +242,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Nombre:</strong> {{ $product->pdt_name }}</p>
-                <p><strong>Descripción:</strong> {{ $product->pdt_description }}</p>
-                <p><strong>Precio:</strong> ₡{{ number_format($product->pdt_price, 2) }}</p>
-                <p><strong>Categoría:</strong> {{ $product->category->ctg_name }}</p>
-                <p><strong>Emprendedor:</strong> {{ $product->entrepreneurship->etp_name }}</p>
-                <p><strong>Estatus:</strong> {{ $product->pdt_status == 1 ? 'Activo' : 'Inactivo' }}</p>
-
-                <!-- Mostrar imagen -->
                 <div class="form-group">
-                    <label for="pdt_img" class="form-label">Imagen del Producto</label>
+                    <label for="pdt_name{{ $product->id_pdt }}" class="form-label">Nombre producto</label>
+                    <input type="text" class="form-control" id="pdt_name{{ $product->id_pdt }}" value="{{ $product->pdt_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pdt_description{{ $product->id_pdt }}" class="form-label">Descripción producto</label>
+                    <input type="text" class="form-control" id="pdt_description{{ $product->id_pdt }}" value="{{ $product->pdt_description }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pdt_price{{ $product->id_pdt }}" class="form-label">Precio producto</label>
+                    <input type="text" class="form-control" id="pdt_price{{ $product->id_pdt }}" value="₡{{ number_format($product->pdt_price, 2) }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="ctg_name{{ $product->id_pdt }}" class="form-label">Categoría producto</label>
+                    <input type="text" class="form-control" id="ctg_name{{ $product->id_pdt }}" value="{{ $product->category->ctg_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="etp_name{{ $product->id_pdt }}" class="form-label">Emprendimiento</label>
+                    <input type="text" class="form-control" id="etp_name{{ $product->id_pdt }}" value="{{ $product->entrepreneurship->etp_name }}" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pdt_status{{ $product->id_pdt }}" class="form-label">Estatus</label>
+                    <input type="text" class="form-control" id="pdt_status{{ $product->id_pdt }}" value="{{ $product->pdt_status == 1 ? 'Activo' : 'Inactivo' }}" readonly>
+                </div>
+
+                 {{-- Mostrar imagen actual --}}
+                 <div class="form-group">
+                    <label for="pdt_img" class="form-label">Imagen Actual</label>
                     @if ($product->pdt_img)
                         <div>
                             <img src="{{ asset($product->pdt_img) }}" alt="Imagen del producto" width="150">
@@ -265,6 +283,7 @@
     </div>
 </div>
 @endforeach
+
 
 <x-chatbot />
 
