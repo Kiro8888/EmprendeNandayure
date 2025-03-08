@@ -3,7 +3,7 @@
 @section('title', 'Admin Nandayure')
 
 @section('content_header')
-    <h1>Lista Categorias</h1>
+    <h1>Lista Categorías</h1>
 @stop
 
 @section('content')
@@ -17,14 +17,16 @@
 <div class="card">
     <div class="card-body">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{route('admin.categories.create')}}"><i class="fas fa-plus"></i> Crear Categoria</a>
-        </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCategoryModal">
+                <i class="fas fa-plus"></i> Crear Categoría
+            </button>       
+         </div>
         <table class="table">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -36,7 +38,9 @@
                     <td>{{$category->ctg_name}}</td>
                     <td>{{$category->ctg_description}}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{route('admin.categories.edit', $category)}}">Editar</a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal">
+                            Editar 
+                        </button>
                     </td>
                     <td>
                         <form action="{{route('admin.categories.destroy', $category)}}" method="POST" class="delete-form">
@@ -52,6 +56,83 @@
     </div>
     <x-chatbot />
 </div>
+
+<!-- Modal de crear categoría -->
+<div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCategoryModalLabel">Crear Categoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para crear categoría -->
+                <form action="{{route('admin.categories.store')}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="ctg_name" class="form-label">Nombre de la Categoría</label>
+                        <input type="text" class="form-control" name="ctg_name" id="ctg_name">
+                        @error('ctg_name')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="ctg_description" class="form-label">Descripción de la Categoría</label>
+                        <input type="text" class="form-control" name="ctg_description" id="ctg_description">
+                        @error('ctg_description')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary">Crear Categoría</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Editar Categoría -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCategoryModalLabel">Editar Categoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.categories.update', $category) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="form-group">
+                        <label for="ctg_name" class="form-label">Nombre categoría</label>
+                        <input type="text" class="form-control" name="ctg_name" id="ctg_name" value="{{ old('ctg_name', $category->ctg_name) }}">
+                        @error('ctg_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctg_description" class="form-label">Descripción categoría</label>
+                        <input type="text" class="form-control" name="ctg_description" id="ctg_description" value="{{ old('ctg_description', $category->ctg_description) }}">
+                        @error('ctg_description')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
