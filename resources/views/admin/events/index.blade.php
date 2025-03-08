@@ -47,7 +47,7 @@
                     <td>{{ $event->evt_location }}</td>
                     <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal">
-                            Editar Evento
+                            Editar 
                         </button>                    
                     </td>
                     <td>
@@ -212,21 +212,41 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><strong>Nombre evento:</strong> {{ $event->evt_name }}</p>
-                <p><strong>Descripción evento:</strong> {{ $event->evt_description }}</p>
-                <p><strong>Fecha evento:</strong> {{ $event->evt_date }}</p>
-                <p><strong>Hora evento:</strong> {{ $event->evt_hour }}</p>
-                <p><strong>Lugar evento:</strong> {{ $event->evt_location }}</p>
-                <div class="form-group">
-                    <label for="evt_img" class="form-label">Imagen Actual</label>
-                    @if ($event->evt_img)
+                <form>
+                    <div class="form-group">
+                        <label for="evt_name{{ $event->id_evt }}" class="form-label">Nombre evento</label>
+                        <input type="text" class="form-control" id="evt_name{{ $event->id_evt }}" value="{{ $event->evt_name }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_description{{ $event->id_evt }}" class="form-label">Descripción evento</label>
+                        <input type="text" class="form-control" id="evt_description{{ $event->id_evt }}" value="{{ $event->evt_description }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_date{{ $event->id_evt }}" class="form-label">Fecha evento</label>
+                        <input type="text" class="form-control" id="evt_date{{ $event->id_evt }}" value="{{ $event->evt_date }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_hour{{ $event->id_evt }}" class="form-label">Hora evento</label>
+                        <input type="text" class="form-control" id="evt_hour{{ $event->id_evt }}" value="{{ $event->evt_hour }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_location{{ $event->id_evt }}" class="form-label">Lugar evento</label>
+                        <input type="text" class="form-control" id="evt_location{{ $event->id_evt }}" value="{{ $event->evt_location }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="evt_img{{ $event->id_evt }}" class="form-label">Imagen Actual</label>
                         <div>
-                            <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                            @if ($event->evt_img)
+                                <img src="{{ asset($event->evt_img) }}" alt="Imagen del evento" width="150">
+                            @else
+                                <p>No hay imagen disponible.</p>
+                            @endif
                         </div>
-                    @else
-                        <p>No hay imagen disponible.</p>
-                    @endif
-                </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
