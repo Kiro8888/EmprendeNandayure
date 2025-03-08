@@ -53,7 +53,9 @@
                     <td>{{ $service->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                     <td>{{ $service->category->ctg_name ?? 'Desconocido' }}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{ route('admin.services.edit', $service) }}">Editar</a>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editServiceModal">
+                            Editar 
+                        </button>                    
                     </td>
                     <td>
                         <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="delete-form">
@@ -63,7 +65,9 @@
                         </form>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('admin.services.show', $service) }}">Mostrar</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showServiceModal">
+                            Mostrar
+                        </button>                    
                     </td>
                 </tr>
                 @endforeach
@@ -85,35 +89,35 @@
                 <form action="{{route('admin.services.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="srv_name" class="form-label">Nombre</label>
+                        <label for="srv_name" class="form-label">Nombre servicio</label>
                         <input type="text" class="form-control" name="srv_name" id="srv_name">
                         @error('srv_name')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="srv_description" class="form-label">Descripción</label>
+                        <label for="srv_description" class="form-label">Descripción servicio</label>
                         <input type="text" class="form-control" name="srv_description" id="srv_description">
                         @error('srv_description')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="srv_price" class="form-label">Precio</label>
+                        <label for="srv_price" class="form-label">Precio servicio</label>
                         <input type="number" class="form-control" name="srv_price" id="srv_price">
                         @error('srv_price')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="srv_img" class="form-label">Imagen</label>
+                        <label for="srv_img" class="form-label">Imagen servicio</label>
                         <input type="file" class="form-control" name="srv_img" id="srv_img">
                         @error('srv_img')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="srv_id_ctg" class="form-label">Categoría</label>
+                        <label for="srv_id_ctg" class="form-label">Categoría servicio</label>
                         <select name="srv_id_ctg" id="srv_id_ctg" class="form-control">
                             <option value="">Seleccione una categoría</option>
                             @foreach ($categories as $category)
@@ -143,6 +147,199 @@
     </div>
 </div>
 
+<!-- Modal para actualizar servicio -->
+<div class="modal fade" id="editServiceModal{{ $service->id }}" tabindex="-1" aria-labelledby="editServiceModalLabel{{ $service->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editServiceModalLabel{{ $service->id }}">Editar Servicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.services.update', $service) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <!-- Campo Nombre -->
+                    <div class="form-group">
+                        <label for="srv_name">Nombre servicio</label>
+                        <input type="text" class="form-control" name="srv_name" id="srv_name" value="{{ old('srv_name', $service->srv_name) }}">
+                        @error('srv_name')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Campo Descripción -->
+                    <div class="form-group">
+                        <label for="srv_description">Descripción servicio</label>
+                        <input type="text" class="form-control" name="srv_description" id="srv_description" value="{{ old('srv_description', $service->srv_description) }}">
+                        @error('srv_description')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Campo Precio -->
+                    <div class="form-group">
+                        <label for="srv_price">Precio servicio</label>
+                        <input type="number" class="form-control" name="srv_price" id="srv_price" value="{{ old('srv_price', $service->srv_price) }}">
+                        @error('srv_price')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Mostrar imagen actual -->
+                    <div class="form-group">
+                        <label for="srv_img">Imagen Actual</label>
+                        @if ($service->srv_img)
+                            <div>
+                                <img src="{{ asset($service->srv_img) }}" alt="Imagen del Servicio" width="150">
+                            </div>
+                        @else
+                            <p>No hay imagen disponible.</p>
+                        @endif
+                    </div>
+
+                    <!-- Campo para subir nueva imagen -->
+                    <div class="form-group">
+                        <label for="srv_img">Nueva Imagen</label>
+                        <input type="file" class="form-control" name="srv_img" id="srv_img">
+                        @error('srv_img')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Campo para seleccionar Categoría -->
+                    <div class="form-group">
+                        <label for="srv_id_ctg">Categoría</label>
+                        <select name="srv_id_ctg" id="srv_id_ctg" class="form-control">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id_ctg }}" {{ $service->srv_id_ctg == $category->id_ctg ? 'selected' : '' }}>
+                                    {{ $category->ctg_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_ctg')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Campo para seleccionar Emprendimiento -->
+                    <div class="form-group">
+                        <label for="srv_id_etp">Emprendimiento</label>
+                        <select name="srv_id_etp" id="srv_id_etp" class="form-control">
+                            @foreach ($entrepreneurships as $entrepreneurship)
+                                <option value="{{ $entrepreneurship->id }}" {{ $service->srv_id_etp == $entrepreneurship->id ? 'selected' : '' }}>
+                                    {{ $entrepreneurship->etp_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_etp')<p class="text-danger">{{ $message }}</p>@enderror
+                    </div>
+
+                    <!-- Campo para seleccionar Estatus -->
+                    <div class="form-group">
+                        <label for="srv_status">Estatus</label>
+                        <select class="form-control" name="srv_status" id="srv_status" {{ !auth()->user()->hasRole('Admin') ? 'disabled' : '' }}>
+                            <option value="1" {{ $service->srv_status == 1 ? 'selected' : '' }}>Activo</option>
+                            <option value="2" {{ $service->srv_status == 2 ? 'selected' : '' }}>Inactivo</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showServiceModal" tabindex="-1" aria-labelledby="showServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showServiceModalLabel">Detalles del Servicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.services.store', $service) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    
+                    {{-- Primer campo --}}
+                    <div class="form-group">
+                        <label for="srv_name" class="form-label">Nombre servicio</label>
+                        <input type="text" class="form-control" name="srv_name" id="srv_name" value="{{ $service->srv_name }}" readonly>
+                        @error('srv_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    {{-- Segundo campo --}}
+                    <div class="form-group">
+                        <label for="srv_description" class="form-label">Descripción servicio</label>
+                        <input type="text" class="form-control" name="srv_description" id="srv_description" value="{{ $service->srv_description }}" readonly>
+                        @error('srv_description')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    {{-- Tercer campo --}}
+                    <div class="form-group">
+                        <label for="srv_price" class="form-label">Precio servicio</label>
+                        <input type="number" class="form-control" name="srv_price" id="srv_price" value="{{ $service->srv_price }}" readonly>
+                        @error('srv_price')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    {{-- Mostrar imagen actual --}}
+                    <div class="form-group">
+                        <label for="srv_img" class="form-label">Imagen Actual</label>
+                        @if ($service->srv_img)
+                            <div>
+                                <img src="{{ asset($service->srv_img) }}" alt="Imagen del Servicio" width="150">
+                            </div>
+                        @else
+                            <p>No hay imagen disponible.</p>
+                        @endif
+                    </div>
+                    
+                    {{-- Quinto campo --}}
+                    <div class="form-group">
+                        <label for="srv_id_ctg" class="form-label">Categoría servicio</label>
+                        <select name="srv_id_ctg" id="srv_id_ctg" class="form-control" disabled>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id_ctg }}" {{ $service->srv_id_ctg == $category->id_ctg ? 'selected' : '' }}>
+                                    {{ $category->ctg_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_ctg')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    {{-- Sexto campo --}}
+                    <div class="form-group">
+                        <label for="srv_id_etp" class="form-label">Emprendimiento</label>
+                        <select name="srv_id_etp" id="srv_id_etp" class="form-control" disabled>
+                            @foreach ($entrepreneurships as $entrepreneurship)
+                                <option value="{{ $entrepreneurship->id }}" {{ $service->srv_id_etp == $entrepreneurship->id ? 'selected' : '' }}>
+                                    {{ $entrepreneurship->etp_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('srv_id_etp')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <!-- Aquí puedes agregar más campos si es necesario -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <x-chatbot />
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
