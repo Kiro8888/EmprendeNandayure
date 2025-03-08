@@ -29,7 +29,7 @@
                  {{-- Tercer campo --}}
                  <div class="form-group">
                     <label for="evt_date" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" name="evt_date" id="evt_date">
+                    <input type="date" class="form-control" name="evt_date" id="evt_date" min="{{ date('Y-m-d') }}">
                     @error('evt_date')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
