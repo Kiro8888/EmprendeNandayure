@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-g-translate />
     <!-- Contenedor principal con fondo blanco -->
     <div class="bg-white min-h-screen">
         <!-- Hero Section -->

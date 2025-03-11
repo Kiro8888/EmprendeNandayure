@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-g-translate />
     <div class="container mx-auto p-8">
         <div class="flex items-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <!-- Imagen del servicio -->

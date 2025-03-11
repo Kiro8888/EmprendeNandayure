@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-g-translate />
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">

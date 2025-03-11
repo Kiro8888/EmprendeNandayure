@@ -6,7 +6,7 @@
             <p>Descubre los eventos más interesantes que se llevarán a cabo pronto.</p>
         </div>
     </div>
-
+    <x-g-translate />
     <center>
     <div class="container my-5">
         @if($events->isEmpty())

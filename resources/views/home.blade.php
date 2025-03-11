@@ -69,6 +69,8 @@
         </style>
     </head>
     <body>
+        <x-g-translate />
+
         <!-- Usar container-fluid para ancho completo -->
    <!-- Carousel Start -->
 <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">

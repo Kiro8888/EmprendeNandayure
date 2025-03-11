@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-guest-layout>
+        <x-g-translate />
         <!-- Hero Section -->
 <section class="w-full bg-cover bg-center h-[600px] flex items-center justify-center relative" style="background-image: url('/client/hero-about.jpg');">
     <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay for darkening -->
