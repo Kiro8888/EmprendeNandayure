@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\event;
-
+use App\Mail\EventCreatedMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -60,6 +62,12 @@ class EventController extends Controller
     
         $events = event::create($eventData);
     
+        $users = User::where('status', 'Activo')->pluck('email');
+     
+         // Enviar el correo a cada usuario
+         foreach ($users as $email) {
+             Mail::to($email)->send(new EventCreatedMail($event));
+         }
 
 
         return redirect()->route('admin.events.index', $events)
