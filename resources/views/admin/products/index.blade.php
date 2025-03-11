@@ -152,6 +152,8 @@
 </div>
 
 <!-- Modal -->
+@if (isset($product))
+<!-- Modal de edición, solo se muestra si el producto está presente -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -230,6 +232,7 @@
         </div>
     </div>
 </div>
+@endif
 @foreach ($products as $product)
 <!-- Modal para mostrar producto -->
 <div class="modal fade" id="showProductModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="showProductModalLabel{{ $product->id_pdt }}" aria-hidden="true">

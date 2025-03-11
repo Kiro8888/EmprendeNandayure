@@ -148,6 +148,7 @@
 </div>
 
 <!-- Modal para actualizar servicio -->
+@if (isset($service))
 <div class="modal fade" id="editServiceModal{{ $service->id }}" tabindex="-1" aria-labelledby="editServiceModalLabel{{ $service->id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -246,7 +247,8 @@
         </div>
     </div>
 </div>
-
+@endif
+@foreach ($services as $service)
 <!-- Modal -->
 <div class="modal fade" id="showServiceModal" tabindex="-1" aria-labelledby="showServiceModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -340,6 +342,7 @@
         </div>
     </div>
 </div>
+@endforeach
 <x-chatbot />
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

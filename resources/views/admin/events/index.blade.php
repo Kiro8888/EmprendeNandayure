@@ -129,6 +129,8 @@
     </div>
 </div>
 <!-- Modal -->
+
+@foreach ($events as $event)
 <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -199,7 +201,7 @@
         </div>
     </div>
 </div>
-
+@endforeach
 @foreach ($events as $event)
 <!-- Modal para mostrar evento -->
 <div class="modal fade" id="showEventModal{{ $event->id_evt }}" tabindex="-1" role="dialog" aria-labelledby="showEventModalLabel{{ $event->id_evt }}" aria-hidden="true">

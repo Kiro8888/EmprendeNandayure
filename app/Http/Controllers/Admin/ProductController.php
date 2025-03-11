@@ -148,7 +148,7 @@ class ProductController extends Controller
          $product->update($productData);
      
          return redirect()->route('admin.products.index', $product)
-             ->with('info', 'El servicio se actualizó correctamente');
+             ->with('info', 'El producto se actualizó correctamente');
      }
 
     /**
