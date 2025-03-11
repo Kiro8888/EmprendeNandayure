@@ -11,6 +11,9 @@ use App\Http\Controllers\ClientProductServiceController;
 use App\Http\Controllers\ClientDetailsPSController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\ChatbotController;
+use Illuminate\Http\Request;
 // use App\Models\User; 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +48,8 @@ Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');}
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
 
 
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+});
