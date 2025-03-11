@@ -31,21 +31,25 @@ class ProductController extends Controller
     {
         // Obtener el usuario autenticado
         $user = auth()->user();
+        $categories = category::all();
     
-        // Si el usuario tiene el rol de Entrepreneur, filtrar los productos por sus emprendimientos
+        // Si el usuario tiene el rol de Entrepreneur, filtrar sus emprendimientos
         if ($user->hasRole('Entrepreneur')) {
-            // Obtener todos los emprendimientos del usuario
-            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->pluck('id');
+            // Obtener los emprendimientos completos en lugar de solo los IDs
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
     
             // Filtrar los productos asociados a esos emprendimientos
-            $products = product::whereIn('pdt_id_etp', $entrepreneurships)->get();
+            $products = product::whereIn('pdt_id_etp', $entrepreneurships->pluck('id'))->get();
         } else {
             // Si es Admin u otro rol, mostrar todos los productos
             $products = product::all();
+            $entrepreneurships = entrepreneurship::all(); // Admin puede ver todos los emprendimientos
         }
     
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('products', 'categories', 'entrepreneurships'));
     }
+    
+    
     
     /**
      * Show the form for creating a new resource.
@@ -144,7 +148,7 @@ class ProductController extends Controller
          $product->update($productData);
      
          return redirect()->route('admin.products.index', $product)
-             ->with('info', 'El servicio se actualizó correctamente');
+             ->with('info', 'El producto se actualizó correctamente');
      }
 
     /**
