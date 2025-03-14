@@ -66,17 +66,18 @@
         @if($products->isNotEmpty())
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-sm-6 col-md-3 mb-4">
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" style="width: 290px;">
-                            <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="w-full h-48 object-cover">
-                            <div class="p-3">
-                                <h2 class="text-md font-bold text-gray-800">{{ $product->pdt_name }}</h2>
-                                <p class="text-gray-600 mt-1 text-sm">{{ $product->pdt_description }}</p>
-                                <p class="text-lg font-bold text-indigo-600 mt-2">₡{{ number_format($product->pdt_price, 2) }}</p>
-                                <a href="#" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#productModal{{ $product->id_pdt }}">Consultar</a>
-                            </div>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                        <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" style="font-size: 1.25rem; font-weight: bold; color: #333;">{{ $product->pdt_name }}</h5>
+                            <p class="card-text text-success font-weight-bold">₡{{ number_format($product->pdt_price, 2) }}</p>
+                            <a href="#" class="btn btn-primary btn-sm rounded-pill px-3" data-toggle="modal" data-target="#productModal{{ $product->id_pdt }}">
+                                <i class="fas fa-search"></i> Consultar
+                            </a>
                         </div>
                     </div>
+                </div>
 
                     <!-- Modal -->
 <div class="modal fade" id="productModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{ $product->id_pdt }}" aria-hidden="true">
@@ -175,6 +176,10 @@
         max-height: 200px;
         object-fit: cover;
     }
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
 
     .card-body {
         background: #f4f6f9;
@@ -192,20 +197,23 @@
 }
 
 .btn-primary {
-    background-color: #28a745 !important;
-    border: none;
-    transition: all 0.3s ease-in-out;
-}
+        background-color: #28a745;
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
 
-.btn-primary:hover {
-    background-color: #218838 !important;
-    transform: scale(1.05);
-}
+    .btn-primary:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
 
 .btn-light:hover {
     background-color: #e9ecef !important;
     transform: scale(1.05);
 }
+
+
+
 
 </style>
 
