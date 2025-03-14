@@ -92,6 +92,7 @@
     </div>
 </div>
 
+@foreach ($categories as $category)
 <!-- Modal de Editar Categoría -->
 <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -132,7 +133,7 @@
         </div>
     </div>
 </div>
-
+@endforeach
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
