@@ -27,25 +27,76 @@
 </div>
 
 <!-- Modal con instrucciones -->
-<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="instructionsModalLabel">¿Cómo utilizarlo?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            
+            <!-- Encabezado con degradado -->
+            <div class="modal-header bg-gradient text-white" style="background: linear-gradient(135deg, #28a745, #218838);">
+                <h5 class="modal-title fw-bold">
+                    <i class="fas fa-lightbulb me-2"></i> ¿Cómo utilizarlo?
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <ol class="list-unstyled">
-                    <li class="mb-2"><strong>1. Selecciona un Producto:</strong> Explora nuestra variedad de productos y haz clic en "Consultar".</li>
-                    <li class="mb-2"><strong>2. Haz tu Consulta:</strong> Escribe tu condición de salud en el campo de texto, como "Tengo presión alta. ¿Es recomendable consumir este producto?".</li>
-                    <li class="mb-2"><strong>3. Envía tu Consulta:</strong> Haz clic en "Enviar Consulta" para obtener una respuesta rápida.</li>
-                    <li><strong>4. Recibe una Respuesta:</strong> En segundos, recibirás recomendaciones sobre el consumo del producto y la cantidad adecuada.</li>
-                </ol>
+
+            <!-- Cuerpo del modal -->
+            <div class="modal-body p-4">
+                <div class="container">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-primary">
+                                        <i class="fas fa-box me-2"></i> 1. Selecciona un Producto
+                                    </h6>
+                                    <p class="text-muted small">Explora nuestra variedad de productos y haz clic en 
+                                        <span class="badge bg-primary">Consultar</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-success">
+                                        <i class="fas fa-pencil-alt me-2"></i> 2. Haz tu Consulta
+                                    </h6>
+                                    <p class="text-muted small">Escribe tu condición de salud, por ejemplo: 
+                                        <span class="fst-italic">"Tengo presión alta. ¿Es recomendable consumir este producto?"</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-warning">
+                                        <i class="fas fa-paper-plane me-2"></i> 3. Envía tu Consulta
+                                    </h6>
+                                    <p class="text-muted small">Haz clic en <span class="badge bg-success">Enviar Consulta</span> para recibir una respuesta rápida.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-danger">
+                                        <i class="fas fa-comment-alt me-2"></i> 4. Recibe una Respuesta
+                                    </h6>
+                                    <p class="text-muted small">En segundos, recibirás recomendaciones sobre el consumo del producto y la cantidad adecuada.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+            <!-- Pie de modal con botón estilizado -->
+            <div class="modal-footer border-0 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-dark rounded-pill px-4 py-2" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>                
+              
             </div>
         </div>
     </div>
@@ -59,7 +110,8 @@
     </div>
 @endif
 
-<div class="card">
+<div class="" style="height: 800px;
+    width: 900px;">
     <div class="card-body">
 
         <!-- Container for Products -->
