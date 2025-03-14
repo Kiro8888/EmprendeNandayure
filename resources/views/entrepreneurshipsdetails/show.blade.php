@@ -6,241 +6,246 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ $entrepreneurship->etp_name }} - Detalles</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-       
-       <style>
+        <style>
             body {
-                background-color: #f7f7f7;
-                color: #333;
+                background-color: #f4f4f4;
+                font-family: 'Roboto', sans-serif;
             }
 
-            .hero-title {
-                background-color: #6C757D;
-                color: #fff;
-                padding: 20px;
-                text-align: center;
-                border-radius: 5px;
-                margin-top: 20px;
-                font-size: 2rem;
-                font-weight: 600;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            .details-card {
-                background-color: #ffffff;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 30px;
+            .hero {
+                background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/client/hero-products.jpg') no-repeat center center/cover;
+                height: 400px;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
-                transition: transform 0.2s ease;
-            }
-
-            .details-card:hover {
-                transform: scale(1.02);
-            }
-
-            .details-info {
-                flex: 1;
-                padding-right: 20px;
-            }
-
-            .details-info h1 {
-                font-size: 2rem;
-                font-weight: bold;
-                color: #495057;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-
-            .details-info p {
-                margin-bottom: 15px;
-                font-size: 1.1rem;
-            }
-
-            .detail-icon {
-                margin-right: 10px;
-                color: #6C757D;
-            }
-
-            .details-image {
-                flex: 1;
-                text-align: right;
-                overflow: hidden;
-            }
-
-            .details-image .image-container {
-                position: relative;
-                max-width: 400px;
-                height: 200px;
-                border: 5px solid #e0e0e0;
-                border-radius: 10px;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-            }
-
-            .details-image img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-
-            .section-title {
-                background-color: #495057;
+                justify-content: center;
                 color: #fff;
-                padding: 15px;
                 text-align: center;
-                border-radius: 5px;
+                position: relative;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+                font-weight: bold;
+                color: #28a745;
+                margin: 0;
+                text-transform: uppercase;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-content p {
+                font-size: 1.3rem;
+                color: #f1f1f1;
+            }
+
+            .container-details {
+                background-color: white;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                margin-bottom: 40px;
+                display: flex;
+                gap: 30px;
+                align-items: center;
+                flex-wrap: wrap;
+                transition: transform 0.3s ease;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .container-details:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+
+            .container-details img {
+                width: 180px;
+                height: 180px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 4px solid #ddd;
                 margin-bottom: 20px;
-                font-weight: 500;
-                font-size: 1.5rem;
+            }
+
+            .container-details div {
+                flex-grow: 1;
+                padding: 10px;
+            }
+
+            .container-details h2 {
+                font-size: 2.5rem;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .container-details p {
+                font-size: 1.1rem;
+                color: #555;
+                line-height: 1.6;
+            }
+
+            .btn-contact {
+                background-color: #007bff;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: bold;
+                text-align: center;
+                display: inline-block;
+                margin-top: 20px;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-contact:hover {
+                background-color: #0056b3;
+            }
+
+            /* Product Section Styles */
+            .product-section {
+                margin-top: 60px;
+                padding: 20px 0;
+                background-color: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 30px;
             }
 
             .product-card {
                 background-color: #fff;
-                border-radius: 8px;
+                border-radius: 12px;
                 padding: 15px;
-                text-align: center;
-                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-                border: 2px solid #e0e0e0;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
-                width: 80%;
-                margin: 0 auto;
-            }
-
-            .product-card:hover {
-                transform: scale(1.05);
-                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-                border-color: #6C757D;
+                text-align: center;
+                position: relative;
+                height: 350px;
             }
 
             .product-card img {
                 width: 100%;
-                height: 150px;
+                height: 180px;
                 object-fit: cover;
-                border-radius: 8px;
-                margin-bottom: 10px;
+                border-radius: 12px;
+                margin-bottom: 15px;
+                position: relative;
             }
 
-            .product-card h4 {
+            .product-card h3 {
                 font-size: 1.2rem;
-                font-weight: bold;
                 color: #333;
-                margin-top: 10px;
+                margin-bottom: 10px;
             }
 
             .product-card p {
                 font-size: 0.9rem;
-                color: #666;
+                color: #777;
+                margin-bottom: 10px;
             }
 
-            .btn-contact {
-                background-color: #6C757D;
-                color: #fff;
+            .product-card .price {
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: #28a745;
+            }
+
+            .product-card .btn-view {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #28a745;
+                color: white;
                 padding: 10px 20px;
-                border-radius: 5px;
-                text-align: center;
-                display: inline-block;
-                transition: background-color 0.2s ease;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
             }
 
-            .btn-contact:hover {
-                background-color: #495057;
-                color: #fff;
-                text-decoration: none;
+            .product-card .btn-view:hover {
+                background-color: #218838;
             }
+
+            /* Footer Styles */
+            .footer {
+                background-color: #343a40;
+                color: white;
+                padding: 30px;
+                text-align: center;
+                margin-top: 60px;
+                border-radius: 10px;
+            }
+
+            .footer a {
+                color: #28a745;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .footer a:hover {
+                text-decoration: underline;
+            }
+
         </style>
     </head>
     <body>
-
-  
-    <div class="container mt-5">
-        <div class="row details-card">
-            <div class="col-md-6 details-info">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
                 <h1>{{ $entrepreneurship->etp_name }}</h1>
-                <p><i class="bi bi-shop-window detail-icon"></i> Somos el emprendimiento <strong>{{ $entrepreneurship->etp_name }}</strong>.</p>
-                {{-- <p><i class="bi bi-geo-alt-fill detail-icon"></i> Nos ubicamos en: <strong>({{ $entrepreneurship->etp_latitude }}, {{ $entrepreneurship->etp_longitude }})</strong>.</p> --}}
-                <p><i class="bi bi-telephone-fill detail-icon"></i> Nos puedes contactar al número <strong>{{ $entrepreneurship->etp_num }}</strong>.</p>
-                <p><i class="bi bi-envelope-fill detail-icon"></i> Al correo <strong>{{ $entrepreneurship->etp_email }}</strong>.</p>
-            </div>
-            <div class="col-md-6 details-image">
-                <div class="image-container">
-                    <img src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $entrepreneurship->etp_name }}">
-                </div>
+                <p>Descubre una amplia variedad de productos al mejor precio.</p>
             </div>
         </div>
-    </div>
 
-
-    <div class="row mt-5">
-        <div class="col-12">
-            <div class="section-title">
-                <h3>Que ofrece el Emprendimiento</h3>
+        <!-- Emprendimiento Details -->
+        <div class="container-details">
+            <img src="{{ $entrepreneurship->etp_img ? asset($entrepreneurship->etp_img) : 'https://via.placeholder.com/180x180' }}" alt="{{ $entrepreneurship->etp_name }}">
+            <div>
+                <h2>Detalles del Emprendimiento</h2>
+                <p><strong>Nombre:</strong> {{ $entrepreneurship->etp_name }}</p>
+                <p><strong>Teléfono:</strong> {{ $entrepreneurship->etp_num }}</p>
+                <p><strong>Email:</strong> {{ $entrepreneurship->etp_email }}</p>
+                <p><strong>Descripción:</strong> {{ $entrepreneurship->etp_description ?? 'Sin descripción' }}</p>
             </div>
         </div>
-    
-        <!-- Mostrar los productos -->
-        @foreach ($products as $product)
-            <div class="col-md-4 mb-4">
-                <div class="product-card">
-                    <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $product->pdt_name }}">
-                    <h4>{{ $product->pdt_name }}</h4>
-                    <p>{{ $product->pdt_description }}</p>
-                    <p><strong>${{ number_format($product->pdt_price, 2) }}</strong></p>
-                    <a style="text-decoration: none" href="{{ route('client.product_details', $product->id_pdt) }}" class="mt-2 inline-block bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
-                        Ver más
-                    </a>
-                </div>
-                
+
+        <!-- Product and Service Grid Section -->
+        <div class="product-section">
+            <h2 class="text-center mb-4">Nuestros Productos y Servicios</h2>
+            <div class="product-grid">
+                @foreach ($products as $product)
+                    <div class="product-card">
+                        <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $product->pdt_name }}">
+                        <h3>{{ $product->pdt_name }}</h3>
+                        <p>{{ $product->pdt_description }}</p>
+                        <div class="price">${{ number_format($product->pdt_price, 2) }}</div>
+                        <a href="{{ route('client.product_details', $product->id_pdt) }}" class="btn-view">Ver más</a>
+                    </div>
+                @endforeach
+
+                @foreach ($services as $service)
+                    <div class="product-card">
+                        <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $service->srv_name }}">
+                        <h3>{{ $service->srv_name }}</h3>
+                        <p>{{ $service->srv_description }}</p>
+                        <div class="price">${{ number_format($service->srv_price, 2) }}</div>
+                        <a href="{{ route('client.service_details', $service->id_srv) }}" class="btn-view">Ver más</a>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
-    <!-- Mostrar los servicios -->
-    @foreach ($services as $service)
-    <div class="col-md-4 mb-4">
-        <div class="product-card">
-            <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/400x400' }}" alt="{{ $service->srv_name }}">
-            <h4>{{ $service->srv_name }}</h4>
-            <p>{{ $service->srv_description }}</p>
-            <p><strong>${{ number_format($service->srv_price, 2) }}</strong></p>
-            <a style="text-decoration: none" href="{{ route('client.service_details', $service->id_srv) }}" class="mt-2 inline-block bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
-                Ver más
-            </a>
         </div>
-    </div>
-    @endforeach
 
-    </div>
+        
 
-    
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
-    <script>
-        function initMap() {
-            var entrepreneurshipLocation = { 
-                lat: parseFloat("{{ $entrepreneurship->etp_latitude }}"), 
-                lng: parseFloat("{{ $entrepreneurship->etp_longitude }}") 
-            };
-            
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: entrepreneurshipLocation,
-                zoom: 15
-            });
-    
-            var marker = new google.maps.Marker({
-                position: entrepreneurshipLocation,
-                map: map,
-                title: "{{ $entrepreneurship->etp_name }}"
-            });
-        }
-    </script>
-    
-<!-- Footer Start -->
-<x-footer-client />
-<!-- Footer End -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     </body>
     </html>
 </x-app-layout>
+<x-footer-client />
