@@ -111,7 +111,7 @@
             <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
                 <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                     <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <div class="">
                             <i class="fa fa-users text-primary"></i>
                         </div>
                         <div class="ps-3">
@@ -124,7 +124,7 @@
             <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
                 <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                     <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <div class="">
                             <i class="fa fa-map-marker-alt text-primary"></i>
                         </div>
                         <div class="ps-3">
@@ -137,7 +137,7 @@
             <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
                 <div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
                     <div class="d-flex">
-                        <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+                        <div class="">
                             <i class="fa fa-comments text-primary"></i>
                         </div>
                         <div class="ps-3">
