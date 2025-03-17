@@ -21,8 +21,11 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $permissions = Permission::all();
+        $routeName = request()->route()->getName();
         $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        
+        return view('admin.roles.index', compact('roles','permissions', 'routeName'));
     }
 
     /**

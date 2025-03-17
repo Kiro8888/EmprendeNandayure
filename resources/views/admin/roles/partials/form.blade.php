@@ -1,7 +1,6 @@
 <div class="form">
     <label for="Rol">Rol</label>
-    <input class="form-control" type="text" name="name" id="name" value=" 
-    @if ($routeName == 'admin.roles.edit') {{$role->name}} @endif">
+    <input class="form-control" type="text" name="name" id="name" value="@if ($routeName == 'admin.roles.edit') {{$role->name}} @endif">
     @error('name')
         <small class="text-danger">{{$message}}</small>
     @enderror
@@ -14,10 +13,9 @@
     <div class="form-check form-check-inline">
         <input type="checkbox" class="form-check-input" name="permissions[]" id="permission" value="{{$permission->id}}"
         @if ($routeName == 'admin.roles.edit')
-        
-            @foreach ($role_permissions as $item)
-                {{($item->id == $permission->id) ? 'checked' : ''}}
-            @endforeach
+            @if (isset($role) && $role->permissions->contains($permission->id))
+                checked
+            @endif
         @endif
         >
         <label for="permiso" class="form-check-label">{{$permission->description}}</label>
