@@ -86,17 +86,14 @@
     </div>
 
     <!-- Contenedor del chatbot -->
-    <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-header">
-            Asistente Virtual
-            <span class="close-btn" onclick="toggleChatbot()">×</span>
-        </div>
-        
-        <iframe
-            class="chatbot-iframe"
-            allow="microphone;"
-            src="https://console.dialogflow.com/api-client/demo/embedded/d0eb13bd-0f4c-46cf-bdc4-87f0ba824d35">
-        </iframe>
+    <div class="" id="chatbotContainer">      
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger
+          intent="WELCOME"
+          chat-title="EmprendeNanda"
+          agent-id="d0eb13bd-0f4c-46cf-bdc4-87f0ba824d35"
+          language-code="es"
+        ></df-messenger>
     </div>
 
     <script>
