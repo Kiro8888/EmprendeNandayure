@@ -115,7 +115,7 @@ class EntrepreneurshipsController extends Controller
             'etp_name' => ['required', 'string'],
             'etp_latitude' => ['required'],
             'etp_longitude' => ['required'],
-            'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num'],
+            'etp_num' => ['required', 'digits:8'],
             'etp_email' => ['required'],
         ]);
     
