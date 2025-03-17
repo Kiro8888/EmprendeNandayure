@@ -44,6 +44,7 @@ Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->
 Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
 
+Route::get('admin/entrepreneurships/check-phone', [App\Http\Controllers\Admin\EntrepreneurshipsController::class, 'checkPhoneNumber']);
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

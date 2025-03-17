@@ -349,6 +349,60 @@
             element.value = element.value.slice(0, maxLength);
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const form = this.closest('form');
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "No podrás deshacer esta acción",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        // Check for duplicate phone number before submitting the form
+        const createForm = document.querySelector('#createEntrepreneurshipModal form');
+        const editForm = document.querySelector('#editEntrepreneurshipModal form');
+
+        createForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            checkDuplicatePhoneNumber(createForm);
+        });
+
+        editForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            checkDuplicatePhoneNumber(editForm);
+        });
+
+        function checkDuplicatePhoneNumber(form) {
+            const phoneNumber = form.querySelector('input[name="etp_num"]').value;
+            fetch(`/admin/entrepreneurships/check-phone?etp_num=${phoneNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.exists) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'El número de teléfono ya está registrado.'
+                        });
+                    } else {
+                        form.submit();
+                    }
+                });
+        }
+    });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
 @endsection
