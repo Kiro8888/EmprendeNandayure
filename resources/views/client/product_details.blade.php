@@ -131,10 +131,11 @@
 
     <!-- Scripts para manejar comentarios en localStorage -->
     <script>
-        // Cargar los comentarios existentes desde localStorage
+        // Cargar los comentarios existentes desde localStorage (específicos para productos)
         document.addEventListener('DOMContentLoaded', () => {
             const commentsSection = document.getElementById('commentsSection');
-            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            const productCommentsKey = `comments_product_{{ $product->id }}`; // Unique key for this product
+            const comments = JSON.parse(localStorage.getItem(productCommentsKey)) || [];
 
             // Mostrar comentarios existentes
             comments.forEach(comment => {
@@ -162,13 +163,14 @@
             return stars;
         }
 
-        // Guardar el comentario y la calificación en localStorage
+        // Guardar el comentario y la calificación en localStorage (específicos para productos)
         document.getElementById('commentForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const commentText = document.getElementById('commentInput').value;
             const rating = document.getElementById('rating').value;
             const date = new Date().toLocaleString();  // Fecha y hora actual
+            const productCommentsKey = `comments_product_{{ $product->id }}`; // Unique key for this product
 
             // Crear un objeto comentario
             const newComment = {
@@ -178,9 +180,9 @@
             };
 
             // Guardar en localStorage
-            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+            let comments = JSON.parse(localStorage.getItem(productCommentsKey)) || [];
             comments.push(newComment);
-            localStorage.setItem('comments', JSON.stringify(comments));
+            localStorage.setItem(productCommentsKey, JSON.stringify(comments));
 
             // Limpiar el formulario y recargar los comentarios
             document.getElementById('commentInput').value = '';
