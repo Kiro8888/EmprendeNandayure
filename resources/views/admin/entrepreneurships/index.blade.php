@@ -80,7 +80,7 @@
 <div class="modal fade" id="createEntrepreneurshipModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title">Crear Emprendimiento</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
@@ -127,7 +127,7 @@
 <div class="modal fade" id="editEntrepreneurshipModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title">Editar Emprendimiento</h5>
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
@@ -196,7 +196,7 @@
 <div class="modal fade" id="showEntrepreneurshipModal{{ $entrepreneurship->id }}" tabindex="-1" role="dialog" aria-labelledby="showEntrepreneurshipModalLabel{{ $entrepreneurship->id }}" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="showEntrepreneurshipModalLabel{{ $entrepreneurship->id }}">Detalles del Emprendimiento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
