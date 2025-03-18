@@ -280,6 +280,14 @@
                 });
             });
         });
+
+        const createEventForm = document.querySelector('#createEventModal form');
+        const createEventButton = createEventForm.querySelector('button[type="submit"]');
+        
+        createEventForm.addEventListener('submit', function() {
+            createEventButton.disabled = true;
+        });
+
     });
 </script>
 
