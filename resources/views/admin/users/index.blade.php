@@ -21,7 +21,7 @@
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('admin.users.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.users.store')}}" method="POST" enctype="multipart/form-data" id="createUserForm">
                         @csrf
                         {{-- Primer campo --}}
                         <div class="form-group">
@@ -66,7 +66,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary" id="createUserSubmit">Guardar</button>
                     </form>
                 </div>
             </div>
@@ -149,6 +149,11 @@
                 $('#editForm input[name="roles[]"]').each(function() {
                     $(this).prop('checked', roles.includes(parseInt($(this).val())));
                 });
+            });
+
+            // Prevent duplicate submissions
+            $('#createUserForm').on('submit', function() {
+                $('#createUserSubmit').prop('disabled', true);
             });
         });
     </script>
