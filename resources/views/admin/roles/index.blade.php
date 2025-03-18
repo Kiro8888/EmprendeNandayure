@@ -119,6 +119,21 @@
                 $(this).prop('checked', permissions.includes(parseInt($(this).val())));
             });
         });
+
+        // Prevent duplicate submissions by disabling the submit button
+        const createRoleForm = document.querySelector('#createRoleModal form');
+        const createRoleButton = createRoleForm.querySelector('button[type="submit"]');
+        
+        createRoleForm.addEventListener('submit', function() {
+            createRoleButton.disabled = true;
+        });
+
+        const editRoleForm = document.querySelector('#editRoleModal form');
+        const editRoleButton = editRoleForm.querySelector('button[type="submit"]');
+        
+        editRoleForm.addEventListener('submit', function() {
+            editRoleButton.disabled = true;
+        });
     });
 </script>
 @stop
