@@ -69,7 +69,7 @@
             </div>
             <div class="modal-body">
                 <!-- Formulario para crear categoría -->
-                <form action="{{route('admin.categories.store')}}" method="POST">
+                <form action="{{route('admin.categories.store')}}" method="POST" id="createCategoryForm">
                     @csrf
                     <div class="form-group">
                         <label for="ctg_name" class="form-label">Nombre de la Categoría</label>
@@ -85,12 +85,13 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Crear Categoría</button>
+                    <button type="submit" class="btn btn-primary" id="createCategoryButton">Crear Categoría</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 @foreach ($categories as $category)
 <!-- Modal de Editar Categoría -->
@@ -138,6 +139,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const createCategoryForm = document.getElementById('createCategoryForm');
+        const createCategoryButton = document.getElementById('createCategoryButton');
+
+        createCategoryForm.addEventListener('submit', function() {
+            createCategoryButton.disabled = true;
+        });
+
         const deleteButtons = document.querySelectorAll('.btn-delete');
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {

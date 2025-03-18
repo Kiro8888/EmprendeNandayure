@@ -88,25 +88,25 @@
                 <form action="{{ route('admin.entrepreneurships.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label>Nombre</label>
+                        <label>Nombre emprendimiento</label>
                         <input type="text" class="form-control" name="etp_name" required>
                     </div>
                     <div class="form-group">
-                        <label for="etp_num" class="form-label">Numero</label>
+                        <label for="etp_num" class="form-label">Número emprendimiento</label>
                         <input type="number" class="form-control" name="etp_num" id="etp_num"  maxlength="8" oninput="limitInputLength(this, 8)">
                         @error('etp_num')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="etp_email" class="form-label">Correo</label>
+                        <label for="etp_email" class="form-label">Correo emprendimiento</label>
                         <input type="email" class="form-control" name="etp_email" id="etp_email">
                         @error('etp_email')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="etp_img" class="form-label">Imagen</label>
+                        <label for="etp_img" class="form-label">Imagen emprendimiento</label>
                         <input type="file" class="form-control" name="etp_img" id="etp_img">
                         @error('etp_img')
                             <p class="text-danger">{{ $message }}</p>
@@ -136,7 +136,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label>Nombre</label>
+                        <label>Nombre emprendimiento</label>
                         <input type="text" class="form-control" name="etp_name" id="edit_etp_name" required>
                     </div>
                     <div class="form-group">
@@ -150,14 +150,14 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="etp_num" class="form-label">Numero</label>
+                        <label for="etp_num" class="form-label">Número emprendimiento</label>
                         <input type="number" class="form-control" name="etp_num" id="edit_etp_num" value="" maxlength="8" oninput="limitInputLength(this, 8)">
                         @error('etp_num')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="etp_email" class="form-label">Correo</label>
+                        <label for="etp_email" class="form-label">Correo emprendimiento</label>
                         <input type="email" class="form-control" name="etp_email" id="edit_etp_email" value="">
                         @error('etp_email')
                             <p class="text-danger">{{ $message }}</p>
@@ -208,7 +208,7 @@
                     @method('PUT')
                     {{-- Primer campo --}}
                     <div class="form-group">
-                        <label for="etp_name" class="form-label">Nombre</label>
+                        <label for="etp_name" class="form-label">Nombre emprendimiento</label>
                         <input type="text" class="form-control" name="etp_name" id="etp_name" value="{{$entrepreneurship->etp_name}}" readonly>
                         @error('etp_name')
                             <p class="text-danger">{{$message}}</p>
@@ -243,7 +243,7 @@
                     </div>
                     {{-- Sexto campo --}}
                     <div class="form-group">
-                        <label for="etp_num" class="form-label">Numero</label>
+                        <label for="etp_num" class="form-label">Número emprendimiento</label>
                         <input type="number" class="form-control" name="etp_num" id="etp_num"  value="{{$entrepreneurship->etp_num}}" readonly>
                         @error('etp_num')
                         <p class="text-danger">{{$message}}</p>
@@ -251,7 +251,7 @@
                     </div>
                     {{-- Setimo campo --}}
                     <div class="form-group">
-                        <label for="etp_email" class="form-label">Correo</label>
+                        <label for="etp_email" class="form-label">Correo emprendimiento</label>
                         <input type="email" class="form-control" name="etp_email" id="etp_email"  value="{{$entrepreneurship->etp_email}}" readonly>
                         @error('etp_email')
                         <p class="text-danger">{{$message}}</p>
