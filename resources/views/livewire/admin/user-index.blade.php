@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-      <a class="btn btn-primary" href="{{route('admin.users.create')}}"><i class="fas fa-plus"></i>Crear usuario</a>
+      {{-- <a class="btn btn-primary" href="{{route('admin.users.create')}}"><i class="fas fa-plus"></i>Crear usuario</a> --}}
       <hr>
       <input type="text" class="form-control" placeholder="Escriba el correo o el nombre del usuario" wire:model.live="search">
     </div>

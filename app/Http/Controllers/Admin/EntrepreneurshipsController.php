@@ -52,23 +52,15 @@ class EntrepreneurshipsController extends Controller
         // Obtener el usuario autenticado
         $user = auth()->user();
     
-    
-        // if ($user->hasRole('Entrepreneur')) {
-        
-        //     if (entrepreneurship::where('etp_id_user', $user->id)->exists()) {
-        //         return redirect()->route('admin.entrepreneurships.create')
-        //             ->withErrors(['msg' => 'Ya has creado un emprendimiento. No puedes agregar más.']);
-        //     }
-        // }
-    
         // Validación de los datos recibidos
-
         $request->validate([
             'etp_name' => ['required', 'string'],
             'etp_latitude' => ['required'],
             'etp_longitude' => ['required'],
             'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num'],
             'etp_email' => ['required', 'string', 'email', 'unique:entrepreneurships,etp_email'],
+        ], [
+            'etp_num.unique' => 'El número de teléfono ya está registrado.',
         ]);
     
         // Guardar el nuevo emprendimiento
@@ -115,8 +107,10 @@ class EntrepreneurshipsController extends Controller
             'etp_name' => ['required', 'string'],
             'etp_latitude' => ['required'],
             'etp_longitude' => ['required'],
-            'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num'],
-            'etp_email' => ['required'],
+            'etp_num' => ['required', 'digits:8', 'unique:entrepreneurships,etp_num,' . $entrepreneurship->id],
+            'etp_email' => ['required', 'string', 'email'],
+        ], [
+            'etp_num.unique' => 'El número de teléfono ya está registrado.',
         ]);
     
         // Si se sube una nueva imagen, guárdala y actualiza la ruta
@@ -126,16 +120,16 @@ class EntrepreneurshipsController extends Controller
                 unlink(public_path($entrepreneurship->etp_img));
             }
     
-            $imageName = time().'.'.$request->etp_img->extension();  
+            $imageName = time() . '.' . $request->etp_img->extension();
             $request->etp_img->move(public_path('images/entrepreneurships'), $imageName);
             $entrepreneurship->etp_img = 'images/entrepreneurships/' . $imageName;
         }
     
         // Actualiza los demás campos del emprendimiento
-        $entrepreneurship->update($request->except('etp_img'));  // Excluye 'etp_img' del request original
-        $entrepreneurship->save();  // Guarda el nuevo valor de 'etp_img' si se actualizó
+        $entrepreneurship->update($request->except(['etp_img'])); // Excluye 'etp_img' del request original
+        $entrepreneurship->save(); // Guarda el nuevo valor de 'etp_img' si se actualizó
     
-        return redirect()->route('admin.entrepreneurships.index', $entrepreneurship)
+        return redirect()->route('admin.entrepreneurships.index')
             ->with('info', 'El emprendimiento se actualizó correctamente');
     }
     
@@ -149,5 +143,11 @@ class EntrepreneurshipsController extends Controller
         return redirect()
         ->route('admin.entrepreneurships.index')
         ->with('info', 'El emprendimiento: '.$entrepreneurship->etp_name.'ha sido elimado');
+    }
+
+    public function checkPhoneNumber(Request $request)
+    {
+        $exists = entrepreneurship::where('etp_num', $request->etp_num)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }

@@ -293,6 +293,13 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const createProductForm = document.querySelector('form[action="{{route('admin.products.store')}}"]');
+        const createProductButton = createProductForm.querySelector('button[type="submit"]');
+
+        createProductForm.addEventListener('submit', function() {
+            createProductButton.disabled = true;
+        });
+
         const deleteButtons = document.querySelectorAll('.btn-delete');
         deleteButtons.forEach(button => {
             button.addEventListener('click', function() {

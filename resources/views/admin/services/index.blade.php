@@ -368,6 +368,13 @@
                 });
             });
         });
+
+        const createServiceForm = document.querySelector('#createServiceModal form');
+        const createServiceButton = createServiceForm.querySelector('button[type="submit"]');
+        
+        createServiceForm.addEventListener('submit', function() {
+            createServiceButton.disabled = true;
+        });
     });
 </script>
 @stop

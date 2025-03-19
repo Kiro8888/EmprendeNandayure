@@ -27,25 +27,76 @@
 </div>
 
 <!-- Modal con instrucciones -->
-<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="instructionsModalLabel">¿Cómo utilizarlo?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="modal fade" id="instructionsModal" tabindex="-1" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            
+            <!-- Encabezado con degradado -->
+            <div class="modal-header bg-gradient text-white" style="background: linear-gradient(135deg, #28a745, #218838);">
+                <h5 class="modal-title fw-bold">
+                    <i class="fas fa-lightbulb me-2"></i> ¿Cómo utilizarlo?
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <ol class="list-unstyled">
-                    <li class="mb-2"><strong>1. Selecciona un Producto:</strong> Explora nuestra variedad de productos y haz clic en "Consultar".</li>
-                    <li class="mb-2"><strong>2. Haz tu Consulta:</strong> Escribe tu condición de salud en el campo de texto, como "Tengo presión alta. ¿Es recomendable consumir este producto?".</li>
-                    <li class="mb-2"><strong>3. Envía tu Consulta:</strong> Haz clic en "Enviar Consulta" para obtener una respuesta rápida.</li>
-                    <li><strong>4. Recibe una Respuesta:</strong> En segundos, recibirás recomendaciones sobre el consumo del producto y la cantidad adecuada.</li>
-                </ol>
+
+            <!-- Cuerpo del modal -->
+            <div class="modal-body p-4">
+                <div class="container">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-primary">
+                                        <i class="fas fa-box me-2"></i> 1. Selecciona un Producto
+                                    </h6>
+                                    <p class="text-muted small">Explora nuestra variedad de productos y haz clic en 
+                                        <span class="badge bg-primary">Consultar</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-success">
+                                        <i class="fas fa-pencil-alt me-2"></i> 2. Haz tu Consulta
+                                    </h6>
+                                    <p class="text-muted small">Escribe tu condición de salud, por ejemplo: 
+                                        <span class="fst-italic">"Tengo presión alta. ¿Es recomendable consumir este producto?"</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-warning">
+                                        <i class="fas fa-paper-plane me-2"></i> 3. Envía tu Consulta
+                                    </h6>
+                                    <p class="text-muted small">Haz clic en <span class="badge bg-success">Enviar Consulta</span> para recibir una respuesta rápida.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 rounded-3">
+                                <div class="card-body">
+                                    <h6 class="fw-bold text-danger">
+                                        <i class="fas fa-comment-alt me-2"></i> 4. Recibe una Respuesta
+                                    </h6>
+                                    <p class="text-muted small">En segundos, recibirás recomendaciones sobre el consumo del producto y la cantidad adecuada.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+            <!-- Pie de modal con botón estilizado -->
+            <div class="modal-footer border-0 d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-dark rounded-pill px-4 py-2" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>                
+              
             </div>
         </div>
     </div>
@@ -59,57 +110,91 @@
     </div>
 @endif
 
-<div class="card">
+<div class="" style="height: 800px;
+    width: 900px;">
     <div class="card-body">
 
         <!-- Container for Products -->
         @if($products->isNotEmpty())
             <div class="row">
                 @foreach ($products as $product)
-                    <div class="col-sm-6 col-md-3 mb-4">
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300" style="width: 290px;">
-                            <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="w-full h-48 object-cover">
-                            <div class="p-3">
-                                <h2 class="text-md font-bold text-gray-800">{{ $product->pdt_name }}</h2>
-                                <p class="text-gray-600 mt-1 text-sm">{{ $product->pdt_description }}</p>
-                                <p class="text-lg font-bold text-indigo-600 mt-2">₡{{ number_format($product->pdt_price, 2) }}</p>
-                                <a href="#" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#productModal{{ $product->id_pdt }}">Consultar</a>
-                            </div>
+                <div class="col-sm-6 col-md-3 mb-4">
+                    <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                        <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="card-img-top">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" style="font-size: 1.25rem; font-weight: bold; color: #333;">{{ $product->pdt_name }}</h5>
+                            <p class="card-text text-success font-weight-bold">₡{{ number_format($product->pdt_price, 2) }}</p>
+                            <a href="#" class="btn btn-primary btn-sm rounded-pill px-3" data-toggle="modal" data-target="#productModal{{ $product->id_pdt }}">
+                                <i class="fas fa-search"></i> Consultar
+                            </a>
                         </div>
                     </div>
+                </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="productModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{ $product->id_pdt }}" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="productModalLabel{{ $product->id_pdt }}">{{ $product->pdt_name }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="img-fluid mb-3">
-                                    <p>{{ $product->pdt_description }}</p>
-                                    <p class="font-weight-bold">Precio: ₡{{ number_format($product->pdt_price, 2) }}</p>
-                                    <p>¿Deseas hacer una consulta sobre este producto?</p>
-                                    <form id="consultationForm{{ $product->id_pdt }}">
-                                        <div class="form-group">
-                                            <label for="userQuestion">Tienes algun padecimiento?<br>puedes describirlo acontinuacion:</label>
-                                            <textarea class="form-control" id="userQuestion{{ $product->id_pdt }}" rows="3" maxlength="100" required></textarea>
-                                        </div>
-                                    </form>
-                                    <div id="response{{ $product->id_pdt }}" class="mt-3"></div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                   
-                                    <button type="button" class="btn btn-primary" onclick="submitForm('{{ $product->id_pdt }}', '{{ $product->pdt_name }}', '{{ $product->pdt_description }}')">Enviar Consulta</button>
-                                    
-                                </div>
-                            </div>
-                        </div>
+<div class="modal fade" id="productModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="productModalLabel{{ $product->id_pdt }}" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content border-0 rounded-lg shadow-lg">
+            
+            <!-- Encabezado elegante -->
+            <div class="modal-header bg-light text-dark py-2">
+                <h6 class="modal-title font-weight-bold text-uppercase" id="productModalLabel{{ $product->id_pdt }}">
+                    {{ $product->pdt_name }}
+                </h6>
+                <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <!-- Cuerpo del Modal -->
+            <div class="modal-body text-center p-3">
+                <!-- Imagen del producto -->
+                <img src="{{ asset($product->pdt_img) }}" 
+                     alt="{{ $product->pdt_name }}" 
+                     class="img-fluid rounded-circle shadow-sm mb-2" 
+                     style="width: 80px; height: 80px; object-fit: cover;">
+
+                <!-- Descripción del Producto -->
+                <p class="text-muted small">{{ $product->pdt_description }}</p>
+                
+                <!-- Precio con estilo llamativo -->
+                <p class="font-weight-bold text-success">₡{{ number_format($product->pdt_price, 2) }}</p>
+
+                <!-- Pregunta para el usuario -->
+                <p class="font-weight-bold small">¿Tienes alguna condición de salud? Indícanos si necesitas recomendaciones sobre el consumo de este producto? </p>
+                
+            
+                
+
+                <!-- Formulario de consulta -->
+                <form id="consultationForm{{ $product->id_pdt }}">
+                    <div class="form-group">
+                        <textarea class="form-control border rounded-sm p-2" 
+                                  id="userQuestion{{ $product->id_pdt }}" 
+                                  rows="2" 
+                                  maxlength="100" 
+                                  placeholder="Escribe aquí..." 
+                                  required></textarea>
                     </div>
+                </form>
+
+                <div id="response{{ $product->id_pdt }}" class="mt-2"></div>
+            </div>
+
+            <!-- Pie del Modal con botones estilizados -->
+            <div class="modal-footer d-flex justify-content-between px-3 py-2">
+                <button type="button" class="btn btn-sm btn-light shadow-sm px-3 py-1" data-dismiss="modal">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+                <button type="button" class="btn btn-sm btn-primary shadow-sm px-3 py-1" 
+                        onclick="submitForm('{{ $product->id_pdt }}', '{{ $product->pdt_name }}', '{{ $product->pdt_description }}')">
+                    <i class="fas fa-paper-plane"></i> Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
                 @endforeach
             </div>
 
@@ -143,10 +228,45 @@
         max-height: 200px;
         object-fit: cover;
     }
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
 
     .card-body {
         background: #f4f6f9;
     }
+    .modal-sm {
+    max-width: 350px; /* Tamaño compacto */
+}
+
+.modal-content {
+    border-radius: 12px;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.btn-primary {
+        background-color: #28a745;
+        border: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+.btn-light:hover {
+    background-color: #e9ecef !important;
+    transform: scale(1.05);
+}
+
+
+
+
 </style>
 
 <!-- Scripts -->
