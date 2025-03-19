@@ -337,36 +337,41 @@
             });
         });
 
-        // Check for duplicate phone number before submitting the form
+        // Validar ubicación antes de enviar el formulario de creación
         const createForm = document.querySelector('#createEntrepreneurshipModal form');
-        const editForm = document.querySelector('#editEntrepreneurshipModal form');
-
         createForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            checkDuplicatePhoneNumber(createForm);
-        });
+            const latitude = document.getElementById('etp_latitude_create').value;
+            const longitude = document.getElementById('etp_longitude_create').value;
 
-        editForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            checkDuplicatePhoneNumber(editForm);
-        });
-
-        function checkDuplicatePhoneNumber(form) {
-            const phoneNumber = form.querySelector('input[name="etp_num"]').value;
-            fetch(`/admin/entrepreneurships/check-phone?etp_num=${phoneNumber}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.exists) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'El número de teléfono ya está registrado.'
-                        });
-                    } else {
-                        form.submit();
-                    }
+            if (!latitude || !longitude) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Es obligatorio registrar una ubicación en el mapa.'
                 });
-        }
+                return;
+            }
+        });
+
+        // Validar ubicación antes de enviar el formulario de edición
+        @foreach ($entrepreneurships as $entrepreneurship)
+        const editForm{{ $entrepreneurship->id }} = document.querySelector('#editEntrepreneurshipModal{{ $entrepreneurship->id }} form');
+        editForm{{ $entrepreneurship->id }}.addEventListener('submit', function(event) {
+            const latitude = document.getElementById('edit_etp_latitude_{{ $entrepreneurship->id }}').value;
+            const longitude = document.getElementById('edit_etp_longitude_{{ $entrepreneurship->id }}').value;
+
+            if (!latitude || !longitude) {
+                event.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Es obligatorio registrar una ubicación en el mapa.'
+                });
+                return;
+            }
+        });
+        @endforeach
     });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
