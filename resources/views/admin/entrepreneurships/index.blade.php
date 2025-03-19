@@ -44,7 +44,7 @@
                     <td>{{ $entrepreneurship->etp_email }}</td>
                     <td>
                         <button type="button" class="btn btn-warning btn-edit" data-toggle="modal" 
-                            data-target="#editEntrepreneurshipModal" 
+                            data-target="#editEntrepreneurshipModal{{ $entrepreneurship->id }}" 
                             data-id="{{ $entrepreneurship->id }}"
                             data-name="{{ $entrepreneurship->etp_name }}"
                             data-latitude="{{ $entrepreneurship->etp_latitude }}"
@@ -124,7 +124,7 @@
 
 @foreach ($entrepreneurships as $entrepreneurship)
 <!-- Modal de edición -->
-<div class="modal fade" id="editEntrepreneurshipModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="editEntrepreneurshipModal{{ $entrepreneurship->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -132,65 +132,53 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
             </div>
             <div class="modal-body">
-                <form id="editForm" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.entrepreneurships.update', $entrepreneurship) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label>Nombre emprendimiento</label>
-                        <input type="text" class="form-control" name="etp_name" id="edit_etp_name" required>
+                        <input type="text" class="form-control" name="etp_name" value="{{ $entrepreneurship->etp_name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="etp_status" class="form-label">Estatus</label>
-                        <select class="form-control" name="etp_status" id="etp_status">
+                        <select class="form-control" name="etp_status">
                             <option value="1" {{ $entrepreneurship->etp_status == 1 ? 'selected' : '' }}>Activo</option>
                             <option value="2" {{ $entrepreneurship->etp_status == 2 ? 'selected' : '' }}>Inactivo</option>
                         </select>
-                        @error('etp_status')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="etp_num" class="form-label">Número emprendimiento</label>
-                        <input type="number" class="form-control" name="etp_num" id="edit_etp_num" value="" maxlength="8" oninput="limitInputLength(this, 8)">
-                        @error('etp_num')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                        <input type="number" class="form-control" name="etp_num" value="{{ $entrepreneurship->etp_num }}" maxlength="8" oninput="limitInputLength(this, 8)">
                     </div>
                     <div class="form-group">
                         <label for="etp_email" class="form-label">Correo emprendimiento</label>
-                        <input type="email" class="form-control" name="etp_email" id="edit_etp_email" value="">
-                        @error('etp_email')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                        <input type="email" class="form-control" name="etp_email" value="{{ $entrepreneurship->etp_email }}">
                     </div>
-      {{-- Mostrar imagen actual --}}
-      <div class="form-group">
-        <label for="etp_img" class="form-label">Imagen Actual</label>
-        @if ($entrepreneurship->etp_img)
-            <div>
-                <img src="{{ asset($entrepreneurship->etp_img) }}" alt="Imagen del Servicio" width="150">
-            </div>
-        @else
-            <p>No hay imagen disponible.</p>
-        @endif
-    </div>
+                    <div class="form-group">
+                        <label for="etp_img" class="form-label">Imagen Actual</label>
+                        @if ($entrepreneurship->etp_img)
+                            <div>
+                                <img src="{{ asset($entrepreneurship->etp_img) }}" alt="Imagen del Emprendimiento" width="150">
+                            </div>
+                        @else
+                            <p>No hay imagen disponible.</p>
+                        @endif
+                    </div>
                     <div class="form-group">
                         <label for="etp_img" class="form-label">Nueva Imagen</label>
-                        <input type="file" class="form-control" name="etp_img" id="etp_img">
-                        @error('etp_img')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
+                        <input type="file" class="form-control" name="etp_img">
                     </div>
-                    <div id="map-edit" style="height: 400px; width: 100%;"></div>
-                    <input type="hidden" name="etp_latitude" id="edit_etp_latitude">
-                    <input type="hidden" name="etp_longitude" id="edit_etp_longitude">
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <div id="map-edit-{{ $entrepreneurship->id }}" style="height: 400px; width: 100%;"></div>
+                    <input type="hidden" name="etp_latitude" id="edit_etp_latitude_{{ $entrepreneurship->id }}" value="{{ $entrepreneurship->etp_latitude }}">
+                    <input type="hidden" name="etp_longitude" id="edit_etp_longitude_{{ $entrepreneurship->id }}" value="{{ $entrepreneurship->etp_longitude }}">
+                    <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 @endforeach
+
 @foreach ($entrepreneurships as $entrepreneurship)
 <!-- Modal para mostrar -->
 <div class="modal fade" id="showEntrepreneurshipModal{{ $entrepreneurship->id }}" tabindex="-1" role="dialog" aria-labelledby="showEntrepreneurshipModalLabel{{ $entrepreneurship->id }}" aria-hidden="true">
@@ -279,7 +267,7 @@
 
 @section('js')
 <script>
-    let mapCreate, mapEdit;
+    let mapCreate;
     function initMap() {
         mapCreate = new google.maps.Map(document.getElementById('map-create'), {
             center: { lat: 9.9333, lng: -84.0833 },
@@ -292,45 +280,22 @@
             document.getElementById('etp_longitude_create').value = event.latLng.lng();
         });
 
-        $('#editEntrepreneurshipModal').on('show.bs.modal', function(event) {
-            let button = $(event.relatedTarget);
-            let id = button.data('id');
-            let name = button.data('name');
-            let latitude = parseFloat(button.data('latitude')) || 9.9333;
-            let longitude = parseFloat(button.data('longitude')) || -84.0833;
-            let num = button.data('num');
-            let email = button.data('email');
-            let img = button.data('img');
-
-            $('#edit_etp_name').val(name);
-            $('#edit_etp_latitude').val(latitude);
-            $('#edit_etp_longitude').val(longitude);
-            $('#edit_etp_num').val(num);
-            $('#edit_etp_email').val(email);
-            $('#editForm').attr('action', '/admin/entrepreneurship/' + id);
-
-            if (img) {
-                $('#current_image').html('<img src="' + img + '" alt="Imagen del Servicio" width="150">');
-            } else {
-                $('#current_image').html('<p>No hay imagen disponible.</p>');
-            }
-
-            if (!mapEdit) {
-                mapEdit = new google.maps.Map(document.getElementById('map-edit'), {
-                    center: { lat: latitude, lng: longitude },
-                    zoom: 10
-                });
-            } else {
-                mapEdit.setCenter({ lat: latitude, lng: longitude });
-            }
-
-            let markerEdit = new google.maps.Marker({ position: { lat: latitude, lng: longitude }, map: mapEdit, draggable: true });
-            mapEdit.addListener('click', function(event) {
-                markerEdit.setPosition(event.latLng);
-                document.getElementById('edit_etp_latitude').value = event.latLng.lat();
-                document.getElementById('edit_etp_longitude').value = event.latLng.lng();
-            });
+        @foreach ($entrepreneurships as $entrepreneurship)
+        const mapEdit{{ $entrepreneurship->id }} = new google.maps.Map(document.getElementById('map-edit-{{ $entrepreneurship->id }}'), {
+            center: { lat: parseFloat('{{ $entrepreneurship->etp_latitude }}'), lng: parseFloat('{{ $entrepreneurship->etp_longitude }}') },
+            zoom: 10
         });
+        const markerEdit{{ $entrepreneurship->id }} = new google.maps.Marker({
+            position: { lat: parseFloat('{{ $entrepreneurship->etp_latitude }}'), lng: parseFloat('{{ $entrepreneurship->etp_longitude }}') },
+            map: mapEdit{{ $entrepreneurship->id }},
+            draggable: true
+        });
+        mapEdit{{ $entrepreneurship->id }}.addListener('click', function(event) {
+            markerEdit{{ $entrepreneurship->id }}.setPosition(event.latLng);
+            document.getElementById('edit_etp_latitude_{{ $entrepreneurship->id }}').value = event.latLng.lat();
+            document.getElementById('edit_etp_longitude_{{ $entrepreneurship->id }}').value = event.latLng.lng();
+        });
+        @endforeach
 
         @foreach ($entrepreneurships as $entrepreneurship)
         let mapShow{{ $entrepreneurship->id }} = new google.maps.Map(document.getElementById('map-show-{{ $entrepreneurship->id }}'), {

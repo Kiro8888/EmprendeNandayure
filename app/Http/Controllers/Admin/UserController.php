@@ -28,9 +28,11 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('status', 'Activo')->paginate(10);
-        $roles = Role::all();
     
-        return view('admin.users.index', compact('users', 'roles'));
+        // Depuración: Verifica cuántos usuarios se están obteniendo
+        // dd($users->toArray());
+    
+        return view('admin.users.index', compact('users'));
     }
     
 
@@ -48,29 +50,27 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Validación de los datos recibidos
+        //hay que agregar la validacion unica
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', 'string', 'min:8'], // Puedes agregar reglas adicionales si es necesario
         ]);
-
-        // Crear el usuario
-        $user = User::create([
+        $users = User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Asignar roles
-        if ($request->has('roles')) {
-            $user->roles()->sync($request->roles);
-        }
 
-        return redirect()->route('admin.users.index')
-            ->with('info', 'El usuario se guardó correctamente');
+        // ESTE ES EL VERDADERO
+        //  $users = user::create($request->all());
+
+
+        return redirect()->route('admin.users.index', $users)
+        ->with('info', 'el usuario se guardo correctamente');
     }
 
     /**
@@ -104,23 +104,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // Validación de los datos recibidos
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-        ]);
+        $user->roles()->sync($request->roles);
 
-        // Actualizar el usuario
-        $user->update($request->only('name', 'last_name', 'email'));
-
-        // Asignar roles
-        if ($request->has('roles')) {
-            $user->roles()->sync($request->roles);
-        }
-
-        return redirect()->route('admin.users.index')
-            ->with('info', 'El usuario se actualizó correctamente');
+        return redirect()->route('admin.users.edit',$user)
+        ->with('info', 'El rol de usuario ha sido asignado correctamente');
     }
 
     /**

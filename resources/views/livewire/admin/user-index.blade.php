@@ -22,25 +22,18 @@
 
             @foreach ($users as $user)
             @if ($user->status === 'Activo')
-                <tr>
-                    <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->last_name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->status }}</td>
-                    <td width="200px">
-                        <button class="btn btn-warning" data-toggle="modal" data-target="#editUserModal" 
-                            data-id="{{ $user->id }}" 
-                            data-name="{{ $user->name }}" 
-                            data-last_name="{{ $user->last_name }}" 
-                            data-email="{{ $user->email }}"
-                            data-roles="{{ $user->roles->pluck('id') }}">
-                            Editar
-                        </button>
-                    </td>
-                </tr>
-            @endif
-            @endforeach
+                            <tr>
+                                <th scope="row">{{ $user->id }}</th>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->last_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->status }}</td>
+                                <td width="200px">
+                                    <a class="btn btn-warning" href="{{ route('admin.users.edit', $user) }}">Editar</a>
+                                </td>
+                            </tr>
+                        @endif
+        @endforeach
             </tbody>
         </table>
     </div>
@@ -55,4 +48,7 @@
             No se ha encontrado ningun usuario 
         </div>
     @endif
+
+ 
+
 </div>
