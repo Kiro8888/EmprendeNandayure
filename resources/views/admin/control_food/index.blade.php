@@ -300,8 +300,10 @@ Por favor, responde de manera breve y profesional, considerando lo siguiente:
  ¿Es seguro consumir este producto para alguien con esta condición de salud?
  Si es seguro, ¿cuál sería la cantidad recomendada para consumir?
 Proporciona información clara y útil para ayudar al usuario a tomar una decisión informada. Aparte tienes que tomar en cuenta la temporalidad que puedan tomar, tambien toma en cuenta por ejemplo si el usuario es alergico a algun ingrediente o si tiene alguna restriccion alimentaria por ejemplo veganos o vegetarianos.
-
-**Nota importante**: Limita tu respuesta a un máximo de 150 tokens. Sé conciso y directo, priorizando la información más relevante para el usuario.`
+**Nota importante**:
+- Limita tu respuesta exclusivamente a temas relacionados con la salud y condiciones médicas.
+- Si la consulta no está relacionada con la salud o condiciones médicas, responde con: "Lo siento, solo puedo responder preguntas relacionadas con la salud y condiciones médicas.
+- Sé breve, profesional y directo. Limita tu respuesta a un máximo de 150 tokens.`
                         }
                     ],
                     max_tokens: 150, // Incrementado para permitir respuestas más detalladas
