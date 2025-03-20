@@ -59,12 +59,16 @@
                         <div class="form-group">
                             <label for="Roles" class="form-label">Roles</label>
                             <br>
-                            @foreach ($roles as $rol)
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" name="roles[]" id="rol" value="{{$rol->id}}">
-                                    <label for="checkbox" class="form-check-label">{{$rol->name}}</label>
-                                </div>
-                            @endforeach
+                            @if (isset($roles) && $roles->count())
+                                @foreach ($roles as $rol)
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" name="roles[]" id="rol_{{ $rol->id }}" value="{{ $rol->id }}">
+                                        <label for="rol_{{ $rol->id }}" class="form-check-label">{{ $rol->name }}</label>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p class="text-danger">No hay roles disponibles.</p>
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-primary" id="createUserSubmit">Guardar</button>
                     </form>
@@ -112,8 +116,8 @@
                             <br>
                             @foreach ($roles as $rol)
                                 <div class="form-check form-check-inline">
-                                    <input type="checkbox" class="form-check-input" name="roles[]" id="edit_rol_{{$rol->id}}" value="{{$rol->id}}">
-                                    <label for="edit_rol_{{$rol->id}}" class="form-check-label">{{$rol->name}}</label>
+                                    <input type="checkbox" class="form-check-input" name="roles[]" id="edit_rol_{{ $rol->id }}" value="{{ $rol->id }}">
+                                    <label for="edit_rol_{{ $rol->id }}" class="form-check-label">{{ $rol->name }}</label>
                                 </div>
                             @endforeach
                         </div>
@@ -139,16 +143,23 @@
                 let name = button.data('name');
                 let lastName = button.data('last_name');
                 let email = button.data('email');
-                let roles = button.data('roles');
+                let roles = button.data('roles') ? button.data('roles').toString().split(',').map(Number) : []; // Convertir roles a un array de números
 
+                // Configurar el formulario del modal
                 $('#editForm').attr('action', '/admin/users/' + id);
                 $('#editForm #edit_name').val(name);
                 $('#editForm #edit_last_name').val(lastName);
                 $('#editForm #edit_email').val(email);
 
+                // Marcar los roles correspondientes
                 $('#editForm input[name="roles[]"]').each(function() {
                     $(this).prop('checked', roles.includes(parseInt($(this).val())));
                 });
+            });
+
+            // Prevenir envíos duplicados
+            $('#editForm').on('submit', function() {
+                $(this).find('button[type="submit"]').prop('disabled', true);
             });
 
             // Prevent duplicate submissions
