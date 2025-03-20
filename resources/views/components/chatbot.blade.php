@@ -89,11 +89,13 @@
     <div class="" id="chatbotContainer">      
         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
         <df-messenger
-          intent="WELCOME"
-          chat-title="EmprendeNanda"
-          agent-id="d0eb13bd-0f4c-46cf-bdc4-87f0ba824d35"
-          language-code="es"
-        ></df-messenger>
+            intent="WELCOME"
+            chat-title="EmprendeNanda"
+            agent-id="d0eb13bd-0f4c-46cf-bdc4-87f0ba824d35"
+            language-code="es"
+            single-utterance="true"
+            suppress="true">
+        </df-messenger>
     </div>
 
     <script>
