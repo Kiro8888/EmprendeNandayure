@@ -1,14 +1,15 @@
 <x-app-layout>
     <x-guest-layout>
         <!-- Hero Section -->
-<section class="w-full bg-cover bg-center h-[600px] flex items-center justify-center relative" style="background-image: url('/client/hero-about.jpg');">
+<section class="w-full bg-cover bg-center h-[600px] flex items-center justify-center relative" style="background-image: url('/client/hero-about.jpg'); height: 600px;">
     <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay for darkening -->
     <div class="text-center text-white z-10 px-4 md:px-8">
         <h1 class="text-6xl font-extrabold leading-tight tracking-wide mb-6">Emprende Nandayure</h1>
         <p class="text-lg md:text-2xl font-medium mb-8 max-w-4xl mx-auto">Únete a nuestra plataforma de emprendedores y da el primer paso hacia tu éxito. ¿Estás listo para crear algo increíble?</p>
-        <a href="#registro" class="bg-green-600 hover:bg-green-700 text-white py-4 px-8 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105">Comienza Ahora</a>
+        <a href="#" class="bg-green-600 hover:bg-green-700 text-white py-4 px-8 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105">Comienza Ahora</a>
     </div>
 </section>
+
 
 
         <div class="bg-gray-100 min-h-screen py-12">
@@ -65,15 +66,15 @@
                         <form method="POST" action="{{ route('registerEmprendedor') }}">
                             @csrf
                             <div class="mb-4">
-                                <x-label for="name" value="{{ __('Nombre') }}" />
-                                <x-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                                <x-label for="name" value="{{ __('Nombre de emprendedor') }}" />
+                                <x-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required />
                             </div>
                             <div class="mb-4">
-                                <x-label for="last_name" value="{{ __('Apellido') }}" />
+                                <x-label for="last_name" value="{{ __('Apellido de emprendedor') }}" />
                                 <x-input id="last_name" class="block w-full mt-1" type="text" name="last_name" :value="old('last_name')" required />
                             </div>
                             <div class="mb-4">
-                                <x-label for="cellphone" value="{{ __('Celular') }}" />
+                                <x-label for="cellphone" value="{{ __('Celular del emprendedor') }}" />
                                 <x-input id="cellphone" class="block w-full mt-1" type="number" name="cellphone" :value="old('cellphone')" required maxlength="8" />
                                 
                                 @error('cellphone')
@@ -81,7 +82,7 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                                <x-label for="cedula" value="{{ __('Cédula') }}" />
+                                <x-label for="cedula" value="{{ __('Cédula del emprendedor') }}" />
                                 <x-input id="cedula" class="block w-full mt-1" type="number" name="cedula" :value="old('cedula')" required maxlength="9" />
 
                                 @error('cedula')
@@ -89,18 +90,18 @@
                             @enderror
                             </div>
                             <div class="mb-4">
-                                <x-label for="email" value="{{ __('Email') }}" />
+                                <x-label for="email" value="{{ __('Correo del emprendedor') }}" />
                                 <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
                                 @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                             </div>
                             <div class="mb-4">
-                                <x-label for="password" value="{{ __('Password') }}" />
+                                <x-label for="password" value="{{ __('Contraseña') }}" />
                                 <x-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="new-password" />
                             </div>
                             <div class="mb-4">
-                                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                                <x-label for="password_confirmation" value="{{ __('Confirmar contraseña') }}" />
                                 <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required autocomplete="new-password" />
                                 @error('password')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
