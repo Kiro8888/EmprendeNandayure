@@ -29,7 +29,16 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->status }}</td>
                                 <td width="200px">
-                                    <a class="btn btn-warning" href="{{ route('admin.users.edit', $user) }}">Editar</a>
+                                    <button class="btn btn-warning" 
+                                            data-toggle="modal" 
+                                            data-target="#editUserModal" 
+                                            data-id="{{ $user->id }}" 
+                                            data-name="{{ $user->name }}" 
+                                            data-last_name="{{ $user->last_name }}" 
+                                            data-email="{{ $user->email }}" 
+                                            data-roles="{{ $user->roles->pluck('id')->join(',') }}">
+                                        Editar
+                                    </button>
                                 </td>
                             </tr>
                         @endif

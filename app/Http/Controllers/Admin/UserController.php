@@ -28,11 +28,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('status', 'Activo')->paginate(10);
+        $roles = Role::all(); // Obtener todos los roles
     
-        // Depuración: Verifica cuántos usuarios se están obteniendo
-        // dd($users->toArray());
-    
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
     
 
@@ -104,10 +102,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->roles()->sync($request->roles);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'roles' => 'array',
+        ]);
 
-        return redirect()->route('admin.users.edit',$user)
-        ->with('info', 'El rol de usuario ha sido asignado correctamente');
+        $user->update($request->only('name', 'last_name', 'email'));
+
+        // Sincronizar roles
+        if ($request->has('roles')) {
+            $user->roles()->sync($request->roles);
+        }
+
+        return redirect()->route('admin.users.index')->with('info', 'El usuario se actualizó correctamente.');
     }
 
     /**

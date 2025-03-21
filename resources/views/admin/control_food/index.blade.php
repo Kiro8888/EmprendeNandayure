@@ -276,7 +276,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-   async function submitForm(productId, productName, productDescription) {
+async function submitForm(productId, productName, productDescription) {
     const question = $('#userQuestion' + productId).val();
     const responseElement = $('#response' + productId);
 
@@ -294,10 +294,19 @@
                     messages: [
                         {
                             role: 'user',
-                            content: `Soy un experto en salud. Estoy consultando sobre el producto ${productName} (${productDescription}). El usuario tiene la siguiente condición: "${question}". ¿Es recomendable consumir este producto y en qué cantidad?, por favor puedes ser breve e ignorar cualquier consulta fuera del tema de salud`
+                            content: `Eres un asistente experto en salud y nutrición. Estoy consultando sobre el producto "${productName}" (${productDescription}). El usuario tiene la siguiente condición de salud: "${question}". 
+
+Por favor, responde de manera breve y profesional, considerando lo siguiente:
+ ¿Es seguro consumir este producto para alguien con esta condición de salud?
+ Si es seguro, ¿cuál sería la cantidad recomendada para consumir?
+Proporciona información clara y útil para ayudar al usuario a tomar una decisión informada. Aparte tienes que tomar en cuenta la temporalidad que puedan tomar, tambien toma en cuenta por ejemplo si el usuario es alergico a algun ingrediente o si tiene alguna restriccion alimentaria por ejemplo veganos o vegetarianos.
+**Nota importante**:
+- Limita tu respuesta exclusivamente a temas relacionados con la salud y condiciones médicas.
+- Si la consulta no está relacionada con la salud o condiciones médicas, responde con: "Lo siento, solo puedo responder preguntas relacionadas con la salud y condiciones médicas.
+- Sé breve, profesional y directo. Limita tu respuesta a un máximo de 150 tokens.`
                         }
                     ],
-                    max_tokens: 100, // Limita la respuesta a 100 tokens
+                    max_tokens: 150, // Incrementado para permitir respuestas más detalladas
                     temperature: 0.7 // Ajusta la creatividad de la respuesta (0 a 1)
                 })
             });
