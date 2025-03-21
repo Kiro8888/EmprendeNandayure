@@ -8,9 +8,11 @@
 @stop
 
 @section('content')
-     @livewire('admin.user-index')
-        
+    @livewire('admin.user-index')
+    
     <x-chatbot />
+
+  
 
     <!-- Modal de crear usuario -->
     <div class="modal fade" id="createUserModal" tabindex="-1" aria-hidden="true">
@@ -135,6 +137,7 @@
 @stop
 
 @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             $('#editUserModal').on('show.bs.modal', function(event) {
@@ -163,8 +166,32 @@
             });
 
             // Prevent duplicate submissions
-            $('#createUserForm').on('submit', function() {
-                $('#createUserSubmit').prop('disabled', true);
+            $('#createUserForm').on('submit', function(e) {
+                e.preventDefault(); // Prevent form submission
+
+                let email = $('#email').val();
+
+                // Check if the email already exists (server-side validation will still occur)
+                $.ajax({
+                    url: "{{ route('admin.users.store') }}",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#createUserForm').unbind('submit').submit(); // Submit the form if no error
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) { // Validation error
+                            let errors = xhr.responseJSON.errors;
+                            if (errors.email) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'El correo ya se encuentra registrado.',
+                                });
+                            }
+                        }
+                    }
+                });
             });
         });
     </script>

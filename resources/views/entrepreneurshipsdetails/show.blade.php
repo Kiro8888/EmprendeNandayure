@@ -123,7 +123,10 @@
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
                 text-align: center;
                 position: relative;
-                height: 350px;
+                height: auto; /* Adjusted to fit content dynamically */
+                display: flex;
+                flex-direction: column; /* Ensures proper stacking of elements */
+                justify-content: space-between; /* Distributes space evenly */
             }
 
             .product-card img {
@@ -151,13 +154,14 @@
                 font-size: 1.1rem;
                 font-weight: bold;
                 color: #28a745;
+                margin-top: auto; /* Pushes the price to the bottom of the card */
+                text-align: center; /* Ensures proper alignment */
             }
 
             .product-card .btn-view {
-                position: absolute;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
+                position: relative; /* Changed from absolute to relative */
+                margin-top: 10px; /* Added margin to separate from the price */
+                display: inline-block; /* Ensures proper alignment */
                 background-color: #28a745;
                 color: white;
                 padding: 10px 20px;
@@ -218,25 +222,29 @@
         <div class="product-section">
             <h2 class="text-center mb-4">Nuestros Productos y Servicios</h2>
             <div class="product-grid">
-                @foreach ($products as $product)
-                    <div class="product-card">
-                        <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $product->pdt_name }}">
-                        <h3>{{ $product->pdt_name }}</h3>
-                        <p>{{ $product->pdt_description }}</p>
-                        <div class="price">${{ number_format($product->pdt_price, 2) }}</div>
-                        <a href="{{ route('client.product_details', $product->id_pdt) }}" class="btn-view">Ver más</a>
-                    </div>
-                @endforeach
+            @foreach ($products as $product)
+            <div class="product-container">
+                <div class="product-card">
+                <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $product->pdt_name }}">
+                <a href="{{ route('client.product_details', $product->id_pdt) }}" class="btn-view" style="margin-top: 10px;">Ver más</a>
+                <h3>{{ $product->pdt_name }}</h3>
+                <p>{{ $product->pdt_description }}</p>
+                <div class="price">${{ number_format($product->pdt_price, 2) }}</div>
+                </div>
+            </div>
+            @endforeach
 
-                @foreach ($services as $service)
-                    <div class="product-card">
-                        <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $service->srv_name }}">
-                        <h3>{{ $service->srv_name }}</h3>
-                        <p>{{ $service->srv_description }}</p>
-                        <div class="price">${{ number_format($service->srv_price, 2) }}</div>
-                        <a href="{{ route('client.service_details', $service->id_srv) }}" class="btn-view">Ver más</a>
-                    </div>
-                @endforeach
+            @foreach ($services as $service)
+            <div class="service-container">
+                <div class="product-card">
+                <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $service->srv_name }}">
+                <h3>{{ $service->srv_name }}</h3>
+                <p>{{ $service->srv_description }}</p>
+                <div class="price">${{ number_format($service->srv_price, 2) }}</div>
+                <a href="{{ route('client.service_details', $service->id_srv) }}" class="btn-view" style="margin-top: 10px;">Ver más</a>
+                </div>
+            </div>
+            @endforeach
             </div>
         </div>
 

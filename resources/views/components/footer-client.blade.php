@@ -5,12 +5,12 @@
             <!-- Office Info -->
             <div class="custom-footer-column">
                 <h4 class="custom-text-white custom-mb-4">Información</h4>
-                <p><i class="fas fa-map-marker-alt custom-me-3"></i>Nandayure, Guanacaste, Costa Rica</p>
-                <p><i class="fas fa-phone-alt custom-me-3"></i>+506 2657-7081</p>
-                <p><i class="fas fa-envelope custom-me-3"></i>info@nandayure.go.cr</p>
+                <p><i class="fas fa-map-marker-alt custom-me-3"></i> Nandayure, Guanacaste, Costa Rica</p>
+                <p><i class="fas fa-phone-alt custom-me-3"></i> +506 2657-7081</p>
+                <p><i class="fas fa-envelope custom-me-3"></i> info@nandayure.go.cr</p>
                 <div class="custom-footer-social-links">
                     {{-- <a class="custom-social-link" href="#"><i class="fab fa-twitter"></i></a> --}}
-                    <a class="custom-social-link" href="https://www.facebook.com/share/1EpBAHve4f/?mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a>
+                    {{-- <a class="custom-social-link" href="https://www.facebook.com/share/1EpBAHve4f/?mibextid=LQQJ4d"><i class="fab fa-facebook-f"></i></a> --}}
                     {{-- <a class="custom-social-link" href="#"><i class="fab fa-youtube"></i></a> --}}
                     {{-- <a class="custom-social-link" href="#"><i class="fab fa-linkedin-in"></i></a> --}}
                 </div>

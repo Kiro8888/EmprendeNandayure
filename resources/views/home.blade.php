@@ -428,48 +428,97 @@
     </div>
 </center>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
+<script>
+    // Generate a unique cache-busting query string
+    const cacheBuster = new Date().getTime();
+    const googleMapsScript = document.createElement('script');
+    googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap&_=${cacheBuster}`;
+    googleMapsScript.async = true;
+    googleMapsScript.defer = true;
+    document.head.appendChild(googleMapsScript);
+</script>
+
 <script>
     var map;
     var defaultCenter = { lat: 9.7489, lng: -83.7534 };
-    
+    var mapInitialized = false;
+
     function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: defaultCenter,
-            zoom: 8,
-            
-        });
+        try {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultCenter,
+                zoom: 8,
+                styles: [
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#a2daf2" }]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#abce83" }]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#ffffff" }]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [{ "color": "#c5dac6" }]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{ "color": "#447530" }]
+                    }
+                ]
+            });
 
-        // Obtener las ubicaciones desde Blade y convertirlas en una lista JavaScript
-        var entrepreneurships = @json($entrepreneurships);
+            var entrepreneurships = @json($entrepreneurships);
 
-        entrepreneurships.forEach(function(etp) {
-            if (etp.etp_latitude && etp.etp_longitude) {
-                var marker = new google.maps.Marker({
-                    position: { lat: parseFloat(etp.etp_latitude), lng: parseFloat(etp.etp_longitude) },
-                    map: map,
-                    title: etp.etp_name,
-                    icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
-                });
+            entrepreneurships.forEach(function(etp) {
+                if (etp.etp_latitude && etp.etp_longitude) {
+                    var marker = new google.maps.Marker({
+                        position: { lat: parseFloat(etp.etp_latitude), lng: parseFloat(etp.etp_longitude) },
+                        map: map,
+                        title: etp.etp_name,
+                        icon: "https://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                    });
 
-                var infowindow = new google.maps.InfoWindow({
-    content: `
-        <div style="color: #333;">
-            <h6>${etp.etp_name}</h6>
-            <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width:100px;height:auto;display:block;margin-top:10px;">
-        </div>
-    `
-});
-                marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                });
-            }
-        });
+                    var infowindow = new google.maps.InfoWindow({
+                        content: `
+                            <div style="color: #333; font-family: Arial, sans-serif; max-width: 250px;">
+                                <h5 style="margin: 0; font-size: 18px; color: #009A00;">${etp.etp_name}</h5>
+                                <img src="${etp.etp_img}" alt="${etp.etp_name}" style="width:100%; height:auto; border-radius: 8px; margin-top: 10px;">
+                                <a href="/entrepreneurships/${etp.id}" style="display: inline-block; margin-top: 10px; color: #009A00; text-decoration: underline;">Ver más detalles</a>
+                            </div>
+                        `
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+                    });
+                }
+            });
+
+            mapInitialized = true;
+        } catch (error) {
+            console.error("Error initializing map:", error);
+            setTimeout(initMap, 1000); // Retry after 1 second
+        }
     }
 
     function centerMap() {
-        map.setCenter(defaultCenter);
-        map.setZoom(8);
+        if (mapInitialized) {
+            map.setCenter(defaultCenter);
+            map.setZoom(8);
+        } else {
+            console.warn("Map not initialized yet. Retrying...");
+            initMap();
+        }
     }
 </script>
 
