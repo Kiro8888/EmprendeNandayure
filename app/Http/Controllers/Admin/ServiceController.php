@@ -25,26 +25,17 @@ class ServiceController extends Controller
     public function index()
     {
         $categories = category::all();
-        // Obtener el usuario autenticado
         $user = auth()->user();
     
-        // Si el usuario tiene el rol de Entrepreneur, filtrar los servicios por sus emprendimientos
         if ($user->hasRole('Entrepreneur')) {
-            // Obtener todos los emprendimientos del usuario
             $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
-    
-            // Filtrar los servicios asociados a esos emprendimientos
-            $services = service::whereIn('srv_id_etp', $entrepreneurships->pluck('id'))->get();
+            $services = service::whereIn('srv_id_etp', $entrepreneurships->pluck('id'))->paginate(10); // Use paginate
         } else {
-            // Si es Admin u otro rol, mostrar todos los servicios
-            $services = service::all();
+            $services = service::paginate(10); // Use paginate
             $entrepreneurships = entrepreneurship::all();
         }
     
-        // Obtener todas las categorías (opcional, según lo que necesites en la vista)
-        $categories = category::all();
-    
-        return view('admin.services.index', compact('services', 'categories','entrepreneurships'));
+        return view('admin.services.index', compact('services', 'categories', 'entrepreneurships'));
     }
 
     /**

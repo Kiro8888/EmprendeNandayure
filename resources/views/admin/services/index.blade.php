@@ -73,6 +73,10 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Add pagination links -->
+        <div class="d-flex justify-content-center pagination-wrapper">
+            {{ $services->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 <!-- Modal de crear servicio -->
