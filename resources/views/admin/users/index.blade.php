@@ -12,7 +12,10 @@
     
     <x-chatbot />
 
-  
+    {{-- Agregar enlaces de paginación con estilo Bootstrap 4 --}}
+    <div class="d-flex justify-content-center mt-4">
+        {{ $users->links('pagination::bootstrap-4') }}
+    </div>
 
     <!-- Modal de crear usuario -->
     <div class="modal fade" id="createUserModal" tabindex="-1" aria-hidden="true">

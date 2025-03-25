@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('status', 'Activo')->paginate(10);
+        $users = User::where('status', 'Activo')->paginate(10); // Paginación de 10 usuarios por página
         $roles = Role::all(); // Obtener todos los roles
     
         return view('admin.users.index', compact('users', 'roles'));
