@@ -41,6 +41,10 @@
                 @endforeach
               </tbody>
           </table>
+          <!-- Add pagination links -->
+          <div class="d-flex justify-content-center pagination-wrapper">
+              {{ $roles->links('pagination::bootstrap-4') }}
+          </div>
     </div>
 </div>
 
