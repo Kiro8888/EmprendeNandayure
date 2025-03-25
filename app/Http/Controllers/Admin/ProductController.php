@@ -29,21 +29,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Obtener el usuario autenticado
         $user = auth()->user();
         $categories = category::all();
     
-        // Si el usuario tiene el rol de Entrepreneur, filtrar sus emprendimientos
         if ($user->hasRole('Entrepreneur')) {
-            // Obtener los emprendimientos completos en lugar de solo los IDs
             $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
-    
-            // Filtrar los productos asociados a esos emprendimientos
-            $products = product::whereIn('pdt_id_etp', $entrepreneurships->pluck('id'))->get();
+            $products = product::whereIn('pdt_id_etp', $entrepreneurships->pluck('id'))->paginate(10); // Use paginate
         } else {
-            // Si es Admin u otro rol, mostrar todos los productos
-            $products = product::all();
-            $entrepreneurships = entrepreneurship::all(); // Admin puede ver todos los emprendimientos
+            $products = product::paginate(10); // Use paginate
+            $entrepreneurships = entrepreneurship::all();
         }
     
         return view('admin.products.index', compact('products', 'categories', 'entrepreneurships'));

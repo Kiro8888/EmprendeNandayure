@@ -75,6 +75,10 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Add pagination links -->
+        <div class="d-flex justify-content-center pagination-wrapper">
+            {{ $products->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 
@@ -200,7 +204,7 @@
                     <div class="form-group">
                         <label for="pdt_img">Nueva Imagen</label>
                         <input type="file" class="form-control" name="pdt_img" id="pdt_img">
-                        @error('pdt_img')<p class="text-danger">{{ $message }}</p>@enderror
+                        @error('pdt_img')<p class="text-danger">{{ $message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
