@@ -62,7 +62,6 @@
                         </form>
                     </td>
                     <td>
-                        {{-- <a class="btn btn-primary" href="{{ route('admin.entrepreneurships.show', $entrepreneurship) }}">Mostrar</a> --}}
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showEntrepreneurshipModal{{ $entrepreneurship->id }}">
                             Ver Detalles
                         </button>      
@@ -71,6 +70,10 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- Agregar enlaces de paginación con estilo Bootstrap 4 --}}
+        <div class="d-flex justify-content-center mt-4">
+            {{ $entrepreneurships->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 
