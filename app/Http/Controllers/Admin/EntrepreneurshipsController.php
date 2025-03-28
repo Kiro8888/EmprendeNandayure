@@ -150,4 +150,16 @@ class EntrepreneurshipsController extends Controller
         $exists = entrepreneurship::where('etp_num', $request->etp_num)->exists();
         return response()->json(['exists' => $exists]);
     }
+
+    public function checkEmail(Request $request)
+    {
+        $exists = entrepreneurship::where('etp_email', $request->email)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    public function checkPhone(Request $request)
+    {
+        $exists = entrepreneurship::where('etp_num', $request->phone)->exists();
+        return response()->json(['exists' => $exists]);
+    }
 }

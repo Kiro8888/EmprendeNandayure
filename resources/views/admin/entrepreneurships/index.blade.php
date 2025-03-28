@@ -376,6 +376,43 @@
         });
         @endforeach
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const createForm = document.querySelector('#createEntrepreneurshipModal form');
+        createForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('etp_email').value;
+            const phone = document.getElementById('etp_num').value;
+
+            const emailExists = await checkDuplicate('email', email);
+            const phoneExists = await checkDuplicate('phone', phone);
+
+            if (emailExists || phoneExists) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: emailExists ? 'El correo ya está registrado.' : 'El número ya está registrado.'
+                });
+                return;
+            }
+
+            this.submit();
+        });
+
+        async function checkDuplicate(type, value) {
+            const url = type === 'email' ? '{{ route("admin.entrepreneurships.checkEmail") }}' : '{{ route("admin.entrepreneurships.checkPhone") }}';
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ [type]: value })
+            });
+            const data = await response.json();
+            return data.exists;
+        }
+    });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgtyUKa--FH9PWRW9ptMzz8-ofLvJgr0&callback=initMap"></script>
 @endsection

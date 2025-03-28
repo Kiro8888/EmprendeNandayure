@@ -45,6 +45,8 @@ Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');}
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
 
 Route::get('admin/entrepreneurships/check-phone', [App\Http\Controllers\Admin\EntrepreneurshipsController::class, 'checkPhoneNumber']);
+Route::post('admin/entrepreneurships/check-email', [App\Http\Controllers\Admin\EntrepreneurshipsController::class, 'checkEmail'])->name('admin.entrepreneurships.checkEmail');
+Route::post('admin/entrepreneurships/check-phone', [App\Http\Controllers\Admin\EntrepreneurshipsController::class, 'checkPhone'])->name('admin.entrepreneurships.checkPhone');
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
