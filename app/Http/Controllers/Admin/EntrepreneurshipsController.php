@@ -27,10 +27,10 @@ class EntrepreneurshipsController extends Controller
     
         // Si el usuario tiene el rol de Entrepreneur, filtrar los emprendimientos por su ID
         if ($user->hasRole('Entrepreneur')) {
-            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->get();
+            $entrepreneurships = entrepreneurship::where('etp_id_user', $user->id)->paginate(10); // Paginación de 10 por página
         } else {
             // Si es Admin u otro rol, mostrar todos los emprendimientos
-            $entrepreneurships = entrepreneurship::all();
+            $entrepreneurships = entrepreneurship::paginate(10); // Paginación de 10 por página
         }
     
         return view('admin.entrepreneurships.index', compact('entrepreneurships'));

@@ -23,9 +23,9 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
         $routeName = request()->route()->getName();
-        $roles = Role::all();
-        
-        return view('admin.roles.index', compact('roles','permissions', 'routeName'));
+        $roles = Role::paginate(10); // Use paginate
+
+        return view('admin.roles.index', compact('roles', 'permissions', 'routeName'));
     }
 
     /**

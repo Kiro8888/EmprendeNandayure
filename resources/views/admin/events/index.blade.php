@@ -64,6 +64,10 @@
                 @endforeach
             </tbody>
         </table>
+        <!-- Add pagination links -->
+        <div class="d-flex justify-content-center pagination-wrapper">
+            {{ $events->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 

@@ -39,7 +39,7 @@ Route::get('/entrepreneurships/{id}', [EntrepreneurshipDetailController::class, 
 Route::get('/products', [ClientProductServiceController::class, 'indexProduct'])->name('client.products');
 Route::get('/services', [ClientProductServiceController::class, 'indexService'])->name('client.services');
 
-Route::get('/productt/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
+Route::get('/product/{id}', [ClientDetailsPSController::class, 'showProduct'])->name('client.product_details');
 Route::get('/service/{id}', [ClientDetailsPSController::class, 'showService'])->name('client.service_details');
 Route::get('/sobreNosotros', function () {return view('client.sobre_nosotros');});
 Route::post('/registerEmprendedor', [RegisterController::class, 'create'])->name('registerEmprendedor');
