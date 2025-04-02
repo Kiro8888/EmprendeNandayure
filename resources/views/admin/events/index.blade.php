@@ -27,7 +27,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre evento</th>
-                    <th scope="col">Descripción evento</th>
+                    {{-- <th scope="col">Descripción evento</th> --}}
                     <th scope="col">Fecha evento</th>
                     <th scope="col">Hora evento</th>
                     <th scope="col">Lugar evento</th>
@@ -41,12 +41,12 @@
                 <tr>
                     <th scope="row">{{ $event->id_evt }}</th>
                     <td>{{ $event->evt_name }}</td>
-                    <td>{{ $event->evt_description }}</td>
+                    {{-- <td>{{ $event->evt_description }}</td> --}}
                     <td>{{ $event->evt_date }}</td>
                     <td>{{ $event->evt_hour }}</td>
                     <td>{{ $event->evt_location }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal{{ $event->id_evt }}">
                             Editar 
                         </button>                    
                     </td>
@@ -135,17 +135,17 @@
 <!-- Modal -->
 
 @foreach ($events as $event)
-<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+<div class="modal fade" id="editEventModal{{ $event->id_evt }}" tabindex="-1" aria-labelledby="editEventModalLabel{{ $event->id_evt }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="editEventModalLabel">Editar evento</h5>
+                <h5 class="modal-title" id="editEventModalLabel{{ $event->id_evt }}">Editar evento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.events.update', $event)}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.events.update', $event) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     
@@ -174,10 +174,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_location">Lugar evento</label>
-                        <input type="text" class="form-control" name="evt_location" id="evt_location" value="{{$event->evt_location}}">
+                        <label for="evt_location{{ $event->id_evt }}" class="form-label">Lugar evento</label>
+                        <input type="text" class="form-control" name="evt_location" id="evt_location{{ $event->id_evt }}" value="{{ $event->evt_location }}">
                         @error('evt_location')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
+
                     
                     <div class="form-group">
                         <label for="evt_img">Imagen Actual</label>
