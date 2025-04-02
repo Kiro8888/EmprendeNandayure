@@ -46,7 +46,7 @@
                     <td>{{ $event->evt_hour }}</td>
                     <td>{{ $event->evt_location }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal{{ $event->id_evt }}">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal">
                             Editar 
                         </button>                    
                     </td>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group">
                         <label for="evt_description">Descripción evento</label>
-                        <input type="text" class="form-control" name="evt_description" id="evt_description">
+                        <textarea class="form-control" name="evt_description" id="evt_description"></textarea>
                         @error('evt_description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -135,17 +135,17 @@
 <!-- Modal -->
 
 @foreach ($events as $event)
-<div class="modal fade" id="editEventModal{{ $event->id_evt }}" tabindex="-1" aria-labelledby="editEventModalLabel{{ $event->id_evt }}" aria-hidden="true">
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="editEventModalLabel{{ $event->id_evt }}">Editar evento</h5>
+                <h5 class="modal-title" id="editEventModalLabel">Editar evento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.events.update', $event) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('admin.events.update', $event)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     
@@ -157,7 +157,7 @@
                     
                     <div class="form-group">
                         <label for="evt_description">Descripción evento</label>
-                        <input type="text" class="form-control" name="evt_description" id="evt_description" value="{{$event->evt_description}}">
+                        <textarea class="form-control" name="evt_description" id="evt_description">{{$event->evt_description}}</textarea>
                         @error('evt_description')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
@@ -175,10 +175,11 @@
                     
                     <div class="form-group">
                         <label for="evt_location{{ $event->id_evt }}" class="form-label">Lugar evento</label>
-                        <input type="text" class="form-control" name="evt_location" id="evt_location{{ $event->id_evt }}" value="{{ $event->evt_location }}">
+                        <input type="text" class="form-control" id="evt_location{{ $event->id_evt }}" value="{{ $event->evt_location }}" >
                         @error('evt_location')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
 
+         
                     
                     <div class="form-group">
                         <label for="evt_img">Imagen Actual</label>
@@ -226,7 +227,7 @@
                     </div>
                     <div class="form-group">
                         <label for="evt_description{{ $event->id_evt }}" class="form-label">Descripción evento</label>
-                        <input type="text" class="form-control" id="evt_description{{ $event->id_evt }}" value="{{ $event->evt_description }}" readonly>
+                        <textarea class="form-control" id="evt_description{{ $event->id_evt }}" readonly>{{ $event->evt_description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="evt_date{{ $event->id_evt }}" class="form-label">Fecha evento</label>
