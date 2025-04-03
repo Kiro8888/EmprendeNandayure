@@ -405,12 +405,12 @@
 
 {{-- MAP --}}
 
-</div>
-<div class="container" style="margin-top: 10px">
-<div class="section-header mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-    <h1 class="display-5 mb-3">Ubicación de los Emprendimientos</h1>
-    {{-- <p>Ubicaciones de los emprnedimientos del sistemas</p> --}}
-</div></div>
+       <!-- Map Section -->
+       <div class="container" style="margin-top: 10px">
+        <div class="section-header mb-5 wow fadeInUp text-center" data-wow-delay="0.1s" style="max-width: 500px; margin: 0 auto;">
+        <h1 class="display-5 mb-2" style="font-size: 2rem; font-weight: bold;">Ubicación de los Emprendimientos</h1>
+        </div>
+    </div>
 <center>
     <div class="container mt-5">
         <div class="card shadow-lg border-0 rounded-3 overflow-hidden" style="max-width: 2100px">
