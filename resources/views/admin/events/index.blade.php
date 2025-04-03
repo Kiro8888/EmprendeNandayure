@@ -27,7 +27,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre evento</th>
-                    <th scope="col">Descripción evento</th>
+                    {{-- <th scope="col">Descripción evento</th> --}}
                     <th scope="col">Fecha evento</th>
                     <th scope="col">Hora evento</th>
                     <th scope="col">Lugar evento</th>
@@ -41,7 +41,7 @@
                 <tr>
                     <th scope="row">{{ $event->id_evt }}</th>
                     <td>{{ $event->evt_name }}</td>
-                    <td>{{ $event->evt_description }}</td>
+                    {{-- <td>{{ $event->evt_description }}</td> --}}
                     <td>{{ $event->evt_date }}</td>
                     <td>{{ $event->evt_hour }}</td>
                     <td>{{ $event->evt_location }}</td>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="form-group">
                         <label for="evt_description">Descripción evento</label>
-                        <input type="text" class="form-control" name="evt_description" id="evt_description">
+                        <textarea class="form-control" name="evt_description" id="evt_description"></textarea>
                         @error('evt_description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
@@ -157,7 +157,7 @@
                     
                     <div class="form-group">
                         <label for="evt_description">Descripción evento</label>
-                        <input type="text" class="form-control" name="evt_description" id="evt_description" value="{{$event->evt_description}}">
+                        <textarea class="form-control" name="evt_description" id="evt_description">{{$event->evt_description}}</textarea>
                         @error('evt_description')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
                     
@@ -174,10 +174,12 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="evt_location">Lugar evento</label>
-                        <input type="text" class="form-control" name="evt_location" id="evt_location" value="{{$event->evt_location}}">
+                        <label for="evt_location{{ $event->id_evt }}" class="form-label">Lugar evento</label>
+                        <input type="text" class="form-control" id="evt_location{{ $event->id_evt }}" value="{{ $event->evt_location }}" >
                         @error('evt_location')<p class="text-danger">{{$message}}</p>@enderror
                     </div>
+
+         
                     
                     <div class="form-group">
                         <label for="evt_img">Imagen Actual</label>
@@ -225,7 +227,7 @@
                     </div>
                     <div class="form-group">
                         <label for="evt_description{{ $event->id_evt }}" class="form-label">Descripción evento</label>
-                        <input type="text" class="form-control" id="evt_description{{ $event->id_evt }}" value="{{ $event->evt_description }}" readonly>
+                        <textarea class="form-control" id="evt_description{{ $event->id_evt }}" readonly>{{ $event->evt_description }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="evt_date{{ $event->id_evt }}" class="form-label">Fecha evento</label>
