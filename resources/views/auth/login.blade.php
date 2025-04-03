@@ -124,13 +124,13 @@
                 @csrf
 
                 <div class="input-group">
-                    <x-label for="email" value="Correo electrónico" />
-                    <x-input id="email" class="input-field" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                    <x-label for="email" value="Correo electrónico"/>
+                    <x-input id="email"  style="width:80%" class="input-field" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                 </div>
 
                 <div class="input-group mt-4">
                     <x-label for="password" value="Contraseña" />
-                    <x-input id="password" class="input-field" type="password" name="password" required autocomplete="current-password" />
+                    <x-input id="password"  style="width:80%" class="input-field" type="password" name="password" required autocomplete="current-password" />
                 </div>
 
   
