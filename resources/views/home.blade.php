@@ -343,7 +343,7 @@
                     <h4 class="mb-3">Frutas y verduras</h4>
                     <p class="mb-4">Algunos de nuestros emprendedores se especializan en ofrecer productos frescos 
                         y naturales.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        
                     </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -354,7 +354,7 @@
                     <h4 class="mb-3">Respostería y alimentación</h4>
                     <p class="mb-4">Varios de nuestros emprendedores se dedican a la repostería y
                          a ofrecer deliciosos servicios de catering</p>
-                         <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                 
                         </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -367,7 +367,7 @@
                          en la creación de productos
                          artesanales, como collares,
                          aretes y mucho más.</p>
-                         <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+        
                         </div>
             </div>
         </div>
