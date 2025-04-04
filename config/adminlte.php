@@ -346,7 +346,7 @@ return [
         ],
         ['header' => 'Menu Administrador'],
         [
-            'text' => 'Categorias',
+            'text' => 'Categorías',
             // 'url' => 'admin/settings',
             'route' => 'admin.categories.index',
             'icon' => 'fas fa-folder-open fa-fw',
