@@ -38,7 +38,7 @@
                         Iniciar sesión
                     </x-button>
                     <div style="margin-top: 1rem;">
-                        <a href="{{ route('google.login') }}" class="login-button" style="display: inline-block; background-color: #db4437;     margin-bottom: 10px;">
+                        <a href="{{ route('google.login') }}" class="login-button" style="display: inline-block; background-color: #db4437; margin-bottom: 10px; text-decoration: none;">
                             Iniciar sesión con Google
                         </a>
                     </div>
