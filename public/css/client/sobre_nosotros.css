@@ -1,0 +1,9 @@
+.hero-section {
+    background-image: url("/client/hero-about.jpg");
+    height: 600px;
+}
+
+i,
+.fa {
+    color: #009a00 !important;
+}
