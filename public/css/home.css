@@ -1,0 +1,173 @@
+/* Ajustar la altura del carrusel */
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.carousel-overlay h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.carousel-overlay p {
+    font-size: 1.5rem;
+}
+
+.products-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.products-section .card {
+    border: 2px solid green;
+    margin-bottom: 20px;
+}
+
+.entrepreneurships-section {
+    margin-top: 40px;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+/* Carousel styles */
+#carouselExample {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+    height: 100%;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    transition: filter 0.5s ease;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    color: white;
+}
+
+.carousel-caption h1,
+.carousel-caption p {
+    font-weight: bold;
+}
+
+i,
+.fa {
+    color: #009a00 !important;
+}
+
+/* Animation */
+@keyframes subirYbajar {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.subir-y-bajar {
+    animation: subirYbajar 2s infinite;
+}
+
+/* Custom image styles */
+.custom-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.bg-icon {
+    background: url(../images/home/bg-icon.png) center center repeat;
+    background-size: contain;
+}
+
+.btn-outline-primary {
+    border-color: #009a00 !important;
+    color: #009a00 !important;
+}
+
+.btn-outline-primary:hover {
+    border-color: #009a00 !important;
+    color: #009a00 !important;
+    background-color: transparent;
+}
+
+.img-fluid {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Section header styles */
+.section-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #009a00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: block;
+    white-space: normal;
+}
+
+.section-header h1::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #009a00;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.section-header h1:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.section-header h1:hover {
+    color: #006600;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
