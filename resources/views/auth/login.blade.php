@@ -28,7 +28,7 @@
 
                 <div class="checkbox-group mt-4">
                     <label for="remember_me" class="flex items-center">
-                        <x-checkbox id="remember_me" name="remember" />
+                        <x-checkbox id="remember_me" name="remember" :checked="old('remember')" />
                         <span class="text-sm text-gray-600">Recordarme</span>
                     </label>
                 </div>
