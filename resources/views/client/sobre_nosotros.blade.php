@@ -75,7 +75,7 @@
                             </div>
                             <div class="mb-4">
                                 <x-label for="cellphone" value="{{ __('Celular del emprendedor') }}" />
-                                <x-input id="cellphone" class="block w-full mt-1" type="number" name="cellphone" :value="old('cellphone')" required maxlength="8" />
+                                <x-input id="cellphone" class="block w-full mt-1" type="text" name="cellphone" :value="old('cellphone')" required maxlength="8" pattern="\d{8}" title="Debe contener exactamente 8 dígitos" />
                                 
                                 @error('cellphone')
                                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
