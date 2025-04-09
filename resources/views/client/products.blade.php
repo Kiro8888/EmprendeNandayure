@@ -88,22 +88,6 @@
         <x-footer-client />
     </div>
 
-    <!-- Additional Styles -->
-    <style>
-        .hero {
-            background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/client/hero-products.jpg') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
-        .hero-content {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-    </style>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 </x-app-layout>
