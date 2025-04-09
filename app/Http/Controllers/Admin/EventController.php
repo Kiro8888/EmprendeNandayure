@@ -56,6 +56,9 @@ class EventController extends Controller
             $imageName = time().'.'.$request->evt_img->extension();  
             $request->evt_img->move(public_path('images/events'), $imageName);
             $eventData['evt_img'] = 'images/events/' . $imageName;
+        } else {
+            // Set default image if none is uploaded
+            $eventData['evt_img'] = 'images/events/default.png';
         }
     
         $events = event::create($eventData);
@@ -108,7 +111,10 @@ class EventController extends Controller
              $imageName = time().'.'.$request->evt_img->extension();  
              $request->evt_img->move(public_path('images/events'), $imageName);
              $eventData['evt_img'] = 'images/events/' . $imageName;
-         }
+         } else if (!$event->evt_img) {
+            // Set default image if none exists
+            $eventData['evt_img'] = 'images/events/default.png';
+        }
      
          $event->update($eventData);
      

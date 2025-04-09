@@ -136,7 +136,6 @@
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content border-0 rounded-lg shadow-lg">
             
-            <!-- Encabezado elegante -->
             <div class="modal-header bg-light text-dark py-2">
                 <h6 class="modal-title font-weight-bold text-uppercase" id="productModalLabel{{ $product->id_pdt }}">
                     {{ $product->pdt_name }}

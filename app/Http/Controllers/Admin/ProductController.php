@@ -85,13 +85,16 @@ class ProductController extends Controller
             $imageName = time().'.'.$request->pdt_img->extension();  
             $request->pdt_img->move(public_path('images/products'), $imageName);
             $productData['pdt_img'] = 'images/products/' . $imageName;
+        } else {
+            // Set default image if none is uploaded
+            $productData['pdt_img'] = 'images/products/default.png';
         }
     
         $product = product::create($productData);
     
     
             return redirect()->route('admin.products.index')
-            ->with('info', 'el producto se creo correctamente');
+            ->with('info', 'El producto se creó correctamente');
     }
 
     /**
@@ -137,7 +140,10 @@ class ProductController extends Controller
              $imageName = time().'.'.$request->pdt_img->extension();  
              $request->pdt_img->move(public_path('images/products'), $imageName);
              $productData['pdt_img'] = 'images/products/' . $imageName;
-         }
+         } else if (!$product->pdt_img) {
+            // Set default image if none exists
+            $productData['pdt_img'] = 'images/products/default.png';
+        }
      
          $product->update($productData);
      
