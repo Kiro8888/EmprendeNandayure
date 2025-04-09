@@ -72,6 +72,9 @@ class EntrepreneurshipsController extends Controller
             $imageName = time() . '.' . $request->etp_img->extension();
             $request->etp_img->move(public_path('images/entrepreneurships'), $imageName);
             $entrepreneurshipData['etp_img'] = 'images/entrepreneurships/' . $imageName;
+        } else {
+            // Set default image if none is uploaded
+            $entrepreneurshipData['etp_img'] = 'images/entrepreneurships/default.png';
         }
     
         entrepreneurship::create($entrepreneurshipData);
@@ -123,6 +126,9 @@ class EntrepreneurshipsController extends Controller
             $imageName = time() . '.' . $request->etp_img->extension();
             $request->etp_img->move(public_path('images/entrepreneurships'), $imageName);
             $entrepreneurship->etp_img = 'images/entrepreneurships/' . $imageName;
+        } else if (!$entrepreneurship->etp_img) {
+            // Set default image if none exists
+            $entrepreneurship->etp_img = 'images/entrepreneurships/default.png';
         }
     
         // Actualiza los demás campos del emprendimiento
