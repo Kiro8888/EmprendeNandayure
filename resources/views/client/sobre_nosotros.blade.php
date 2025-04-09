@@ -83,7 +83,7 @@
                             </div>
                             <div class="mb-4">
                                 <x-label for="cedula" value="{{ __('Cédula del emprendedor') }}" />
-                                <x-input id="cedula" class="block w-full mt-1" type="number" name="cedula" :value="old('cedula')" required maxlength="9" />
+                                <x-input id="cedula" class="block w-full mt-1" type="text" name="cedula" :value="old('cedula')" required maxlength="9" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" />
 
                                 @error('cedula')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
