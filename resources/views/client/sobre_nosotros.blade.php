@@ -13,7 +13,19 @@
 
 
         <div class="bg-gray-100 min-h-screen py-12">
-       
+        
+        @if (session('success'))
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                Swal.fire({
+                    title: '¡Registro Exitoso!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+            </script>
+        @endif
+
 <style>  
  i, .fa {
     color: #009A00 !important;
