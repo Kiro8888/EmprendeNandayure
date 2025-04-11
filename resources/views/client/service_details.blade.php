@@ -93,21 +93,8 @@
         </div>
     </div>
 
-    <!-- Additional Styles -->
-    <style>
-        .container {
-            max-width: 1000px;
-        }
-        .bg-white {
-            background-color: #fff;
-        }
-        .rounded-xl {
-            border-radius: 1rem;
-        }
-        .hover\:shadow-2xl:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ asset('css/service_details.css') }}">
 
     <script>
         // Mostrar el modal

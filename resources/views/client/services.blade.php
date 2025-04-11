@@ -8,7 +8,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="bg-gray-100 py-12" style="background: #dddddd;">
+    <div class="bg-gray-100 py-12">
         <div class="container mx-auto px-4 lg:px-8">
             <h1 class="text-4xl font-bold mb-10 text-center text-gray-800">Explora nuestros servicios</h1>
 
@@ -26,7 +26,7 @@
                                 <label for="max_price" class="block text-gray-600">Precio máximo</label>
                                 <input type="number" name="max_price" id="max_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡100000" value="{{ request('max_price') }}">
                             </div>
-                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200" style="background-color: #009A00;">Filtrar</button>
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200">Filtrar</button>
                         </form>
                     </div>
                 </div>
@@ -49,8 +49,7 @@
                                         <!-- Botón Ver Más -->
                                         <div class="mt-4">
                                             <a href="{{ route('client.service_details', $service->id_srv) }}" 
-                                               class="w-full inline-block text-center text-white py-2 px-4 rounded-md transition duration-200 hover:bg-green-700" 
-                                               style="background-color: #009A00;">
+                                               class="w-full inline-block text-center text-white py-2 px-4 rounded-md transition duration-200 hover:bg-green-700">
                                                 Ver más
                                             </a>
                                         </div>
@@ -73,22 +72,6 @@
 
     <x-footer-client />
 
-    <!-- Additional Styles -->
-    <style>
-        .hero {
-            background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('/client/hero-Services.jpg') no-repeat center center/cover;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
-        .hero-content {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-    </style>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ asset('css/client/services.css') }}">
 </x-app-layout>
