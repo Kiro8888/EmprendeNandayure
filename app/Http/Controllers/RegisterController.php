@@ -41,6 +41,6 @@ class RegisterController extends Controller
         $user->assignRole(2); // Asegúrate de que el método assignRole exista en el modelo User
 
         // Redirigir o devolver respuesta después del registro
-        return redirect()->route('home')->with('success', 'Usuario registrado exitosamente.');
+        return redirect()->back()->with('success', 'Usuario registrado con éxito. Por favor, espera la aprobación del administrador.');
     }
 }
