@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\event;
-
+use App\Mail\EventCreatedMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -63,10 +65,17 @@ class EventController extends Controller
     
         $events = event::create($eventData);
     
+    // Obtener los usuarios activos
+    $users = User::where('status', 'Activo')->pluck('email');
+        
+    // Enviar el correo a cada usuario
+    foreach ($users as $email) {
+        Mail::to($email)->send(new EventCreatedMail($events));
+}
 
 
         return redirect()->route('admin.events.index', $events)
-        ->with('info', 'el evento se guardo correctamente');
+        ->with('info', 'el evento se guardo correctamente y  se envió el correo a los usuarios registrados correctamente');
     }
 
     /**
