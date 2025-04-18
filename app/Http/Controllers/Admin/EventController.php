@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\event;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EventCreated; // Importar el Mailable
+use App\Models\User; // Importar el modelo User
 
 class EventController extends Controller
 {
@@ -37,17 +39,14 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //hay que agregar la validacion unica
+        // Validar los datos del evento
         $request->validate([
             'evt_name'  =>'required',
             'evt_description'  =>'required',
             'evt_date'  =>'required',
             'evt_hour'  =>'required',
             'evt_location'  =>'required',
-          
         ]);
-
-        
 
         $eventData = $request->all();
         $eventData['evt_id_rol'] = 1; 
@@ -57,16 +56,19 @@ class EventController extends Controller
             $request->evt_img->move(public_path('images/events'), $imageName);
             $eventData['evt_img'] = 'images/events/' . $imageName;
         } else {
-            // Set default image if none is uploaded
             $eventData['evt_img'] = 'images/events/default.png';
         }
-    
-        $events = event::create($eventData);
-    
 
+        $event = event::create($eventData);
 
-        return redirect()->route('admin.events.index', $events)
-        ->with('info', 'el evento se guardo correctamente');
+        // Enviar correos a los usuarios
+        $users = User::all(); // Obtener todos los usuarios
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new EventCreated($event, $user));
+        }
+
+        return redirect()->route('admin.events.index', $event)
+            ->with('info', 'El evento se guardó correctamente y se enviaron los correos.');
     }
 
     /**
