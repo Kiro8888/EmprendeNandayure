@@ -5,18 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class WaitingEntrepreuserController extends Controller
 {
     public function activate(User $user)
-{
-    $user->status = 'Activo'; // Cambia el estado a "Activo"
-    $user->save(); // Guarda los cambios
+    {
+        $user->status = 'Activo'; // Cambia el estado a "Activo"
+        $user->save(); // Guarda los cambios
 
-    return redirect()
-        ->route('admin.waiting_entrepreneur.index')
-        ->with('info', 'El emprendedor: ' . $user->name . ' ha sido activado.');
-}
+        // Enviar correo al usuario
+        Mail::send('emails.user_activated', ['user' => $user], function ($message) use ($user) {
+            $message->to($user->email)
+                    ->subject('Cuenta Activada - Emprende Nandayure');
+        });
+
+        return redirect()
+            ->route('admin.waiting_entrepreneur.index')
+            ->with('info', 'El emprendedor: ' . $user->name . ' ha sido activado.');
+    }
 
     /**
      * Display a listing of the resource.
