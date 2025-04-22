@@ -112,7 +112,7 @@
                     </div>
                     <div class="form-group">
                         <label for="pdt_price" class="form-label">Precio producto</label>
-                        <input type="number" class="form-control" name="pdt_price" id="pdt_price">
+                        <input type="number" class="form-control" name="pdt_price" id="pdt_price" maxlength="6" oninput="limitInputLength(this, 6)">
                         @error('pdt_price')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
@@ -186,7 +186,7 @@
                     
                     <div class="form-group">
                         <label for="pdt_price">Precio producto</label>
-                        <input type="number" class="form-control" name="pdt_price" id="pdt_price" value="{{ old('pdt_price', $product->pdt_price) }}">
+                        <input type="number" class="form-control" name="pdt_price" id="pdt_price" value="{{ old('pdt_price', $product->pdt_price) }}" maxlength="6" oninput="limitInputLength(this, 6)">
                         @error('pdt_price')<p class="text-danger">{{ $message }}</p>@enderror
                     </div>
                     
@@ -296,6 +296,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+
+function limitInputLength(element, maxLength) {
+        if (element.value.length > maxLength) {
+            element.value = element.value.slice(0, maxLength);
+        }
+    }
     document.addEventListener('DOMContentLoaded', function() {
         const createProductForm = document.querySelector('form[action="{{route('admin.products.store')}}"]');
         const createProductButton = createProductForm.querySelector('button[type="submit"]');
