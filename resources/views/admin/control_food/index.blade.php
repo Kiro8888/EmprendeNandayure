@@ -110,8 +110,8 @@
     </div>
 @endif
 
-<div class="" style="height: 800px;
-    width: 900px;">
+<div class="" style="    height: 800px;
+    width: 50%;">
     <div class="card-body">
 
         <!-- Container for Products -->
@@ -120,7 +120,8 @@
                 @foreach ($products as $product)
                 <div class="col-sm-6 col-md-3 mb-4">
                     <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
-                        <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="card-img-top">
+                        <img src="{{ asset($product->pdt_img) }}" alt="{{ $product->pdt_name }}" class="card-img-top" style="height: 80%;
+    width: 80%;">
                         <div class="card-body text-center">
                             <h5 class="card-title" style="font-size: 1.25rem; font-weight: bold; color: #333;">{{ $product->pdt_name }}</h5>
                             <p class="card-text text-success font-weight-bold">₡{{ number_format($product->pdt_price, 2) }}</p>
