@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <label for="srv_price" class="form-label">Precio servicio</label>
-                        <input type="number" class="form-control" name="srv_price" id="srv_price">
+                        <input type="number" class="form-control" name="srv_price" id="srv_price" maxlength="6" oninput="limitInputLength(this, 6)">
                         @error('srv_price')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
@@ -184,7 +184,7 @@
                     <!-- Campo Precio -->
                     <div class="form-group">
                         <label for="srv_price">Precio servicio</label>
-                        <input type="number" class="form-control" name="srv_price" id="srv_price" value="{{ old('srv_price', $service->srv_price) }}">
+                        <input type="number" class="form-control" name="srv_price" id="srv_price" value="{{ old('srv_price', $service->srv_price) }}" maxlength="6" oninput="limitInputLength(this, 6)">
                         @error('srv_price')<p class="text-danger">{{ $message }}</p>@enderror
                     </div>
 
@@ -320,6 +320,11 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    function limitInputLength(element, maxLength) {
+        if (element.value.length > maxLength) {
+            element.value = element.value.slice(0, maxLength);
+        }
+    }
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.btn-delete');
         deleteButtons.forEach(button => {
