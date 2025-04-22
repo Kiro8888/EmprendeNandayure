@@ -38,7 +38,7 @@
                     <td>{{$category->ctg_name}}</td>
                     <td>{{$category->ctg_description}}</td>
                     <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{$category->id_ctg}}">
                             Editar 
                         </button>
                     </td>
@@ -99,11 +99,11 @@
 
 @foreach ($categories as $category)
 <!-- Modal de Editar Categoría -->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCategoryModal{{$category->id_ctg}}" tabindex="-1" aria-labelledby="editCategoryModalLabel{{$category->id_ctg}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editCategoryModalLabel">Editar Categoría</h5>
+                <h5 class="modal-title" id="editCategoryModalLabel{{$category->id_ctg}}">Editar Categoría</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -114,16 +114,16 @@
                     @method('PUT')
 
                     <div class="form-group">
-                        <label for="ctg_name" class="form-label">Nombre categoría</label>
-                        <input type="text" class="form-control" name="ctg_name" id="ctg_name" value="{{ old('ctg_name', $category->ctg_name) }}">
+                        <label for="ctg_name{{$category->id_ctg}}" class="form-label">Nombre categoría</label>
+                        <input type="text" class="form-control" name="ctg_name" id="ctg_name{{$category->id_ctg}}" value="{{ old('ctg_name', $category->ctg_name) }}">
                         @error('ctg_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="ctg_description" class="form-label">Descripción categoría</label>
-                        <input type="text" class="form-control" name="ctg_description" id="ctg_description" value="{{ old('ctg_description', $category->ctg_description) }}">
+                        <label for="ctg_description{{$category->id_ctg}}" class="form-label">Descripción categoría</label>
+                        <input type="text" class="form-control" name="ctg_description" id="ctg_description{{$category->id_ctg}}" value="{{ old('ctg_description', $category->ctg_description) }}">
                         @error('ctg_description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
