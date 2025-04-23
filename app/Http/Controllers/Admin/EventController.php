@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\event;
 use App\Mail\EventCreatedMail;
+use App\Mail\EventUpdatedMail; // Ensure this import is added
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 
@@ -126,9 +127,17 @@ class EventController extends Controller
         }
      
          $event->update($eventData);
+
+         // Obtener los usuarios activos
+         $users = User::where('status', 'Activo')->pluck('email');
+         
+         // Enviar el correo a cada usuario
+         foreach ($users as $email) {
+             Mail::to($email)->send(new EventUpdatedMail($event)); // Use EventUpdatedMail instead of EventCreatedMail
+         }
      
          return redirect()->route('admin.events.index', $event)
-             ->with('info', 'El servicio se actualizó correctamente');
+             ->with('info', 'El servicio se actualizó correctamente y se envió el correo a los usuarios registrados.');
      }
 
     /**
