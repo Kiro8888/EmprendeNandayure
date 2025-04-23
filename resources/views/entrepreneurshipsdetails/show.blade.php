@@ -37,6 +37,7 @@
             <div class="product-container">
                 <div class="product-card">
                 <img src="{{ $product->pdt_img ? asset($product->pdt_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $product->pdt_name }}">
+                <span class="badge bg-primary text-white position-absolute top-0 start-0 m-2">Producto</span>
                 <a href="{{ route('client.product_details', $product->id_pdt) }}" class="btn-view" style="margin-top: 10px;">Ver más</a>
                 <h3>{{ $product->pdt_name }}</h3>
                 <p>{{ $product->pdt_description }}</p>
@@ -49,6 +50,7 @@
             <div class="service-container">
                 <div class="product-card">
                 <img src="{{ $service->srv_img ? asset($service->srv_img) : 'https://via.placeholder.com/300x250' }}" alt="{{ $service->srv_name }}">
+                <span class="badge bg-success text-white position-absolute top-0 start-0 m-2">Servicio</span>
                 <h3>{{ $service->srv_name }}</h3>
                 <p>{{ $service->srv_description }}</p>
                 <div class="price">${{ number_format($service->srv_price, 2) }}</div>

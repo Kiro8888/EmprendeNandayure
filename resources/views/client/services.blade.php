@@ -12,27 +12,31 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h1 class="text-4xl font-bold mb-10 text-center text-gray-800">Explora nuestros servicios</h1>
 
-            <div class="flex">
+            <div class="flex flex-col lg:flex-row">
                 <!-- Filtro de Precio -->
-                <div class="w-1/4 pr-6">
+                <div class="w-full lg:w-1/4 lg:pr-6 mb-6 lg:mb-0">
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <h2 class="text-xl font-bold mb-4 text-gray-700">Filtrar por precio</h2>
                         <form action="{{ route('client.services') }}" method="GET">
                             <div class="mb-4">
                                 <label for="min_price" class="block text-gray-600">Precio mínimo</label>
-                                <input type="number" name="min_price" id="min_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡0" value="{{ request('min_price') }}">
+                                <input type="number" name="min_price" id="min_price" 
+                                       class="w-full px-3 py-2 border rounded-md sm:text-sm lg:text-base" 
+                                       placeholder="₡0" value="{{ request('min_price') }}">
                             </div>
                             <div class="mb-4">
                                 <label for="max_price" class="block text-gray-600">Precio máximo</label>
-                                <input type="number" name="max_price" id="max_price" class="w-full px-3 py-2 border rounded-md" placeholder="₡100000" value="{{ request('max_price') }}">
+                                <input type="number" name="max_price" id="max_price" 
+                                       class="w-full px-3 py-2 border rounded-md sm:text-sm lg:text-base" 
+                                       placeholder="₡100000" value="{{ request('max_price') }}">
                             </div>
-                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200">Filtrar</button>
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200" style="background-color: #009A00;">Filtrar</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Contenedor para Servicios -->
-                <div class="w-3/4">
+                <div class="w-full lg:w-3/4">
                     @if($services->isNotEmpty())
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                             @foreach ($services as $service)
