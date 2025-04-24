@@ -26,6 +26,21 @@
             </script>
         @endif
 
+@if ($errors->has('cedula') || $errors->has('cellphone') || $errors->has('email'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Error de Registro',
+            text: '{{ $errors->first('cedula') ?: ($errors->first('cellphone') ?: $errors->first('email')) }}'
+                .replace('The cellphone has already been taken', 'El número de teléfono ya está registrado')
+                .replace('The cedula has already been taken', 'La cédula ya está registrada')
+                .replace('The email has already been taken', 'El correo ya está registrado'),
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    </script>
+@endif
+
 <style>  
  i, .fa {
     color: #009A00 !important;
@@ -86,27 +101,16 @@
                                 <x-input id="last_name" class="block w-full mt-1" type="text" name="last_name" :value="old('last_name')" required />
                             </div>
                             <div class="mb-4">
-                                <x-label for="cellphone" value="{{ __('Celular del emprendedor') }}" />
+                                <x-label for="cellphone" value="{{ __('Número de teléfono') }}" />
                                 <x-input id="cellphone" class="block w-full mt-1" type="text" name="cellphone" :value="old('cellphone')" required maxlength="8" pattern="\d{8}" title="Debe contener exactamente 8 dígitos" />
-                                
-                                @error('cellphone')
-                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="cedula" value="{{ __('Cédula del emprendedor') }}" />
                                 <x-input id="cedula" class="block w-full mt-1" type="text" name="cedula" :value="old('cedula')" required maxlength="9" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" />
-
-                                @error('cedula')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="email" value="{{ __('Correo del emprendedor') }}" />
                                 <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
-                                @error('email')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
                             </div>
                             <div class="mb-4">
                                 <x-label for="password" value="{{ __('Contraseña') }}" />
@@ -115,9 +119,6 @@
                             <div class="mb-4">
                                 <x-label for="password_confirmation" value="{{ __('Confirmar contraseña') }}" />
                                 <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required autocomplete="new-password" />
-                                @error('password')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
                             </div>
                             <div class="mt-6">
                                 <x-button class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200">
