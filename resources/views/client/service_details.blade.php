@@ -17,6 +17,14 @@
                 <!-- Descripción del servicio -->
                 <p class="text-gray-700 mb-6 leading-relaxed">{{ $service->srv_description }}</p>
 
+                <!-- Calificación del servicio (dinámica) -->
+                <div class="flex items-center mb-6">
+                    <span class="text-yellow-500" id="averageRatingStars">
+                        <!-- Placeholder de estrellas dinámicas -->
+                    </span>
+                    <p class="ml-2 text-sm text-gray-600" id="averageRatingText">0.0 / 5</p>
+                </div>
+
                 <!-- Botón para contactar por WhatsApp -->
                 @if ($service->entrepreneurship->etp_num)
                     <a href="https://wa.me/{{ preg_replace('/\D/', '', $service->entrepreneurship->etp_num) }}?text=Hola%20{{ urlencode($service->entrepreneurship->etp_name) }}%2C%20estoy%20interesado%20en%20el%20servicio%20{{ urlencode($service->srv_name) }}."
@@ -44,26 +52,32 @@
  <!-- Sección de comentarios -->
  <div class="mt-12">
     <h2 class="text-2xl font-bold text-gray-900 mb-4">Comentarios</h2>
-    <!-- Formulario para agregar comentario -->
-    <div class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-800">Deja tu comentario</h3>
-        <form id="commentForm" class="mt-4">
-            <textarea id="commentInput" rows="4" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu comentario..." required></textarea>
-            <div class="flex items-center mt-4">
-                <label for="rating" class="text-lg font-medium text-gray-700">Calificación:</label>
-                <select id="rating" class="ml-4 p-2 border border-gray-300 rounded-lg">
-                    <option value="1">1 Estrella</option>
-                    <option value="2">2 Estrellas</option>
-                    <option value="3">3 Estrellas</option>
-                    <option value="4">4 Estrellas</option>
-                    <option value="5">5 Estrellas</option>
-                </select>
-            </div>
-            <button type="submit" class="mt-4 inline-block bg-green-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-green-700 transition duration-200">
-                Enviar comentario
-            </button>
-        </form>
-    </div>
+    @auth
+        <!-- Formulario para agregar comentario -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-800">Deja tu comentario</h3>
+            <form id="commentForm" class="mt-4">
+                <textarea id="commentInput" rows="4" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu comentario..." required></textarea>
+                <div class="flex items-center mt-4">
+                    <label for="rating" class="text-lg font-medium text-gray-700">Calificación:</label>
+                    <select id="rating" class="ml-4 p-2 border border-gray-300 rounded-lg">
+                        <option value="1">1 Estrella</option>
+                        <option value="2">2 Estrellas</option>
+                        <option value="3">3 Estrellas</option>
+                        <option value="4">4 Estrellas</option>
+                        <option value="5">5 Estrellas</option>
+                    </select>
+                </div>
+                <input type="hidden" id="userName" value="{{ Auth::user()->name }}">
+                <button type="submit" class="mt-4 inline-block bg-green-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-green-700 transition duration-200">
+                    Enviar comentario
+                </button>
+            </form>
+        </div>
+    @else
+        <!-- Mensaje para usuarios no autenticados -->
+        <p class="text-red-600 text-lg">Por favor, <a href="{{ route('login') }}" class="text-blue-600 underline">inicia sesión</a> para dejar un comentario.</p>
+    @endauth
 
     <!-- Mostrar comentarios almacenados en localStorage -->
     <div id="commentsSection" class="mt-6">
@@ -100,6 +114,9 @@
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="{{ asset('css/service_details.css') }}">
 
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         // Mostrar el modal
         document.getElementById('quoteButton').addEventListener('click', () => {
@@ -132,13 +149,22 @@
         // Cargar los comentarios existentes desde localStorage (específicos para servicios)
         document.addEventListener('DOMContentLoaded', () => {
             const commentsSection = document.getElementById('commentsSection');
-            const serviceCommentsKey = `comments_service_{{ $service->id }}`; // Unique key for this service
+            const serviceCommentsKey = `comments_service_{{ $service->id }}`;
             const comments = JSON.parse(localStorage.getItem(serviceCommentsKey)) || [];
 
+            // Calcular el promedio de calificaciones
+            const averageRating = comments.length > 0 
+                ? (comments.reduce((sum, comment) => sum + comment.rating, 0) / comments.length).toFixed(1) 
+                : 0;
+
+            // Actualizar la calificación promedio en la interfaz
+            document.getElementById('averageRatingText').textContent = `${averageRating} / 5`;
+            document.getElementById('averageRatingStars').innerHTML = getStars(Math.round(averageRating));
+
             // Mostrar comentarios existentes
-            comments.forEach(comment => {
+            comments.forEach((comment, index) => {
                 const commentDiv = document.createElement('div');
-                commentDiv.classList.add('mt-4', 'p-4', 'border', 'border-gray-300', 'rounded-lg', 'max-w-lg');
+                commentDiv.classList.add('mt-4', 'p-4', 'border', 'border-gray-300', 'rounded-lg');
                 commentDiv.innerHTML = `
                     <div class="flex items-center mb-2">
                         <div class="flex">
@@ -146,9 +172,40 @@
                         </div>
                         <span class="ml-2 text-sm text-gray-600">${comment.date}</span>
                     </div>
+                    <p class="text-gray-700 font-semibold">${comment.userName}</p>
                     <p class="text-gray-700">${comment.text}</p>
+                    @auth
+                        @if (Auth::user()->hasRole('Admin'))
+                            <button class="mt-2 bg-red-600 text-white py-1 px-3 rounded-md hover:bg-red-700 transition duration-200 delete-comment" data-index="${index}">
+                                Eliminar
+                            </button>
+                        @endif
+                    @endauth
                 `;
                 commentsSection.appendChild(commentDiv);
+            });
+
+            // Manejar la eliminación de comentarios con SweetAlert
+            document.querySelectorAll('.delete-comment').forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.getAttribute('data-index');
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: 'Este comentario será eliminado permanentemente.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            comments.splice(index, 1);
+                            localStorage.setItem(serviceCommentsKey, JSON.stringify(comments));
+                            location.reload();
+                        }
+                    });
+                });
             });
         });
 
@@ -167,6 +224,7 @@
 
             const commentText = document.getElementById('commentInput').value;
             const rating = document.getElementById('rating').value;
+            const userName = document.getElementById('userName').value;
             const date = new Date().toLocaleString();  // Fecha y hora actual
             const serviceCommentsKey = `comments_service_{{ $service->id }}`; // Unique key for this service
 
@@ -174,6 +232,7 @@
             const newComment = {
                 text: commentText,
                 rating: parseInt(rating),
+                userName: userName,
                 date: date
             };
 
