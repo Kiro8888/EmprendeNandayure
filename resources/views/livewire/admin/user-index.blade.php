@@ -21,7 +21,7 @@
           <tbody>
 
             @foreach ($users as $user)
-            @if ($user->status === 'Activo')
+            @if ($user->status === 'Activo' || $user->status === 'Inactivo')
                             <tr>
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->name }}</td>

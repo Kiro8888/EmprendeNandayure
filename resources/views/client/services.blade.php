@@ -53,8 +53,8 @@
                                         <!-- Botón Ver Más -->
                                         <div class="mt-4">
                                             <a href="{{ route('client.service_details', $service->id_srv) }}" 
-                                               class="w-full inline-block text-center text-white py-2 px-4 rounded-md transition duration-200 hover:bg-green-700">
-                                                Ver más
+                                                class="w-full inline-block text-center text-white py-2 px-4 rounded-md transition duration-200 hover:bg-green-700" 
+                                                style="background-color: #009A00;">Ver más
                                             </a>
                                         </div>
                                     </div>

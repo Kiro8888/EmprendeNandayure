@@ -39,6 +39,39 @@
                 @endif
             </div>
         </div>
+
+        
+ <!-- Sección de comentarios -->
+ <div class="mt-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Comentarios</h2>
+    <!-- Formulario para agregar comentario -->
+    <div class="mb-6">
+        <h3 class="text-xl font-semibold text-gray-800">Deja tu comentario</h3>
+        <form id="commentForm" class="mt-4">
+            <textarea id="commentInput" rows="4" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu comentario..." required></textarea>
+            <div class="flex items-center mt-4">
+                <label for="rating" class="text-lg font-medium text-gray-700">Calificación:</label>
+                <select id="rating" class="ml-4 p-2 border border-gray-300 rounded-lg">
+                    <option value="1">1 Estrella</option>
+                    <option value="2">2 Estrellas</option>
+                    <option value="3">3 Estrellas</option>
+                    <option value="4">4 Estrellas</option>
+                    <option value="5">5 Estrellas</option>
+                </select>
+            </div>
+            <button type="submit" class="mt-4 inline-block bg-green-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-green-700 transition duration-200">
+                Enviar comentario
+            </button>
+        </form>
+    </div>
+
+    <!-- Mostrar comentarios almacenados en localStorage -->
+    <div id="commentsSection" class="mt-6">
+        <h3 class="text-xl font-semibold text-gray-800">Comentarios anteriores</h3>
+        <!-- Los comentarios se insertarán aquí con JavaScript -->
+    </div>
+</div>
+</div>
     </div>
 
     <!-- Modal para el formulario de cotización -->
@@ -62,36 +95,7 @@
         </div>
     </div>
 
-    <!-- Sección de comentarios -->
-    <div class="mt-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Comentarios</h2>
-        <!-- Formulario para agregar comentario -->
-        <div class="mb-6">
-            <h3 class="text-xl font-semibold text-gray-800">Deja tu comentario</h3>
-            <form id="commentForm" class="mt-4">
-                <textarea id="commentInput" rows="4" class="w-full max-w-lg p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu comentario..." required></textarea>
-                <div class="flex items-center mt-4">
-                    <label for="rating" class="text-lg font-medium text-gray-700">Calificación:</label>
-                    <select id="rating" class="ml-4 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <option value="1">1 Estrella</option>
-                        <option value="2">2 Estrellas</option>
-                        <option value="3">3 Estrellas</option>
-                        <option value="4">4 Estrellas</option>
-                        <option value="5">5 Estrellas</option>
-                    </select>
-                </div>
-                <button type="submit" class="mt-4 inline-block bg-green-600 text-white text-lg font-medium py-3 px-6 rounded-md hover:bg-green-700 transition duration-200">
-                    Enviar comentario
-                </button>
-            </form>
-        </div>
 
-        <!-- Mostrar comentarios almacenados en localStorage -->
-        <div id="commentsSection" class="mt-6">
-            <h3 class="text-xl font-semibold text-gray-800">Comentarios anteriores</h3>
-            <!-- Los comentarios se insertarán aquí con JavaScript -->
-        </div>
-    </div>
 
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="{{ asset('css/service_details.css') }}">
