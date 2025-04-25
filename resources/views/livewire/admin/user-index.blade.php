@@ -22,27 +22,28 @@
 
             @foreach ($users as $user)
             @if ($user->status === 'Activo' || $user->status === 'Inactivo')
-                            <tr>
-                                <th scope="row">{{ $user->id }}</th>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->status }}</td>
-                                <td width="200px">
-                                    <button class="btn btn-warning" 
-                                            data-toggle="modal" 
-                                            data-target="#editUserModal" 
-                                            data-id="{{ $user->id }}" 
-                                            data-name="{{ $user->name }}" 
-                                            data-last_name="{{ $user->last_name }}" 
-                                            data-email="{{ $user->email }}" 
-                                            data-roles="{{ $user->roles->pluck('id')->join(',') }}">
-                                        Editar
-                                    </button>
-                                </td>
-                            </tr>
-                        @endif
-        @endforeach
+                <tr>
+                    <th scope="row">{{ $user->id }}</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->last_name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->status }}</td>
+                    <td width="200px">
+                        <button class="btn btn-warning" 
+                                data-toggle="modal" 
+                                data-target="#editUserModal" 
+                                data-id="{{ $user->id }}" 
+                                data-name="{{ $user->name }}" 
+                                data-last_name="{{ $user->last_name }}" 
+                                data-email="{{ $user->email }}" 
+                                data-roles="{{ $user->roles->pluck('id')->join(',') }}" 
+                                data-status="{{ $user->status }}">
+                            Editar
+                        </button>
+                    </td>
+                </tr>
+            @endif
+            @endforeach
             </tbody>
         </table>
     </div>

@@ -94,7 +94,9 @@ class UserController extends Controller
             }
         }
 
-        return view('admin.users.edit', compact('user', 'roles', 'rolesUser'));
+        $statuses = ['Activo', 'Inactivo']; // Add statuses for selection
+
+        return view('admin.users.edit', compact('user', 'roles', 'rolesUser', 'statuses'));
     }
 
     /**
@@ -107,9 +109,10 @@ class UserController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'roles' => 'array',
+            'status' => 'required|in:Activo,Inactivo', // Validate status
         ]);
 
-        $user->update($request->only('name', 'last_name', 'email'));
+        $user->update($request->only('name', 'last_name', 'email', 'status')); // Include status in update
 
         // Sincronizar roles
         if ($request->has('roles')) {

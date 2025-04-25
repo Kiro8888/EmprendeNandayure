@@ -121,6 +121,17 @@
                                 </div>
                             @endforeach
                         </div>
+                        {{-- Status --}}
+                        <div class="form-group">
+                            <label for="status" class="form-label">Estado</label>
+                            <select class="form-control" name="status" id="edit_status">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                            @error('status')
+                                <p class="text-danger">{{$message}}</p>
+                            @enderror
+                        </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
                 </div>
@@ -144,13 +155,15 @@
                 let name = button.data('name');
                 let lastName = button.data('last_name');
                 let email = button.data('email');
-                let roles = button.data('roles') ? button.data('roles').toString().split(',').map(Number) : []; // Convertir roles a un array de números
+                let roles = button.data('roles') ? button.data('roles').toString().split(',').map(Number) : [];
+                let status = button.data('status'); // Get status
 
                 // Configurar el formulario del modal
                 $('#editForm').attr('action', '/admin/users/' + id);
                 $('#editForm #edit_name').val(name);
                 $('#editForm #edit_last_name').val(lastName);
                 $('#editForm #edit_email').val(email);
+                $('#editForm #edit_status').val(status); // Set status
 
                 // Marcar los roles correspondientes
                 $('#editForm input[name="roles[]"]').each(function() {
