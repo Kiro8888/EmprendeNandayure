@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-guest-layout>
         <!-- Hero Section -->
-<section class="w-full bg-cover bg-center h-[600px] flex items-center justify-center relative" style="background-image: url('/client/hero-about.jpg'); height: 600px;">
+<section class="w-full bg-cover bg-center h-[600px] flex items-center justify-center relative" style="background-image: url('/client/hero-about.jpeg'); height: 600px;">
     <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay for darkening -->
     <div class="text-center text-white z-10 px-4 md:px-8">
         <h1 class="text-6xl font-extrabold leading-tight tracking-wide mb-6">Emprende Nandayure</h1>
@@ -130,9 +130,15 @@
                     
                     <!-- Right Column: Image and Description -->
                     <div class="w-full md:w-1/2 bg-gray-50 flex flex-col items-center justify-center p-8">
-                        <img src="/client/register-image.jpg" alt="Promoción de emprendedores" class="w-3/4 mb-6 rounded-lg shadow-lg">
-                        <p class="text-gray-600 text-lg text-center">
-                            ¡Únete a una red de emprendedores apasionados!.
+                        <div class="video-container bg-gray-200 rounded-lg p-4 flex items-center justify-center relative">
+                            <div class="square-background absolute inset-0 -translate-x-1/2 -translate-y-1/2"></div>
+                            <video class="video-fondo rounded-lg shadow-lg border-4 border-green-600 relative z-10" autoplay muted loop>
+                                <source src="/client/register-image.mp4" type="video/mp4">
+                                Tu navegador no soporta videos HTML5.
+                            </video>
+                        </div>
+                        <p class="text-gray-600 text-lg text-center mt-4">
+                            ¡Únete a una red de emprendedores apasionados y haz crecer tu negocio con nosotros!
                         </p>
                     </div>
                 </div>

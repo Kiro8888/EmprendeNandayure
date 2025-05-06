@@ -16,10 +16,10 @@
         <!-- Usar container-fluid para ancho completo -->
         <!-- Carousel Start -->
         <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" style="height: 900px;">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="images/home/carousel-1.jpg" class="d-block w-100 carousel-img" alt="Imagen 1">
+                        <img src="images/home/carousel-1.jpeg" class="d-block w-100 carousel-img" alt="Imagen 1">
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="text-center">
                                 <h1 class="display-1 text-white mb-5 animated slideInDown">Somos Emprende Nandayure</h1>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="images/home/carousel-2.jpg" class="d-block w-100 carousel-img" alt="Imagen 2">
+                        <img src="images/home/carousel-2.jpeg" class="d-block w-100 carousel-img" alt="Imagen 2">
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="text-center">
                                 <h1 class="display-1 text-white mb-5 animated slideInDown">Desarrolla Tu Emprendimiento</h1>
@@ -49,7 +49,7 @@
         </div>
         <!-- Carousel End -->
         <!-- Top Feature Start -->
-        <div class="container-fluid top-feature py-5 pt-lg-0">
+        <div class="container-fluid top-feature py-5 pt-lg-0" style="margin-top: 10px;">
             <div class="container py-5 pt-lg-0">
                 <div class="row gx-0">
                     <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
@@ -101,12 +101,12 @@
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-end">
-                                <img class="img-fluid bg-white w-100 mb-3 wow fadeIn" data-wow-delay="0.1s" src="images/home/about-1.jpg" alt="">
-                                <img class="img-fluid bg-white w-50 wow fadeIn" data-wow-delay="0.2s" src="images/home/about-3.jpg" alt="">
+                                <img class="img-fluid bg-white w-100 mb-3 wow fadeIn" data-wow-delay="0.1s" src="images/home/about-1.jpeg" alt="">
+                                <img class="img-fluid bg-white w-50 wow fadeIn" data-wow-delay="0.2s" src="images/home/about-3.jpeg" alt="">
                             </div>
                             <div class="col-6">
-                                <img class="img-fluid bg-white w-50 mb-3 wow fadeIn" data-wow-delay="0.3s" src="images/home/about-4.jpg" alt="">
-                                <img class="img-fluid bg-white w-100 wow fadeIn" data-wow-delay="0.4s" src="images/home/about-2.jpg" alt="">
+                                <img class="img-fluid bg-white w-50 mb-3 wow fadeIn" data-wow-delay="0.3s" src="images/home/about-4.jpeg" alt="">
+                                <img class="img-fluid bg-white w-100 wow fadeIn" data-wow-delay="0.4s" src="images/home/about-2.jpeg" alt="">
                             </div>
                         </div>
                     </div>

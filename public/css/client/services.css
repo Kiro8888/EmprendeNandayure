@@ -4,8 +4,8 @@
             rgba(0, 0, 0, 0.7),
             rgba(0, 0, 0, 0.5)
         ),
-        url("/client/hero-Services.jpg") no-repeat center center/cover;
-    height: 400px;
+        url("/client/hero-Services.jpeg") no-repeat center center/cover;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
