@@ -1,6 +1,12 @@
 {{-- Nav --}}
 <x-app-layout>
     <div class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="client/hero-video2.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos. Por favor, actualiza tu navegador o contacta al administrador.
+        </video>
+
+        
         <div class="hero-content">
             <h1>Próximos Eventos</h1>
             <p>Descubre los eventos más interesantes que se llevarán a cabo pronto.</p>

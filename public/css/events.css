@@ -1,19 +1,32 @@
 .hero {
-    background: url("/client/Events-hero.jpg") no-repeat center center;
-    background-size: cover;
-    height: 400px;
+    position: relative;
+    height: 600px; /* Increased height */
+    max-width: 100%; /* Reduced width */
+    margin: 0 auto; /* Center the hero section */
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
-    position: relative;
+    overflow: hidden;
+    background: none;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
 }
 
 .hero-content {
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     border-radius: 10px;
+    z-index: 1;
 }
 
 .hero h1 {

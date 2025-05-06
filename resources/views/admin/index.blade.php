@@ -9,6 +9,7 @@
 @section('content')
     <div class="row">
         @can('admin.categories.index')
+        @if(isset($categoriesCount))
         <div class="col-lg-4 col-6">
             <div class="small-box" style="background-color: #00B0F0;"> <!-- Cambié bg-info por un color personalizado -->
                 <div class="inner">
@@ -21,6 +22,7 @@
                 <a href="{{ route('admin.categories.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
+        @endif
         @endcan
 
         @can('admin.entrepreneurships.index')
@@ -39,6 +41,7 @@
         @endcan
 
         @can('admin.events.index')
+        @if(isset($eventsCount))
         <div class="col-lg-4 col-6">
             <div class="small-box bg-warning" style="background-color: #E1D711;">
                 <div class="inner">
@@ -51,6 +54,7 @@
                 <a href="{{ route('admin.events.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
+        @endif
         @endcan
 
         @can('admin.products.index')
@@ -84,6 +88,7 @@
         @endcan
 
         @can('admin.users.index')
+        @if(isset($usersCount))
         <div class="col-lg-4 col-6">
             <div class="small-box" style="background-color: #00B0F0;"> <!-- Cambié bg-info por un color personalizado -->
                 <div class="inner">
@@ -96,6 +101,7 @@
                 <a href="{{ route('admin.users.index') }}" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
+        @endif
     </div>
     @endcan
 
@@ -125,6 +131,11 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        // Redirect back to dashboard if redirected from entrepreneurship page
+        @if(session('redirectToDashboard'))
+            window.location.href = "{{ route('admin.home') }}";
+        @endif
+
         // Definir los datos directamente en el script de la vista
         var recentActivityData = {
             categorias: {{ $categoriesCount }},
