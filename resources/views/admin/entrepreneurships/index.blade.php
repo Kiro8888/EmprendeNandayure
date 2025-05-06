@@ -116,6 +116,9 @@
                         @enderror
                     </div>
                     <div id="map-create" style="height: 400px; width: 100%;"></div>
+                    <button type="button" class="btn btn-secondary mt-2" id="get-current-location">
+                        Obtener mi ubicación actual
+                    </button>
                     <input type="hidden" name="etp_latitude" id="etp_latitude_create">
                     <input type="hidden" name="etp_longitude" id="etp_longitude_create">
                     <button type="submit" class="btn btn-primary mt-3">Guardar</button>
@@ -281,6 +284,33 @@
             markerCreate.setPosition(event.latLng);
             document.getElementById('etp_latitude_create').value = event.latLng.lat();
             document.getElementById('etp_longitude_create').value = event.latLng.lng();
+        });
+
+        document.getElementById('get-current-location').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const currentLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    mapCreate.setCenter(currentLocation);
+                    markerCreate.setPosition(currentLocation);
+                    document.getElementById('etp_latitude_create').value = currentLocation.lat;
+                    document.getElementById('etp_longitude_create').value = currentLocation.lng;
+                }, function(error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'No se pudo obtener la ubicación actual. Por favor, habilita el acceso a la ubicación en tu dispositivo.'
+                    });
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'La geolocalización no es compatible con este navegador.'
+                });
+            }
         });
 
         @foreach ($entrepreneurships as $entrepreneurship)
