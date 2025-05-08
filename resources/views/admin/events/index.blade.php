@@ -22,48 +22,50 @@
             </button>
         </div>
 
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre evento</th>
-                    {{-- <th scope="col">Descripción evento</th> --}}
-                    <th scope="col">Fecha evento</th>
-                    <th scope="col">Hora evento</th>
-                    <th scope="col">Lugar evento</th>
-                    <th scope="col">Editar evento</th>
-                    <th scope="col">Eliminar evento</th>
-                    <th scope="col">Mostrar evento</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($events as $event)
-                <tr>
-                    <th scope="row">{{ $event->id_evt }}</th>
-                    <td>{{ $event->evt_name }}</td>
-                    {{-- <td>{{ $event->evt_description }}</td> --}}
-                    <td>{{ $event->evt_date }}</td>
-                    <td>{{ $event->evt_hour }}</td>
-                    <td>{{ $event->evt_location }}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal{{ $event->id_evt }}">
-                            Editar
-                        </button>                    
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#showEventModal{{ $event->id_evt }}">Mostrar</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre evento</th>
+                        {{-- <th scope="col">Descripción evento</th> --}}
+                        <th scope="col">Fecha evento</th>
+                        <th scope="col">Hora evento</th>
+                        <th scope="col">Lugar evento</th>
+                        <th scope="col">Editar evento</th>
+                        <th scope="col">Eliminar evento</th>
+                        <th scope="col">Mostrar evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($events as $event)
+                    <tr>
+                        <th scope="row">{{ $event->id_evt }}</th>
+                        <td>{{ $event->evt_name }}</td>
+                        {{-- <td>{{ $event->evt_description }}</td> --}}
+                        <td>{{ $event->evt_date }}</td>
+                        <td>{{ $event->evt_hour }}</td>
+                        <td>{{ $event->evt_location }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editEventModal{{ $event->id_evt }}">
+                                Editar
+                            </button>                    
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#showEventModal{{ $event->id_evt }}">Mostrar</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         <!-- Add pagination links -->
         <div class="d-flex justify-content-center pagination-wrapper">
             {{ $events->links('pagination::bootstrap-4') }}

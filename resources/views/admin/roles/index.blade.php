@@ -16,31 +16,33 @@
 
 <div class="card">
     <div class="card-body">
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Rol</th>
-                <th colspan="2" scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($roles as $role)
-                <tr>
-                    <th scope="row">{{$role->id}}</th>
-                    <td>{{$role->name}}</td>
-                    <td><button class="btn btn-warning" data-toggle="modal" data-target="#editRoleModal" data-id="{{ $role->id }}" data-name="{{ $role->name }}" data-permissions="{{ $role->permissions->pluck('id') }}">Editar</button></td>
-                    <td>
-                        <form action="{{route('admin.roles.destroy', $role)}}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Rol</th>
+                    <th colspan="2" scope="col"></th>
                   </tr>
-                @endforeach
-              </tbody>
-          </table>
+                </thead>
+                <tbody>
+                    @foreach ($roles as $role)
+                    <tr>
+                        <th scope="row">{{$role->id}}</th>
+                        <td>{{$role->name}}</td>
+                        <td><button class="btn btn-warning" data-toggle="modal" data-target="#editRoleModal" data-id="{{ $role->id }}" data-name="{{ $role->name }}" data-permissions="{{ $role->permissions->pluck('id') }}">Editar</button></td>
+                        <td>
+                            <form action="{{route('admin.roles.destroy', $role)}}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+              </table>
+          </div>
           <!-- Add pagination links -->
           <div class="d-flex justify-content-center pagination-wrapper">
               {{ $roles->links('pagination::bootstrap-4') }}

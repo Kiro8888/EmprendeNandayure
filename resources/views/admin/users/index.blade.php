@@ -9,6 +9,11 @@
 
 @section('content')
     @livewire('admin.user-index')
+    <div class="table-responsive">
+        <table class="table">
+            <!-- Table content goes here -->
+        </table>
+    </div>
     
     <x-chatbot />
 

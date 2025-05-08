@@ -5,7 +5,7 @@
     <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay for darkening -->
     <div class="text-center text-white z-10 px-4 md:px-8">
         <h1 class="text-6xl font-extrabold leading-tight tracking-wide mb-6">Emprende Nandayure</h1>
-        <p class="text-lg md:text-2xl font-medium mb-8 max-w-4xl mx-auto">Únete a nuestra plataforma de emprendedores y da el primer paso hacia tu éxito. ¿Estás listo para crear algo increíble?</p>
+        <p class="text-lg md:text-2xl font-medium mb-8 max-w-4xl mx-auto">Unite a la plataforma y descubrí los beneficios que tenemos para tu negocio. Registrate gratis y empezá hoy mismo.</p>
         <a href="#" class="bg-green-600 hover:bg-green-700 text-white py-4 px-8 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105">Comienza Ahora</a>
     </div>
 </section>
@@ -138,7 +138,7 @@
                             </video>
                         </div>
                         <p class="text-gray-600 text-lg text-center mt-4">
-                            ¡Únete a una red de emprendedores apasionados y haz crecer tu negocio con nosotros!
+                            Sumate y hacé que más personas conozcan tu negocio.
                         </p>
                     </div>
                 </div>
