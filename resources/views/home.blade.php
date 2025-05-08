@@ -23,7 +23,7 @@
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="text-center">
                                 <h1 class="display-1 text-white mb-5 animated slideInDown">Somos Emprende Nandayure</h1>
-                                <p class="text-white mb-4">Apoyando a los emprendedores locales en su crecimiento.</p>
+                                <p class="text-white mb-4">Impulsando negocios locales para que crezcan.</p>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
                             <div class="text-center">
                                 <h1 class="display-1 text-white mb-5 animated slideInDown">Desarrolla Tu Emprendimiento</h1>
-                                <p class="text-white mb-4">Conoce a nuestros emprendedores y sus historias.</p>
+                                <p class="text-white mb-4">Conocé a las personas detrás de estos proyectos y sus historias.</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                                     <i class="fa fa-users text-primary"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h4>Apoyo a Emprendedores</h4>
+                                    <h4>Apoyo a negocios</h4>
                                     <span>Ofrecemos herramientas de promoción y gestión para visibilizar negocios locales.</span>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="ps-3">
                                     <h4>Asistente Virtual</h4>
-                                    <span>Un asistente IA que guía a los emprendedores y facilita la interacción.</span>
+                                    <span>Un asistente IA que guía a los usuarios y facilita la interacción.</span>
                                 </div>
                             </div>
                         </div>
@@ -116,9 +116,9 @@
                             proyecto impulsado por la Municipalidad de Nandayure, en
                             colaboración con estudiantes de la Universidad Nacional de Costa Rica. 
                             Nuestro objetivo principal es ser una herramienta que permita a los 
-                            emprendedores de Nandayure, Guanacaste, promover sus productos y servicios, 
+                            negocios de Nandayure, Guanacaste, promover sus productos y servicios, 
                             fortaleciendo su presencia en el mercado. El sitio web ofrece herramientas como: </p>
-                        <p><i class="fa fa-check text-primary me-3"></i>Mapas personalizados con la ubicación de los emprendedores</p>
+                        <p><i class="fa fa-check text-primary me-3"></i>Mapas personalizados con la ubicación de los negocios</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Asistente virtual</p>
                         <p><i class="fa fa-check text-primary me-3"></i>Asistente para el control de comidas</p>
                         <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="" style="background-color: #009A00 !important; border-color: #009A00 !important;">Más información</a>
@@ -132,7 +132,7 @@
             <div class="container">
                 <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <h1 class="display-5 mb-3">Nuestras categorías</h1>
-                    <p>Actualmente, los emprendedores de Nandayure ofrecen productos y servicios en una amplia variedad de categorías</p>
+                    <p>En Nandayure, se ofrecen productos y servicios en una amplia gama de categorías.</p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -141,8 +141,7 @@
                                 <img class="img-fluid" src="images/home/icon-1.png" alt="">
                             </div>
                             <h4 class="mb-3">Frutas y verduras</h4>
-                            <p class="mb-4">Algunos de nuestros emprendedores se especializan en ofrecer productos frescos 
-                                y naturales.</p>
+                            <p class="mb-4">Algunas de las personas de nuestra comunidad se especializan en ofrecer productos frescos y naturales.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -151,8 +150,7 @@
                                 <img class="img-fluid" src="images/home/icon-2.png" alt="">
                             </div>
                             <h4 class="mb-3">Respostería y alimentación</h4>
-                            <p class="mb-4">Varios de nuestros emprendedores se dedican a la repostería y
-                                a ofrecer deliciosos servicios de catering</p>
+                            <p class="mb-4">Varios miembros de nuestra comunidad se dedican a la repostería y a ofrecer deliciosos servicios de comida.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -161,7 +159,7 @@
                                 <img class="img-fluid" src="images/home/icon-3.png" alt="">
                             </div>
                             <h4 class="mb-3">Artesanías</h4>
-                            <p class="mb-4">Algunos de nuestros emprendedores se especializan
+                            <p class="mb-4">Algunos de nuestros comercios se especializan
                                 en la creación de productos
                                 artesanales, como collares,
                                 aretes y mucho más.</p>
@@ -177,7 +175,7 @@
                 <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <h1 class="display-5 mb-3" style="color: black;">Nuestras empresas</h1>
                     <p>Contamos con una amplia variedad de empresas que reflejan el esfuerzo y la 
-                        dedicación de los emprendedores de Nandayure.</p>
+                        dedicación de las personas de Nandayure.</p>
                 </div>
                 <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
                     <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-6">
@@ -313,7 +311,7 @@
             <div class="container">
                 <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <h1 class="display-5 mb-3">Galería de eventos</h1>
-                    <p>Te ofrecemos algunas imágenes de ferias anteriores, donde podrás observar a nuestros emprendedores en acción.</p>
+                    <p>Te ofrecemos algunas imágenes de ferias anteriores, donde podrás ver a las personas de nuestra comunidad en acción.</p>
                 </div>
                 <div class="row g-2">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
