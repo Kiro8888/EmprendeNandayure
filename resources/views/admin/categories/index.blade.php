@@ -21,38 +21,40 @@
                 <i class="fas fa-plus"></i> Crear Categoría
             </button>       
          </div>
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($categories as $category)
-                <tr>
-                    <th scope="row">{{$category->id_ctg}}</th>
-                    <td>{{$category->ctg_name}}</td>
-                    <td>{{$category->ctg_description}}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{$category->id_ctg}}">
-                            Editar 
-                        </button>
-                    </td>
-                    <td>
-                        <form action="{{route('admin.categories.destroy', $category)}}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-              </tbody>
-          </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $category)
+                    <tr>
+                        <th scope="row">{{$category->id_ctg}}</th>
+                        <td>{{$category->ctg_name}}</td>
+                        <td>{{$category->ctg_description}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editCategoryModal{{$category->id_ctg}}">
+                                Editar 
+                            </button>
+                        </td>
+                        <td>
+                            <form action="{{route('admin.categories.destroy', $category)}}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+              </table>
+          </div>
           <!-- Add pagination links -->
           <div class="d-flex justify-content-center pagination-wrapper">
               {{ $categories->links('pagination::bootstrap-4') }}

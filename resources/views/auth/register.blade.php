@@ -1,11 +1,26 @@
 <x-guest-layout>
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 
+    @if ($errors->has('cedula') || $errors->has('cellphone') || $errors->has('email') || $errors->has('password'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                title: 'Error de Registro',
+                text: '{{ $errors->first('cedula') ?: ($errors->first('cellphone') ?: ($errors->first('email') ?: $errors->first('password'))) }}'
+                    .replace('The cellphone has already been taken', 'El número de teléfono ya está registrado')
+                    .replace('The cedula has already been taken', 'La cédula ya está registrada')
+                    .replace('The email has already been taken', 'El correo ya está registrado')
+                    .replace('The password field must be at least 8 characters.', 'La contraseña debe tener al menos 8 caracteres.')
+                    .replace('The password field confirmation does not match.', 'La confirmación de la contraseña no coincide.'),
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
+        </script>
+    @endif
+
     <div class="register-background">
         <div class="register-card">
             <h2 class="register-title">Registrar cuenta</h2>
-
-            <x-validation-errors class="mb-4" />
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -28,6 +43,7 @@
                 <div class="input-group">
                     <label for="password">Contraseña</label>
                     <input id="password" type="password" name="password" required autocomplete="new-password">
+                    <small class="password-hint">La contraseña debe tener al menos 8 caracteres.</small>
                 </div>
 
                 <div class="input-group">

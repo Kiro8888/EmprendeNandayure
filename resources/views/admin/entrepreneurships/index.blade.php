@@ -21,55 +21,57 @@
                 <i class="fas fa-plus"></i> Crear Emprendimiento
             </button>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Estado</th>
-                    <th>Número</th>
-                    <th>Correo</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                    <th>Mostrar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($entrepreneurships as $entrepreneurship)
-                <tr>
-                    <th>{{ $entrepreneurship->id }}</th>
-                    <td>{{ $entrepreneurship->etp_name }}</td>
-                    <td>{{ $entrepreneurship->etp_status == 1 ? 'Activo' : ($entrepreneurship->etp_status == 2 ? 'Inactivo' : 'Desconocido') }}</td>
-                    <td>{{ $entrepreneurship->etp_num }}</td>
-                    <td>{{ $entrepreneurship->etp_email }}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning btn-edit" data-toggle="modal" 
-                            data-target="#editEntrepreneurshipModal{{ $entrepreneurship->id }}" 
-                            data-id="{{ $entrepreneurship->id }}"
-                            data-name="{{ $entrepreneurship->etp_name }}"
-                            data-latitude="{{ $entrepreneurship->etp_latitude }}"
-                            data-longitude="{{ $entrepreneurship->etp_longitude }}"
-                            data-num="{{ $entrepreneurship->etp_num }}"
-                            data-email="{{ $entrepreneurship->etp_email }}">
-                            Editar 
-                        </button>
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.entrepreneurships.destroy', $entrepreneurship) }}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showEntrepreneurshipModal{{ $entrepreneurship->id }}">
-                            Ver Detalles
-                        </button>      
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Número</th>
+                        <th>Correo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                        <th>Mostrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($entrepreneurships as $entrepreneurship)
+                    <tr>
+                        <th>{{ $entrepreneurship->id }}</th>
+                        <td>{{ $entrepreneurship->etp_name }}</td>
+                        <td>{{ $entrepreneurship->etp_status == 1 ? 'Activo' : ($entrepreneurship->etp_status == 2 ? 'Inactivo' : 'Desconocido') }}</td>
+                        <td>{{ $entrepreneurship->etp_num }}</td>
+                        <td>{{ $entrepreneurship->etp_email }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-edit" data-toggle="modal" 
+                                data-target="#editEntrepreneurshipModal{{ $entrepreneurship->id }}" 
+                                data-id="{{ $entrepreneurship->id }}"
+                                data-name="{{ $entrepreneurship->etp_name }}"
+                                data-latitude="{{ $entrepreneurship->etp_latitude }}"
+                                data-longitude="{{ $entrepreneurship->etp_longitude }}"
+                                data-num="{{ $entrepreneurship->etp_num }}"
+                                data-email="{{ $entrepreneurship->etp_email }}">
+                                Editar 
+                            </button>
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.entrepreneurships.destroy', $entrepreneurship) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showEntrepreneurshipModal{{ $entrepreneurship->id }}">
+                                Ver Detalles
+                            </button>      
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         {{-- Agregar enlaces de paginación con estilo Bootstrap 4 --}}
         <div class="d-flex justify-content-center mt-4">
             {{ $entrepreneurships->links('pagination::bootstrap-4') }}

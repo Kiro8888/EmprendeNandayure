@@ -22,59 +22,61 @@
                 <i class="fas fa-plus"></i> Crear Producto
             </button>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Id </th>
-                    <th scope="col">Nombre </th>
-                    <th scope="col">Estado </th>
-                    <th scope="col">Precio </th>
-                    <th scope="col">Emprendimiento</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">Mostrar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($products as $product)
-                <tr>
-                    <th scope="row">{{$product->id_pdt}}</th>
-                    <td>{{$product->pdt_name}}</td>
-                    <td>
-                        @if ($product->pdt_status == 1)
-                            Activo
-                        @elseif ($product->pdt_status == 2)
-                            Inactivo
-                        @else
-                            Desconocido
-                        @endif
-                    </td>
-                    <td>{{$product->pdt_price}}</td>
-                    <td>{{$product->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
-                    <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">
-                            Editar 
-                        </button>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id </th>
+                        <th scope="col">Nombre </th>
+                        <th scope="col">Estado </th>
+                        <th scope="col">Precio </th>
+                        <th scope="col">Emprendimiento</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Mostrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                    <tr>
+                        <th scope="row">{{$product->id_pdt}}</th>
+                        <td>{{$product->pdt_name}}</td>
+                        <td>
+                            @if ($product->pdt_status == 1)
+                                Activo
+                            @elseif ($product->pdt_status == 2)
+                                Inactivo
+                            @else
+                                Desconocido
+                            @endif
+                        </td>
+                        <td>{{$product->pdt_price}}</td>
+                        <td>{{$product->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
+                        <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">
+                                Editar 
+                            </button>
                                            
-                    </td>
-                    <td>
-                        <form action="{{route('admin.products.destroy', $product)}}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showProductModal{{ $product->id_pdt }}">
-                            Ver Detalles
-                        </button>                  
-                      </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        </td>
+                        <td>
+                            <form action="{{route('admin.products.destroy', $product)}}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showProductModal{{ $product->id_pdt }}">
+                                Ver Detalles
+                            </button>                  
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         <!-- Add pagination links -->
         <div class="d-flex justify-content-center pagination-wrapper">
             {{ $products->links('pagination::bootstrap-4') }}

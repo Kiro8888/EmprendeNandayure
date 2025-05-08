@@ -21,58 +21,60 @@
                 <i class="fas fa-plus"></i> Crear Servicio
             </button>
         </div>
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Emprendimiento</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    <th scope="col">Mostrar</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($services as $service)
-                <tr>
-                    <th scope="row">{{ $service->id_srv }}</th>
-                    <td>{{ $service->srv_name }}</td>
-                    <td>
-                        @if ($service->srv_status == 1)
-                            Activo
-                        @elseif ($service->srv_status == 2)
-                            Inactivo
-                        @else
-                            Desconocido
-                        @endif
-                    </td>
-                    <td>{{ $service->srv_price }}</td>
-                    <td>{{ $service->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
-                    <td>{{ $service->category->ctg_name ?? 'Desconocido' }}</td>
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editServiceModal{{ $service->id_srv }}">
-                            Editar
-                        </button>
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="delete-form">
-                            @csrf
-                            @method('delete')
-                            <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showServiceModal{{ $service->id_srv }}">
-                            Mostrar
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Emprendimiento</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Mostrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($services as $service)
+                    <tr>
+                        <th scope="row">{{ $service->id_srv }}</th>
+                        <td>{{ $service->srv_name }}</td>
+                        <td>
+                            @if ($service->srv_status == 1)
+                                Activo
+                            @elseif ($service->srv_status == 2)
+                                Inactivo
+                            @else
+                                Desconocido
+                            @endif
+                        </td>
+                        <td>{{ $service->srv_price }}</td>
+                        <td>{{ $service->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
+                        <td>{{ $service->category->ctg_name ?? 'Desconocido' }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editServiceModal{{ $service->id_srv }}">
+                                Editar
+                            </button>
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="delete-form">
+                                @csrf
+                                @method('delete')
+                                <button type="button" class="btn btn-danger btn-delete">Eliminar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showServiceModal{{ $service->id_srv }}">
+                                Mostrar
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         <!-- Add pagination links -->
         <div class="d-flex justify-content-center pagination-wrapper">
             {{ $services->links('pagination::bootstrap-4') }}
