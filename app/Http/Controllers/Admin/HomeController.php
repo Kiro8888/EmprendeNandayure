@@ -32,6 +32,7 @@ class HomeController extends Controller
             $productsCount = product::count();
             $servicesCount = service::count();
             $usersCount = User::count();
+            $entrepreneurships = entrepreneurship::count();
         }
 
         return view('admin.index', compact(
