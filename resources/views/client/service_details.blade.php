@@ -1,4 +1,13 @@
 <x-app-layout>
+            <div class="gtranslate_wrapper"></div>
+        <script>
+            window.gtranslateSettings = {
+                "default_language": "es",  // Español como idioma predeterminado
+                "languages": ["es", "en", "de"],  // Español, inglés, alemán
+                "wrapper_selector": ".gtranslate_wrapper"  // Selector donde aparecerá el widget
+            };
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
     <div class="container mx-auto p-8">
         <div class="flex items-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <!-- Imagen del servicio -->

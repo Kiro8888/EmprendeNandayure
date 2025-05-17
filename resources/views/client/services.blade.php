@@ -8,6 +8,15 @@
     </div>
 
     <!-- Main Content -->
+            <div class="gtranslate_wrapper"></div>
+        <script>
+            window.gtranslateSettings = {
+                "default_language": "es",  // Español como idioma predeterminado
+                "languages": ["es", "en", "de"],  // Español, inglés, alemán
+                "wrapper_selector": ".gtranslate_wrapper"  // Selector donde aparecerá el widget
+            };
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
     <div class="bg-gray-100 py-12">
         <div class="container mx-auto px-4 lg:px-8">
             <h1 class="text-4xl font-bold mb-10 text-center text-gray-800">Explora nuestros servicios</h1>

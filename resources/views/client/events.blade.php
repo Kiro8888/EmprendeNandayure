@@ -12,7 +12,15 @@
             <p>Descubre los eventos más interesantes que se llevarán a cabo pronto.</p>
         </div>
     </div>
-
+        <div class="gtranslate_wrapper"></div>
+        <script>
+            window.gtranslateSettings = {
+                "default_language": "es",  // Español como idioma predeterminado
+                "languages": ["es", "en", "de"],  // Español, inglés, alemán
+                "wrapper_selector": ".gtranslate_wrapper"  // Selector donde aparecerá el widget
+            };
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
     <center>
     <div class="container my-5">
         @if($events->isEmpty())
