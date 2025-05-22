@@ -101,11 +101,11 @@
                         <form method="POST" action="{{ route('registerEmprendedor') }}">
                             @csrf
                             <div class="mb-4">
-                                <x-label for="name" value="{{ __('Nombre de emprendedor') }}" />
+                                <x-label for="name" value="{{ __('Nombre completo') }}" />
                                 <x-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required />
                             </div>
                             <div class="mb-4">
-                                <x-label for="last_name" value="{{ __('Apellido de emprendedor') }}" />
+                                <x-label for="last_name" value="{{ __('Apellidos completos') }}" />
                                 <x-input id="last_name" class="block w-full mt-1" type="text" name="last_name" :value="old('last_name')" required />
                             </div>
                             <div class="mb-4">
@@ -113,11 +113,11 @@
                                 <x-input id="cellphone" class="block w-full mt-1" type="text" name="cellphone" :value="old('cellphone')" required maxlength="8" pattern="\d{8}" title="Debe contener exactamente 8 dígitos" />
                             </div>
                             <div class="mb-4">
-                                <x-label for="cedula" value="{{ __('Cédula del emprendedor') }}" />
+                                <x-label for="cedula" value="{{ __('Cédula') }}" />
                                 <x-input id="cedula" class="block w-full mt-1" type="text" name="cedula" :value="old('cedula')" required maxlength="9" pattern="\d{9}" title="Debe contener exactamente 9 dígitos" />
                             </div>
                             <div class="mb-4">
-                                <x-label for="email" value="{{ __('Correo del emprendedor') }}" />
+                                <x-label for="email" value="{{ __('Correo electrónico') }}" />
                                 <x-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
                             </div>
                             <div class="mb-4">
