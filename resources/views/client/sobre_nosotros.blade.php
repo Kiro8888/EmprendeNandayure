@@ -10,7 +10,15 @@
     </div>
 </section>
 
-
+        <div class="gtranslate_wrapper"></div>
+        <script>
+            window.gtranslateSettings = {
+                "default_language": "es",  // Español como idioma predeterminado
+                "languages": ["es", "en", "de"],  // Español, inglés, alemán
+                "wrapper_selector": ".gtranslate_wrapper"  // Selector donde aparecerá el widget
+            };
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
         <div class="bg-gray-100 min-h-screen py-12">
         
@@ -121,7 +129,7 @@
                                 <x-input id="password_confirmation" class="block w-full mt-1" type="password" name="password_confirmation" required autocomplete="new-password" />
                             </div>
                             <div class="mt-6">
-                                <x-button class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200">
+                                <x-button class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200" style="width: 20%;">
                                     {{ __('Registrarme') }}
                                 </x-button>
                             </div>
