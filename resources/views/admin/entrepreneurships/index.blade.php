@@ -288,30 +288,91 @@
             document.getElementById('etp_longitude_create').value = event.latLng.lng();
         });
 
-        document.getElementById('get-current-location').addEventListener('click', function() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    const currentLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    mapCreate.setCenter(currentLocation);
-                    markerCreate.setPosition(currentLocation);
-                    document.getElementById('etp_latitude_create').value = currentLocation.lat;
-                    document.getElementById('etp_longitude_create').value = currentLocation.lng;
-                }, function(error) {
+        document.getElementById('get-current-location').addEventListener('click', async function() {
+            // Detectar si es iOS/Safari y advertir sobre HTTPS
+            function isIOS() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            }
+            function isSafari() {
+                return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            }
+            if ((isIOS() || isSafari()) && location.protocol !== 'https:') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Advertencia',
+                    text: 'En dispositivos iOS/Safari, la ubicación solo funciona en sitios HTTPS. Por favor, accede a través de https://'
+                });
+                return;
+            }
+
+            // Verificar permisos si es posible
+            if (navigator.permissions) {
+                try {
+                    const perm = await navigator.permissions.query({ name: 'geolocation' });
+                    if (perm.state === 'denied') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Permiso denegado',
+                            text: 'Debes permitir el acceso a la ubicación en la configuración de tu navegador (Ajustes > Safari > Ubicación).'
+                        });
+                        return;
+                    }
+                } catch (e) {
+                    // No soportado, continuar
+                }
+            }
+
+            // Cerrar el modal antes de pedir la ubicación (puede ayudar en iOS)
+            if (isIOS()) {
+                $('#createEntrepreneurshipModal').modal('hide');
+                setTimeout(() => {
+                    solicitarUbicacion();
+                }, 600); // Espera a que el modal cierre
+            } else {
+                solicitarUbicacion();
+            }
+
+            function solicitarUbicacion() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const currentLocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        mapCreate.setCenter(currentLocation);
+                        markerCreate.setPosition(currentLocation);
+                        document.getElementById('etp_latitude_create').value = currentLocation.lat;
+                        document.getElementById('etp_longitude_create').value = currentLocation.lng;
+                        // Reabrir el modal si fue cerrado
+                        if (isIOS()) {
+                            $('#createEntrepreneurshipModal').modal('show');
+                        }
+                    }, function(error) {
+                        let msg = 'No se pudo obtener la ubicación actual. Por favor, habilita el acceso a la ubicación en tu dispositivo.';
+                        if (error.code === error.PERMISSION_DENIED) {
+                            msg = 'Permiso de ubicación denegado. Por favor, permite el acceso a la ubicación en la configuración de tu navegador.';
+                        } else if (error.code === error.POSITION_UNAVAILABLE) {
+                            msg = 'La información de ubicación no está disponible.';
+                        } else if (error.code === error.TIMEOUT) {
+                            msg = 'La solicitud de ubicación ha expirado.';
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: msg
+                        });
+                        // Reabrir el modal si fue cerrado
+                        if (isIOS()) {
+                            $('#createEntrepreneurshipModal').modal('show');
+                        }
+                    });
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'No se pudo obtener la ubicación actual. Por favor, habilita el acceso a la ubicación en tu dispositivo.'
+                        text: 'La geolocalización no es compatible con este navegador.'
                     });
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'La geolocalización no es compatible con este navegador.'
-                });
+                }
             }
         });
 
