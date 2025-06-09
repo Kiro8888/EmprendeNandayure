@@ -55,7 +55,7 @@
                         <td>{{$product->entrepreneurship->etp_name ?? 'Desconocido' }}</td>
                         <td>{{$product->category->ctg_name ?? 'Desconocido' }}</td>
                         <td>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal{{ $product->id_pdt }}">
                                 Editar 
                             </button>
                                            
@@ -157,14 +157,13 @@
     </div>
 </div>
 
-<!-- Modal -->
-@if (isset($product))
-<!-- Modal de edición, solo se muestra si el producto está presente -->
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+<!-- Modales de edición por producto -->
+@foreach ($products as $product)
+<div class="modal fade" id="editProductModal{{ $product->id_pdt }}" tabindex="-1" aria-labelledby="editProductModalLabel{{ $product->id_pdt }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editProductModalLabel">Editar Producto</h5>
+                <h5 class="modal-title" id="editProductModalLabel{{ $product->id_pdt }}">Editar Producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -176,19 +175,19 @@
                     
                     <div class="form-group">
                         <label for="pdt_name">Nombre producto</label>
-                        <input type="text" class="form-control" name="pdt_name" id="pdt_name" value="{{ old('pdt_name', $product->pdt_name) }}">
+                        <input type="text" class="form-control" name="pdt_name" value="{{ old('pdt_name', $product->pdt_name) }}">
                         @error('pdt_name')<p class="text-danger">{{ $message }}</p>@enderror
                     </div>
                     
                     <div class="form-group">
                         <label for="pdt_description">Descripción producto</label>
-                        <input type="text" class="form-control" name="pdt_description" id="pdt_description" value="{{ old('pdt_description', $product->pdt_description) }}">
+                        <input type="text" class="form-control" name="pdt_description" value="{{ old('pdt_description', $product->pdt_description) }}">
                         @error('pdt_description')<p class="text-danger">{{ $message }}</p>@enderror
                     </div>
                     
                     <div class="form-group">
                         <label for="pdt_price">Precio producto</label>
-                        <input type="number" class="form-control" name="pdt_price" id="pdt_price" value="{{ old('pdt_price', $product->pdt_price) }}" maxlength="6" oninput="limitInputLength(this, 6)">
+                        <input type="number" class="form-control" name="pdt_price" value="{{ old('pdt_price', $product->pdt_price) }}" maxlength="6" oninput="limitInputLength(this, 6)">
                         @error('pdt_price')<p class="text-danger">{{ $message }}</p>@enderror
                     </div>
                     
@@ -205,13 +204,13 @@
                     
                     <div class="form-group">
                         <label for="pdt_img">Nueva Imagen</label>
-                        <input type="file" class="form-control" name="pdt_img" id="pdt_img">
+                        <input type="file" class="form-control" name="pdt_img">
                         @error('pdt_img')<p class="text-danger">{{ $message}}</p>@enderror
                     </div>
                     
                     <div class="form-group">
                         <label for="pdt_id_ctg">Categoría producto</label>
-                        <select name="pdt_id_ctg" id="pdt_id_ctg" class="form-control">
+                        <select name="pdt_id_ctg" class="form-control">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id_ctg }}" {{ $product->pdt_id_ctg == $category->id_ctg ? 'selected' : '' }}>
                                     {{ $category->ctg_name }}
@@ -223,7 +222,7 @@
                     
                     <div class="form-group">
                         <label for="pdt_status">Estatus</label>
-                        <select class="form-control" name="pdt_status" id="pdt_status" {{ !auth()->user()->hasRole('Admin') ? 'disabled' : '' }}>
+                        <select class="form-control" name="pdt_status" {{ !auth()->user()->hasRole('Admin') ? 'disabled' : '' }}>
                             <option value="1" {{ $product->pdt_status == 1 ? 'selected' : '' }}>Activo</option>
                             <option value="2" {{ $product->pdt_status == 2 ? 'selected' : '' }}>Inactivo</option>
                         </select>
@@ -238,7 +237,8 @@
         </div>
     </div>
 </div>
-@endif
+@endforeach
+
 @foreach ($products as $product)
 <!-- Modal para mostrar producto -->
 <div class="modal fade" id="showProductModal{{ $product->id_pdt }}" tabindex="-1" role="dialog" aria-labelledby="showProductModalLabel{{ $product->id_pdt }}" aria-hidden="true">
